@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative Fotografia por Thiago. Portfólio de ensaios sensuais, festas, retratos e vídeos com drone. Estilo clean e marcante em João Pessoa, PB.">
+    <meta name="keywords" content="fotografia, ensaio, retrato, festa, drone, videomaking, thiago, joao pessoa, pb">
+    <title>Creative Fotografia | Thiago</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <style>
+        :root { --bg:#0f0f0f; --text:#f5f5f5; --accent:#d4af37; --gray:#1a1a1a; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+        header { position:fixed; top:0; left:0; right:0; background:rgba(15,15,15,.95); backdrop-filter:blur(12px); z-index:1000; padding:1.5rem 5%; display:flex; justify-content:space-between; align-items:center; }
+        .logo img { height:65px; }
+        .menu-toggle { display:none; font-size:1.8rem; cursor:pointer; color:white; }
+        nav ul { display:flex; gap:2.5rem; list-style:none; }
+        nav a { color:var(--text); text-decoration:none; font-weight:500; transition:.3s; }
+        nav a:hover { color:var(--accent); }
+        .hero { height:100vh; background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2238&auto=format&fit=crop') center/cover no-repeat; display:flex; align-items:center; justify-content:center; text-align:center; }
+        .hero h1 { font-size:5rem; font-weight:300; margin-bottom:1rem; }
+        .hero p { font-size:1.6rem; opacity:.9; }
+        section { padding:120px 5%; }
+        h2 { font-size:3rem; text-align:center; margin-bottom:4rem; font-weight:300; }
+        .filters { text-align:center; margin-bottom:4rem; }
+        .filter-btn { background:transparent; border:2px solid var(--accent); color:var(--text); padding:.8rem 2rem; margin:0 .5rem; border-radius:50px; cursor:pointer; transition:.3s; font-weight:600; }
+        .filter-btn.active,.filter-btn:hover { background:var(--accent); color:black; }
+        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:2rem; }
+        .portfolio-item { position:relative; overflow:hidden; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5); transition:transform .4s; cursor:pointer; }
+        .portfolio-item:hover { transform:translateY(-10px); }
+        .portfolio-item img, .portfolio-item video { width:100%; height:460px; object-fit:cover; display:block; }
+        /* Adicionado para vídeos responsivos */
+        .portfolio-item.video-container { height: 460px; }
+        .portfolio-item.video-container iframe { width: 100%; height: 100%; border: none; }
+
+        .overlay { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.9)); color:white; padding:2rem 1.5rem 1.5rem; text-align:center; }
+        .about { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+        .about img { border-radius:16px; width:100%; }
+        .contact form { max-width:600px; margin:0 auto; display:grid; gap:1.5rem; }
+        input,textarea { padding:1.2rem; background:var(--gray); border:none; border-radius:8px; color:white; }
+        button { padding:1.2rem 3rem; background:var(--accent); color:black; border:none; border-radius:50px; font-weight:bold; cursor:pointer; transition:.3s; }
+        button:hover { transform:scale(1.05); }
+        .social-buttons { display:flex; gap:1.5rem; justify-content:center; margin-top:3rem; }
+        .social-btn { display:flex; align-items:center; gap:1rem; padding:1rem 2.5rem; color:white; text-decoration:none; border-radius:50px; font-weight:bold; }
+        .social-btn.whatsapp { background:#25D366; }
+        .social-btn.instagram { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+        footer { text-align:center; padding:4rem; background:#000; }
+        @media (max-width:968px) { .about { grid-template-columns:1fr; text-align:center; } .hero h1 { font-size:3.8rem; } }
+        @media (max-width:768px) { .menu-toggle { display:block; } nav { position:absolute; top:100%; left:0; width:100%; background:var(--bg); padding:2rem; transform:translateY(-150%); transition:.5s; opacity:0; visibility:hidden; } nav.active { transform:translateY(0); opacity:1; visibility:visible; } nav ul { flex-direction:column; gap:2rem; text-align:center; } .hero h1 { font-size:3rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4006%202.jpg" alt="Creative Fotografia Logo"></div>
+        <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home" data-aos="fade-down">
+        <div>
+            <h1>Capture the Essence.<br>Tell Your Story.</h1>
+            <p>Fotografia e Videomaking por Thiago</p>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 data-aos="fade-up">Portfólio</h2>
+        <div class="filters" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="ensaios">Ensaios</button>
+            <button class="filter-btn" data-filter="festas">Festas</button>
+            <button class="filter-btn" data-filter="retratos">Retratos</button>
+            <button class="filter-btn" data-filter="videos">Vídeos</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="ensaios" data-aos="fade-up">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" data-fancybox="gallery" data-caption="Ensaio Sensual">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual">
+                    <div class="overlay"><h3>Ensaio</h3></div>
+                </a>
+            </div>
+            <div class="portfolio-item" data-category="ensaios" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" data-fancybox="gallery" data-caption="Ensaio Externo">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo">
+                    <div class="overlay"><h3>Ensaio</h3></div>
+                </a>
+            </div>
+            <div class="portfolio-item" data-category="ensaios" data-aos="fade-up" data-aos-delay="200">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743story.jpg" data-fancybox="gallery" data-caption="Ensaio Urbano">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743story.jpg" alt="Ensaio Urbano">
+                    <div class="overlay"><h3>Ensaio</h3></div>
+                </a>
+            </div>
+            
+            <div class="portfolio-item" data-category="retratos" data-aos="fade-up">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/07.jpg" data-fancybox="gallery" data-caption="Retrato P&B">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/07.jpg" alt="Retrato P&B">
+                    <div class="overlay"><h3>Retrato</h3></div>
+                </a>
+            </div>
+            <div class="portfolio-item" data-category="retratos" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" data-fancybox="gallery" data-caption="Retrato Estilizado">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado">
+                    <div class="overlay"><h3>Retrato</h3></div>
+                </a>
+            </div>
+            <div class="portfolio-item" data-category="retratos" data-aos="fade-up" data-aos-delay="200">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/PicsArt_11-25-09.17.29_copy_1168x2076.jpg" data-fancybox="gallery" data-caption="Retrato com Drone">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/PicsArt_11-25-09.17.29_copy_1168x2076.jpg" alt="Retrato com Drone">
+                    <div class="overlay"><h3>Retrato</h3></div>
+                </a>
+            </div>
+
+            <div class="portfolio-item" data-category="festas" data-aos="fade-up">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4049.jpg" data-fancybox="gallery" data-caption="Festa de Aniversário">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4049.jpg" alt="Festa de Aniversário">
+                    <div class="overlay"><h3>Festa</h3></div>
+                </a>
+            </div>
+            <div class="portfolio-item" data-category="festas" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG-20210529-WA0002.jpg" data-fancybox="gallery" data-caption="Evento Corporativo">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG-20210529-WA0002.jpg" alt="Evento Corporativo">
+                    <div class="overlay"><h3>Festa</h3></div>
+                </a>
+            </div>
+
+            <div class="portfolio-item video-container" data-category="videos" data-aos="fade-up" data-aos-delay="200">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&amp;loop=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="overlay"><h3>Vídeo Promocional</h3></div>
+            </div>
+
+            </div>
+    </section>
+
+    <section class="about" id="about" data-aos="fade-up">
+        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4006%202.jpg" alt="Thiago Fotógrafo">
+        <div>
+            <h2>Thiago</h2>
+            <p>Fotógrafo e videomaker apaixonado por capturar momentos reais e cheios de emoção. Ensaios, festas, retratos e vídeos com drone — tudo com estilo clean e marcante. Meu objetivo é transformar a sua história em imagens inesquecíveis.</p>
+            <br><a href="#contact"><button>Fale comigo</button></a>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+        <h2>Contato</h2>
+        <form id="contactForm" action="#">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="text" id="assunto" placeholder="Assunto">
+            <textarea id="mensagem" placeholder="Sua mensagem..." required></textarea>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+        <div class="social-buttons">
+            <a href="https://wa.me/5583981181907" target="_blank" class="social-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://instagram.com/creative__fotografia" target="_blank" class="social-btn instagram">
+                <i class="fab fa-instagram"></i> @creative__fotografia
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Creative Fotografia - Thiago. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.umd.js"></script>
+    <script>
+        // Inicializa as animações
+        AOS.init({duration:1000,once:true});
+
+        // Toggle do menu em dispositivos móveis
+        document.getElementById('menuToggle').addEventListener('click',()=>{
+            document.getElementById('nav').classList.toggle('active');
+        });
+
+        // Funcionalidade de Filtro do Portfólio
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.addEventListener('click', () => {
+                // Remove 'active' do botão anterior e adiciona ao novo
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                b.classList.add('active');
+                
+                const filterCategory = b.dataset.filter;
+                
+                // Filtra os itens do portfólio
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    if (filterCategory === 'all' || item.dataset.category === filterCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Rolagem suave e fechamento do menu móvel
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+                if(window.innerWidth <= 768) {
+                    document.getElementById('nav').classList.remove('active');
+                }
+            });
+        });
+
+        // Formulário funcional para teste (Exibe Alerta)
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio real do formulário
+            alert('Mensagem enviada com sucesso! (Atenção: A função de envio real requer um serviço como EmailJS ou um backend.)');
+            this.reset(); // Limpa o formulário
+        });
+    </script>
+</body>
+</html>
