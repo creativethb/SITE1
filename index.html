@@ -274,13 +274,6 @@
                 }
             });
         });
-
-        // Formulário funcional para teste (Exibe Alerta)
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio real do formulário
-            alert('Mensagem enviada com sucesso! (Atenção: A função de envio real requer um serviço como EmailJS ou um backend.)');
-            this.reset(); // Limpa o formulário
-        });
     </script>
 <script>
 (function() {
@@ -289,7 +282,6 @@
 
 function sendMail(params) {
     const serviceID = "service_wfc6ruz";
-    // ATENÇÃO: Substitua pelo ID real do seu modelo
     const templateID = "template_contato_final";
     emailjs.send(serviceID, templateID, params)
         .then(res => {
