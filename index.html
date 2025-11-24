@@ -276,45 +276,56 @@
         });
     </script>
 <script>
-(function() {
-   emailjs.init("mTYsg8S_ID55HTXDq"); // Sua Chave Pública
-})();
-
-function sendMail(params) {
-    const serviceID = "service_wfc6ruz";
-    const templateID = "template_contato_final";
-    emailjs.send(serviceID, templateID, params)
-        .then(res => {
-            document.getElementById("nome").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("assunto").value = "";
-            document.getElementById("mensagem").value = "";
-            console.log(res);
-            alert("Sua mensagem foi enviada com sucesso!");
-        })
-        .catch(err => {
-            console.error("Erro ao enviar e-mail:", err);
-            alert("Erro ao enviar mensagem. Por favor, tente novamente mais tarde.");
-        });
+// EmailJS form integration
+// 1) Create free account at https://www.emailjs.com
+// 2) Replace the SERVICE_ID, TEMPLATE_ID and USER_ID below with your values
+const EMAILJS_SERVICE_ID = 'service_wfc6ruz';
+const EMAILJS_TEMPLATE_ID = 'template_h31lko5';
+const EMAILJS_USER_ID = 'mTYsg8S_ID55HTXDq'; // Sua Chave Pública
+try {
+  if (window.emailjs) {
+    emailjs.init(EMAILJS_USER_ID); // Inicializa com a Chave Pública
+  }
+} catch (e) {
+  console.warn('EmailJS init skipped (please set your IDs).', e);
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const form = document.getElementById('contactForm');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const params = {
-                from_name: document.getElementById("nome").value,
-                reply_to: document.getElementById("email").value,
-                assunto: document.getElementById("assunto").value,
-                mensagem: document.getElementById("mensagem").value
-            };
-            sendMail(params);
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    const data = {
+      from_name: document.getElementById('nome').value,
+      reply_to: document.getElementById('email').value,
+      subject: document.getElementById('assunto').value || 'Contato via site',
+      message: document.getElementById('mensagem').value
+    };
+
+    // Se EmailJS está configurado, envia o e-mail.
+    if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_EMAILJS_SERVICE_ID') {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data)
+        .then(() => {
+          alert('Mensagem enviada! Obrigado — responderei em breve.');
+          contactForm.reset();
+        })
+        .catch(err => {
+          console.error('EmailJS error', err);
+          alert('Houve um erro ao enviar. Tente novamente mais tarde.');
         });
     } else {
-        console.error("Erro: Formulário com ID 'contactForm' não encontrado.");
+      // Fallback: copy message to clipboard and show helpful instructions
+      const fallbackText = `Nome: ${data.from_name}\nEmail: ${data.reply_to}\nAssunto: ${data.subject}\nMensagem: ${data.message}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(fallbackText).then(() => {
+          alert('Mensagem copiada para a área de transferência. Cole-a no WhatsApp ou envie por e-mail.\n\n(Para envio automático, configure EmailJS — instruções na barra inferior do código.)');
+          contactForm.reset();
+        });
+      } else {
+        alert('Preencha o formulário e copie a mensagem manualmente. (Considere configurar EmailJS para envio automático.)');
+      }
     }
-});
+  });
+}
 </script>
 </body>
 </html>
