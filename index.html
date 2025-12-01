@@ -32,6 +32,20 @@
                     fontFamily: {
                         serif: ['"Cormorant Garmond"', 'serif'],
                         sans: ['"Lato"', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -51,10 +65,7 @@
                 height: 350px;
             }
         }
-        body {
-            /* Scroll suave nativo */
-            scroll-behavior: smooth;
-        }
+        body { scroll-behavior: smooth; }
         .slider-thumb::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -64,12 +75,31 @@
             cursor: pointer;
             border-radius: 50%;
         }
+        
+        /* Estilos do Slider Hero */
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-slide.active { opacity: 1; }
+        
+        /* Overlay gradiente para leitura do texto */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100">
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-brand-light/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/95 dark:border-neutral-800" id="navbar">
+    <nav class="fixed w-full bg-brand-light/90 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/90 dark:border-neutral-800" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
@@ -78,10 +108,10 @@
                 </div>
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Simulador</a>
+                    <a href="#home" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Início</a>
                     <a href="#about" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Sobre</a>
-                    <a href="#commercial" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Empresas</a>
                     <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Portfólio</a>
+                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Simulador</a>
                     <a href="#contact" class="px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">
                         <i class="fab fa-whatsapp mr-1"></i> Orçamento
                     </a>
@@ -105,34 +135,103 @@
         <!-- Mobile Menu Expandido -->
         <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Simulador</a>
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Início</a>
                 <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Sobre Mim</a>
-                <a href="#commercial" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Vídeo Maker</a>
-                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Galeria</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold">Solicitar no WhatsApp</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Portfólio</a>
+                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Simulador</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold">WhatsApp</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#f9f9f7] dark:bg-neutral-900 transition-colors duration-300">
-        <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20">
-             <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" class="w-full h-full object-cover grayscale" alt="Background Texture">
+    <!-- NOVA HERO SECTION (SLIDER IMERSIVO) -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Slides -->
+        <div class="absolute inset-0 z-0">
+            <!-- Slide 1: Casamento/Geral (Usando imagem externa de alta qualidade) -->
+            <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg');"></div>
+            <!-- Slide 2: Retrato -->
+            <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg');"></div>
+            <!-- Slide 3: Urbano/Festa -->
+            <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg');"></div>
         </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-dark mb-6 tracking-tight animate-fade-in-up dark:text-white">
-                Sua História, <span class="text-brand-gold">Eternizada.</span>
+
+        <!-- Overlay Escura para Texto -->
+        <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+        <!-- Conteúdo Centralizado -->
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
+            <h2 class="text-brand-gold uppercase tracking-[0.3em] text-sm md:text-base mb-4 font-bold animate-fade-in">Rio de Janeiro & Regiões</h2>
+            
+            <!-- Headline Dinâmica (Muda via JS ou fixa impactante) -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl animate-slide-up">
+                Não é só uma foto.<br>
+                <span class="italic font-light">É a sua essência.</span>
             </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600 font-light leading-relaxed dark:text-gray-300">
-                Fotografia autoral e produção audiovisual estratégica para pessoas e marcas no <strong class="text-brand-dark dark:text-white font-bold">Rio de Janeiro</strong>.
+
+            <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light drop-shadow-md animate-slide-up" style="animation-delay: 0.2s;">
+                Especialista em capturar momentos autênticos com uma estética clean e cinematográfica. Do casamento ao corporativo.
             </p>
-            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#simulator" class="px-8 py-3 rounded-full bg-brand-dark text-white font-bold hover:bg-gray-800 transition shadow-xl dark:bg-white dark:text-brand-dark dark:hover:bg-gray-200">
+
+            <div class="flex flex-col sm:flex-row justify-center gap-5 animate-slide-up" style="animation-delay: 0.4s;">
+                <a href="#portfolio" class="px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white">
+                    Ver Meus Trabalhos
+                </a>
+                <a href="#simulator" class="px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm">
                     Simular Investimento
                 </a>
-                <a href="#commercial" class="px-8 py-3 rounded-full border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">
-                    Serviços para Empresas
+            </div>
+            
+            <!-- Indicador de Scroll -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-white opacity-70 hover:opacity-100 transition">
+                    <i class="fas fa-chevron-down text-3xl"></i>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: SOBRE MIM (Invertida para vir logo após o Hero) -->
+    <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <!-- Imagem -->
+                <div class="w-full lg:w-1/2 relative group">
+                    <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago - Creative Fotografia" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
+                </div>
+                
+                <!-- Texto -->
+                <div class="w-full lg:w-1/2">
+                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
+                    
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed dark:text-gray-300 text-justify">
+                        Muito prazer! Acredito que a fotografia vai além do clique; é sobre <strong>conexão</strong>. Com um olhar treinado para a luz natural e composições elegantes, busco transformar a atmosfera do Rio de Janeiro no cenário perfeito para a sua história.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed dark:text-gray-300 text-justify">
+                        Atendo clientes que buscam não apenas um registro, mas uma <strong>experiência visual</strong>. Seja em um mini-wedding intimista, um editorial de moda ou conteúdo estratégico para marcas, meu foco é a excelência e a autenticidade.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Estilo Clean & Moderno</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Entrega em Alta Resolução</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Direção de Poses Naturais</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-brand-gold"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Atendimento Humanizado</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -141,9 +240,10 @@
     <section id="simulator" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white">Orçamento Transparente</h2>
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Planejamento</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white mt-2">Simulador de Investimento</h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
-                    Sem surpresas. Simule o valor do seu ensaio ou cobertura agora mesmo.
+                    Transparência é nosso pilar. Monte seu pacote ideal e descubra que qualidade premium cabe no seu orçamento.
                 </p>
             </div>
 
@@ -158,7 +258,7 @@
                     <div class="mb-8">
                         <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black" data-type="wedding" onclick="selectType('wedding', this)">
+                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md" data-type="wedding" onclick="selectType('wedding', this)">
                                 Casamento
                             </button>
                             <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="essay" onclick="selectType('essay', this)">
@@ -181,17 +281,17 @@
 
                     <!-- Extras -->
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer">
                             <div class="flex items-center">
-                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
-                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300">Drone (Aéreo)</label>
+                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 cursor-pointer">
+                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Drone (Takes Aéreos)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer">
                             <div class="flex items-center">
-                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
-                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300">Vídeo Maker (Reels)</label>
+                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 cursor-pointer">
+                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Vídeo Maker (Reels)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
                         </div>
@@ -224,50 +324,9 @@
 
                     <div class="mt-8">
                         <button onclick="scrollToContact()" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2">
-                            Agendar Data <i class="fas fa-arrow-right"></i>
+                            Verificar Disponibilidade <i class="fas fa-calendar-check"></i>
                         </button>
-                        <p class="text-xs text-center text-gray-500 mt-4">* Valores sujeitos a taxa de deslocamento dependendo do bairro no RJ.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW SECTION: SOBRE MIM -->
-    <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <!-- Imagem -->
-                <div class="w-full lg:w-1/2 relative group">
-                    <div class="absolute inset-0 bg-brand-gold rounded-2xl transform rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago - Creative Fotografia" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
-                </div>
-                
-                <!-- Texto -->
-                <div class="w-full lg:w-1/2">
-                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
-                    
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed dark:text-gray-300 text-justify">
-                        A fotografia não é apenas sobre capturar uma imagem, é sobre <strong>preservar sentimentos</strong>. Com um olhar atento aos detalhes e uma paixão pela estética natural, meu trabalho busca traduzir a essência de cada cliente em memórias visuais impactantes.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed dark:text-gray-300 text-justify">
-                        Atuando no <strong>Rio de Janeiro e Regiões</strong>, trago uma abordagem <i>clean</i>, moderna e focada na narrativa. Seja celebrando o amor em um casamento na Zona Sul, um ensaio urbano no Centro ou vídeos comerciais na Barra, meu compromisso é entregar arte e excelência.
-                    </p>
-
-                    <div class="flex gap-4">
-                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
-                            <i class="fas fa-camera text-2xl text-brand-gold mb-1"></i>
-                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Fotografia</p>
-                        </div>
-                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
-                            <i class="fas fa-video text-2xl text-brand-gold mb-1"></i>
-                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Filmmaking</p>
-                        </div>
-                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
-                            <i class="fas fa-paper-plane text-2xl text-brand-gold mb-1"></i>
-                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Drone</p>
-                        </div>
+                        <p class="text-xs text-center text-gray-500 mt-4">* Taxa de deslocamento calculada conforme bairro (RJ).</p>
                     </div>
                 </div>
             </div>
@@ -275,36 +334,36 @@
     </section>
 
     <!-- NEW SECTION: VÍDEO & COMERCIAL -->
-    <section id="commercial" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300 relative overflow-hidden">
+    <section id="commercial" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 dark:text-white">Vídeo Maker & Comercial</h2>
-                <div class="w-20 h-1 bg-brand-gold mx-auto mt-4"></div>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">Soluções visuais estratégicas para alavancar seu negócio no RJ.</p>
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Business</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 dark:text-white mt-2">Vídeo Maker & Comercial</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">Soluções visuais estratégicas para alavancar seu negócio no Rio.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Cards (Mantidos iguais) -->
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <!-- Cards -->
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fab fa-instagram"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Engajamento total para sua marca.</p>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Engajamento total com edições dinâmicas para redes sociais.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
                     <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Autoridade e profissionalismo.</p>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Apresente sua empresa com autoridade e qualidade de cinema.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fas fa-helicopter"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Drone 4K</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Perspectivas aéreas únicas.</p>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Imagens aéreas para imobiliárias e grandes eventos.</p>
                 </div>
             </div>
             
@@ -316,6 +375,47 @@
         </div>
     </section>
 
+    <!-- Portfolio Gallery -->
+    <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Trabalhos Recentes</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2">Galeria Selecionada</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Imagens do Portfólio -->
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
+                        <span class="text-brand-gold font-bold">Ensaio Externo</span>
+                        <span class="text-white text-sm">Luz Natural</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
+                        <span class="text-brand-gold font-bold">Retrato</span>
+                        <span class="text-white text-sm">Estúdio</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
+                        <span class="text-brand-gold font-bold">Urbano</span>
+                        <span class="text-white text-sm">Lifestyle</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center text-brand-dark font-bold hover:text-brand-gold transition dark:text-white dark:hover:text-brand-gold">
+                    <i class="fab fa-instagram mr-2"></i> Ver mais no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Data Analytics Section -->
     <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -342,35 +442,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Gallery -->
-    <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Galeria</h2>
-                <div class="w-16 h-1 bg-brand-gold mx-auto mt-4"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Imagens do Portfólio (Mantidas) -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center text-brand-dark font-bold hover:text-brand-gold transition dark:text-white dark:hover:text-brand-gold">
-                    <i class="fab fa-instagram mr-2"></i> Ver mais no Instagram
-                </a>
             </div>
         </div>
     </section>
@@ -424,7 +495,21 @@
 
     <!-- Logic Script -->
     <script>
-        // State Management
+        // --- HERO SLIDER LOGIC ---
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Troca de slide a cada 5 segundos
+        setInterval(nextSlide, 5000);
+
+
+        // --- STATE MANAGEMENT ---
         const state = {
             type: 'wedding', 
             photos: 24,
@@ -557,18 +642,14 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // --- WHATSAPP SUBMISSION LOGIC ---
+        // WhatsApp Logic
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Impede o recarregamento da página
-
-            // 1. Capturar dados
+            e.preventDefault(); 
             const name = document.getElementById('nameInput').value;
             const contact = document.getElementById('contactInput').value;
             const message = document.getElementById('messageInput').value;
 
-            // 2. Formatar mensagem para o WhatsApp
-            // A quebra de linha no WhatsApp link é feita com %0a
             const whatsappMessage = 
 `*Olá Thiago! Gostaria de um orçamento.*%0a
 *Nome:* ${name}%0a
@@ -577,11 +658,8 @@
 *Mensagem/Pedido:*%0a
 ${message}`;
 
-            // 3. Montar URL (Número: 5583981181907)
-            const phoneNumber = "5583981181907"; // Mantido conforme seu histórico
+            const phoneNumber = "5583981181907"; 
             const url = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-
-            // 4. Abrir em nova aba
             window.open(url, '_blank');
         });
 
