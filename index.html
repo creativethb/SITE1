@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Investimento | Creative Fotografia</title>
+    <meta name="description" content="Creative Fotografia por Thiago. Portfólio de ensaios sensuais, festas, retratos e vídeos com drone. Estilo clean e marcante no Rio de Janeiro e regiões.">
+    <meta name="keywords" content="fotografia, ensaio, retrato, festa, drone, videomaking, thiago, rio de janeiro, rj, zona sul, barra">
+    <title>Creative Fotografia | Thiago</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js -->
@@ -11,15 +13,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- ADICIONADO: Biblioteca EmailJS necessária para o envio real -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
-            darkMode: 'class', // Ativa a troca manual de tema
+            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
@@ -40,7 +39,6 @@
     </script>
 
     <style>
-        /* Custom Chart Container Styles */
         .chart-container {
             position: relative;
             width: 100%;
@@ -54,8 +52,8 @@
             }
         }
         body {
-            background-color: #f9f9f7;
-            color: #333;
+            /* Scroll suave nativo */
+            scroll-behavior: smooth;
         }
         .slider-thumb::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -66,45 +64,34 @@
             cursor: pointer;
             border-radius: 50%;
         }
-        .fancy-underline {
-            background-image: linear-gradient(120deg, #d4af37 0%, #d4af37 100%);
-            background-repeat: no-repeat;
-            background-size: 100% 0.2em;
-            background-position: 0 88%;
-            transition: background-size 0.25s ease-in;
-        }
-        .fancy-underline:hover {
-            background-size: 100% 88%;
-            color: white;
-        }
     </style>
 </head>
-<!-- ADICIONADO: dark:bg-neutral-900 e dark:text-gray-100 para o fundo geral -->
 <body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100">
 
     <!-- Navigation -->
-    <!-- ADICIONADO: Cores escuras para o menu -->
     <nav class="fixed w-full bg-brand-light/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/95 dark:border-neutral-800" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
-                    <!-- Logo from Source -->
                     <img class="h-10 w-auto" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
                     <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100">Creative Fotografia</span>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Simulador</a>
-                    <a href="#market-analysis" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Análise</a>
-                    <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Portfólio</a>
-                    <a href="#contact" class="px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">Orçamento</a>
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Simulador</a>
+                    <a href="#about" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Sobre</a>
+                    <a href="#commercial" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Empresas</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Portfólio</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fab fa-whatsapp mr-1"></i> Orçamento
+                    </a>
                     
-                    <!-- BOTÃO DE TEMA (LUA/SOL) -->
-                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 dark:hover:text-brand-gold">
+                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2">
                         <i class="fas fa-moon text-xl" id="theme-icon"></i>
                     </button>
                 </div>
                 
-                <!-- Mobile menu button e Toggle Mobile -->
+                <!-- Menu Mobile Botões -->
                 <div class="md:hidden flex items-center gap-4">
                      <button id="theme-toggle-mobile" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300">
                         <i class="fas fa-moon text-xl" id="theme-icon-mobile"></i>
@@ -115,12 +102,14 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu Expandido -->
         <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Simulador</a>
-                <a href="#market-analysis" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Análise de Valor</a>
-                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Galeria</a>
+                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Simulador</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Sobre Mim</a>
+                <a href="#commercial" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Vídeo Maker</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Galeria</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold">Solicitar no WhatsApp</a>
             </div>
         </div>
     </nav>
@@ -128,7 +117,6 @@
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#f9f9f7] dark:bg-neutral-900 transition-colors duration-300">
         <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20">
-             <!-- Background pattern or subtle image -->
              <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" class="w-full h-full object-cover grayscale" alt="Background Texture">
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
@@ -136,14 +124,14 @@
                 Sua História, <span class="text-brand-gold">Eternizada.</span>
             </h1>
             <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600 font-light leading-relaxed dark:text-gray-300">
-                Transparência e arte. Utilize nossa ferramenta interativa para personalizar seu ensaio e descobrir como tornamos a fotografia de alta qualidade acessível.
+                Fotografia autoral e produção audiovisual estratégica para pessoas e marcas no <strong class="text-brand-dark dark:text-white font-bold">Rio de Janeiro</strong>.
             </p>
-            <div class="mt-10 flex justify-center gap-4">
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#simulator" class="px-8 py-3 rounded-full bg-brand-dark text-white font-bold hover:bg-gray-800 transition shadow-xl dark:bg-white dark:text-brand-dark dark:hover:bg-gray-200">
                     Simular Investimento
                 </a>
-                <a href="#portfolio" class="px-8 py-3 rounded-full border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">
-                    Ver Portfólio
+                <a href="#commercial" class="px-8 py-3 rounded-full border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">
+                    Serviços para Empresas
                 </a>
             </div>
         </div>
@@ -153,9 +141,9 @@
     <section id="simulator" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white">Planeje seu Investimento</h2>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white">Orçamento Transparente</h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
-                    Ajuste os controles abaixo para personalizar seu pacote. Nosso objetivo é oferecer um preço justo de aproximadamente <strong class="text-brand-gold">R$ 25,00 por foto</strong> em pacotes completos.
+                    Sem surpresas. Simule o valor do seu ensaio ou cobertura agora mesmo.
                 </p>
             </div>
 
@@ -163,21 +151,21 @@
                 <!-- Controls -->
                 <div class="bg-brand-light p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
                     <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center dark:text-white">
-                        <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Configurar Sessão
+                        <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Personalizar
                     </h3>
 
                     <!-- Type Selector -->
                     <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">Tipo de Ensaio</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
                         <div class="grid grid-cols-3 gap-3">
                             <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black" data-type="wedding" onclick="selectType('wedding', this)">
                                 Casamento
                             </button>
                             <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="essay" onclick="selectType('essay', this)">
-                                Ensaio Externo
+                                Ensaio
                             </button>
                             <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="party" onclick="selectType('party', this)">
-                                Festa/Evento
+                                Festa/Loja
                             </button>
                         </div>
                     </div>
@@ -189,27 +177,21 @@
                             <span class="text-brand-gold font-bold" id="photo-count-display">24 Fotos</span>
                         </div>
                         <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb dark:bg-neutral-700" id="photo-slider">
-                        <div class="flex justify-between text-xs text-gray-400 mt-2">
-                            <span>10</span>
-                            <span>50</span>
-                            <span>100+</span>
-                        </div>
                     </div>
 
                     <!-- Extras -->
                     <div class="space-y-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">Adicionais</label>
                         <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
                             <div class="flex items-center">
                                 <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
-                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300">Imagens Aéreas (Drone)</label>
+                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300">Drone (Aéreo)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
                         </div>
                         <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
                             <div class="flex items-center">
                                 <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
-                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300">Teaser em Vídeo (1 min)</label>
+                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300">Vídeo Maker (Reels)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
                         </div>
@@ -217,32 +199,24 @@
                 </div>
 
                 <!-- Result Card -->
-                <!-- Mantém o estilo escuro por padrão, mas ajusta bordas se necessário -->
                 <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700">
                     <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
                     
                     <div>
-                        <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Investimento Total Estimado</h3>
+                        <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Total Estimado</h3>
                         <div class="flex items-baseline">
                             <span class="text-2xl font-light text-brand-gold mr-2">R$</span>
                             <span class="text-6xl font-serif font-bold" id="total-price">600</span>
                             <span class="text-xl text-gray-400">,00</span>
                         </div>
-                        <p class="text-gray-400 text-sm mt-2">Pagamento facilitado via Pix ou Cartão.</p>
-                        
                         <hr class="border-gray-700 my-6">
-
                         <div class="space-y-3 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-gray-300">Pacote Base (<span id="selected-type-name">Casamento</span>)</span>
-                                <span class="font-mono text-gray-400" id="base-breakdown">R$ 0,00</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-300">Fotos Extras (<span id="extra-photos-count">0</span> x R$ 25)</span>
+                                <span class="text-gray-300">Fotos (<span id="extra-photos-count">24</span> un.)</span>
                                 <span class="font-mono text-gray-400" id="photos-breakdown">R$ 600,00</span>
                             </div>
                             <div class="flex justify-between text-brand-gold">
-                                <span>Adicionais</span>
+                                <span>Adicionais (Vídeo/Drone)</span>
                                 <span class="font-mono" id="extras-breakdown">R$ 0,00</span>
                             </div>
                         </div>
@@ -250,11 +224,94 @@
 
                     <div class="mt-8">
                         <button onclick="scrollToContact()" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2">
-                            Solicitar Proposta Oficial <i class="fas fa-arrow-right"></i>
+                            Agendar Data <i class="fas fa-arrow-right"></i>
                         </button>
-                        <p class="text-xs text-center text-gray-500 mt-4">* Valores sujeitos a alteração conforme deslocamento.</p>
+                        <p class="text-xs text-center text-gray-500 mt-4">* Valores sujeitos a taxa de deslocamento dependendo do bairro no RJ.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: SOBRE MIM -->
+    <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <!-- Imagem -->
+                <div class="w-full lg:w-1/2 relative group">
+                    <div class="absolute inset-0 bg-brand-gold rounded-2xl transform rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago - Creative Fotografia" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
+                </div>
+                
+                <!-- Texto -->
+                <div class="w-full lg:w-1/2">
+                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
+                    
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed dark:text-gray-300 text-justify">
+                        A fotografia não é apenas sobre capturar uma imagem, é sobre <strong>preservar sentimentos</strong>. Com um olhar atento aos detalhes e uma paixão pela estética natural, meu trabalho busca traduzir a essência de cada cliente em memórias visuais impactantes.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed dark:text-gray-300 text-justify">
+                        Atuando no <strong>Rio de Janeiro e Regiões</strong>, trago uma abordagem <i>clean</i>, moderna e focada na narrativa. Seja celebrando o amor em um casamento na Zona Sul, um ensaio urbano no Centro ou vídeos comerciais na Barra, meu compromisso é entregar arte e excelência.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
+                            <i class="fas fa-camera text-2xl text-brand-gold mb-1"></i>
+                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Fotografia</p>
+                        </div>
+                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
+                            <i class="fas fa-video text-2xl text-brand-gold mb-1"></i>
+                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Filmmaking</p>
+                        </div>
+                        <div class="text-center px-4 py-3 bg-white dark:bg-neutral-800 rounded-lg shadow-sm">
+                            <i class="fas fa-paper-plane text-2xl text-brand-gold mb-1"></i>
+                            <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Drone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: VÍDEO & COMERCIAL -->
+    <section id="commercial" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 dark:text-white">Vídeo Maker & Comercial</h2>
+                <div class="w-20 h-1 bg-brand-gold mx-auto mt-4"></div>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">Soluções visuais estratégicas para alavancar seu negócio no RJ.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cards (Mantidos iguais) -->
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Engajamento total para sua marca.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                    <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Autoridade e profissionalismo.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
+                        <i class="fas fa-helicopter"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Drone 4K</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Perspectivas aéreas únicas.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="selectType('party', this); scrollToContact()" class="inline-flex items-center text-brand-dark font-bold border-b-2 border-brand-dark hover:text-brand-gold hover:border-brand-gold transition dark:text-white dark:border-white dark:hover:text-brand-gold dark:hover:border-brand-gold pb-1">
+                    Solicitar Proposta para Minha Empresa <i class="fas fa-arrow-right ml-2"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -263,37 +320,28 @@
     <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Market Comparison -->
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Por que escolher a Creative?</h2>
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Por que a Creative?</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
-                        Realizamos uma pesquisa de mercado em João Pessoa/PB. Enquanto a média para cobertura de pequenos casamentos gira em torno de R$ 1.500, nosso modelo otimizado permite entregar qualidade premium por um valor acessível.
+                        Nossa pesquisa de mercado no Rio de Janeiro mostra que entregamos qualidade premium por um valor justo.
                     </p>
-                    
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
-                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center dark:text-gray-400">Comparativo de Mercado (Casamento Civil/Mini-Wedding)</h4>
                         <div class="chart-container">
                             <canvas id="marketChart"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <!-- Cost Breakdown -->
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Transparência no Valor</h2>
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Investimento Transparente</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
-                        Quando você investe R$ 600,00, seu dinheiro está garantindo muito mais que apenas o "clique". Veja como distribuímos o recurso para garantir a excelência.
+                        Veja como cada real é utilizado para garantir a excelência.
                     </p>
-                    
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
-                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center dark:text-gray-400">Composição do Investimento</h4>
                         <div class="chart-container">
                             <canvas id="breakdownChart"></canvas>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -302,34 +350,20 @@
     <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Portfólio Recente</h2>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Galeria</h2>
                 <div class="w-16 h-1 bg-brand-gold mx-auto mt-4"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Item 1 -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] bg-gray-200 dark:bg-neutral-700">
+                <!-- Imagens do Portfólio (Mantidas) -->
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-serif">Ensaio Externo</h3>
-                        <p class="text-brand-gold text-sm">Luz Natural</p>
-                    </div>
                 </div>
-                <!-- Item 2 -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-serif">Retrato Artístico</h3>
-                        <p class="text-brand-gold text-sm">Estúdio</p>
-                    </div>
                 </div>
-                <!-- Item 3 -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white text-xl font-serif">Retrato Urbano</h3>
-                        <p class="text-brand-gold text-sm">Lifestyle</p>
-                    </div>
                 </div>
             </div>
             
@@ -344,41 +378,36 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos criar algo incrível?</h2>
+            <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos conversar?</h2>
             <p class="text-gray-400 mb-10">
-                Preencha o formulário com os detalhes da sua simulação ou me chame direto no WhatsApp.
+                Preencha abaixo para <strong>enviar direto para meu WhatsApp</strong> e agilizar seu atendimento.
             </p>
 
             <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700">
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">Seu Nome</label>
-                    <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="João Silva" required>
+                    <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="Nome Completo" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">WhatsApp / Email</label>
-                    <input type="text" id="contactInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="(83) 99999-9999" required>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Seu Telefone/WhatsApp</label>
+                    <input type="text" id="contactInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="(21) 99999-9999" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Mensagem (Gerada Automaticamente)</label>
-                    <textarea id="messageInput" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Detalhes do Pedido</label>
+                    <textarea id="messageInput" rows="5" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-brand-gold text-brand-dark font-bold py-3 rounded-lg hover:bg-white transition duration-300">
-                    Enviar Solicitação
+                <button type="submit" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-lg hover:bg-[#128C7E] transition duration-300 flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-1">
+                    <i class="fab fa-whatsapp text-2xl"></i> Enviar para WhatsApp
                 </button>
             </form>
 
             <div class="mt-8 flex justify-center space-x-6">
-                <!-- WhatsApp (Mantido) -->
                 <a href="https://wa.me/5583981181907" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:scale-110">
                     <i class="fab fa-whatsapp text-3xl"></i>
                 </a>
-                
-                <!-- Facebook (Atualizado) -->
                 <a href="https://www.facebook.com/Creativethb/?locale=pt_BR" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-110">
                     <i class="fab fa-facebook text-3xl"></i>
                 </a>
-
-                <!-- Instagram (Atualizado) -->
                 <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-110">
                     <i class="fab fa-instagram text-3xl"></i>
                 </a>
@@ -397,14 +426,13 @@
     <script>
         // State Management
         const state = {
-            type: 'wedding', // wedding, essay, party
+            type: 'wedding', 
             photos: 24,
             drone: false,
             video: false,
             basePricePerPhoto: 25
         };
 
-        // DOM Elements
         const els = {
             slider: document.getElementById('photo-slider'),
             countDisplay: document.getElementById('photo-count-display'),
@@ -412,20 +440,13 @@
             droneCheck: document.getElementById('drone-check'),
             videoCheck: document.getElementById('video-check'),
             totalDisplay: document.getElementById('total-price'),
-            baseBreakdown: document.getElementById('base-breakdown'),
             photosBreakdown: document.getElementById('photos-breakdown'),
             extrasBreakdown: document.getElementById('extras-breakdown'),
             extraPhotosCount: document.getElementById('extra-photos-count'),
-            selectedTypeName: document.getElementById('selected-type-name'),
             messageInput: document.getElementById('messageInput')
         };
 
-        // Core Logic
         function calculateTotal() {
-            // Logic: 
-            // - No separate booking fee to keep math simple as per request (600 = 24 * 25).
-            // - Total = (Photos * 25) + Extras
-            
             const photoCost = state.photos * state.basePricePerPhoto;
             let extrasCost = 0;
             if(state.drone) extrasCost += 150;
@@ -433,55 +454,67 @@
 
             const total = photoCost + extrasCost;
 
-            // Update UI Numbers
             els.totalDisplay.innerText = total;
             els.countDisplay.innerText = `${state.photos} Fotos`;
-            
-            // Update Breakdown Text
             els.photosBreakdown.innerText = `R$ ${photoCost.toFixed(2).replace('.', ',')}`;
             els.extrasBreakdown.innerText = `R$ ${extrasCost.toFixed(2).replace('.', ',')}`;
             els.extraPhotosCount.innerText = state.photos;
             
-            // Update Message for Form
             updateFormMessage(total);
-            
-            // Update Charts
             updateCharts(total);
         }
 
         function updateFormMessage(total) {
-            const typeLabels = { 'wedding': 'Casamento', 'essay': 'Ensaio', 'party': 'Festa' };
-            const msg = `Olá, Thiago! Fiz uma simulação no site.\n\nTipo: ${typeLabels[state.type]}\nQtd Fotos: ${state.photos}\nExtras: ${state.drone ? 'Drone, ' : ''}${state.video ? 'Vídeo' : ''}\n\nInvestimento Estimado: R$ ${total},00.\nGostaria de verificar a disponibilidade.`;
+            const typeLabels = { 'wedding': 'Casamento', 'essay': 'Ensaio Externo', 'party': 'Festa/Comercial' };
+            const msg = `Olá! Fiz uma simulação no site.\n\n*Pedido:* ${typeLabels[state.type]}\n*Fotos:* ${state.photos}\n*Extras:* ${state.drone ? 'Drone, ' : ''}${state.video ? 'Vídeo Maker' : ''}\n*Valor Estimado:* R$ ${total},00`;
             els.messageInput.value = msg;
         }
 
         function selectType(type, btn) {
             state.type = type;
-            
-            // Lógica Atualizada para suportar Dark Mode nos botões
             els.typeBtns.forEach(b => {
-                // Remove estilos de ativo
                 b.classList.remove('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
-                // Adiciona estilos de inativo
                 b.classList.add('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
             });
             
-            // Aplica estilo ativo no botão clicado
-            btn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
-            btn.classList.add('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
+            if(!btn) {
+                btn = document.querySelector(`.type-btn[data-type="${type}"]`);
+            }
+
+            if(btn) {
+                btn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
+                btn.classList.add('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
+            }
             
-            const labels = { 'wedding': 'Casamento', 'essay': 'Ensaio Externo', 'party': 'Festa/Evento' };
-            els.selectedTypeName.innerText = labels[type];
             calculateTotal();
         }
 
-        // --- LÓGICA DO TEMA ESCURO (DARK MODE) ---
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Event Listeners
+        els.slider.addEventListener('input', (e) => {
+            state.photos = parseInt(e.target.value);
+            calculateTotal();
+        });
+
+        els.droneCheck.addEventListener('change', (e) => {
+            state.drone = e.target.checked;
+            calculateTotal();
+        });
+
+        els.videoCheck.addEventListener('change', (e) => {
+            state.video = e.target.checked;
+            calculateTotal();
+        });
+
+        // Dark Mode
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
         const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
         const htmlElement = document.documentElement;
 
-        // Verifica preferência salva ou do sistema
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
             updateIcons(true);
@@ -506,189 +539,112 @@
             themeIcons.forEach(icon => {
                 if (isDark) {
                     icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun'); // Ícone de Sol no modo escuro
+                    icon.classList.add('fa-sun');
                 } else {
                     icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon'); // Ícone de Lua no modo claro
+                    icon.classList.add('fa-moon');
                 }
             });
-            
-            // Opcional: Atualizar cores dos gráficos se necessário (re-renderizar charts)
-            // Para simplicidade, os gráficos atuais tem cores que funcionam bem nos dois modos.
         }
 
         themeToggleBtn.addEventListener('click', toggleTheme);
         themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
-        // Event Listeners
-        els.slider.addEventListener('input', (e) => {
-            state.photos = parseInt(e.target.value);
-            calculateTotal();
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        els.droneCheck.addEventListener('change', (e) => {
-            state.drone = e.target.checked;
-            calculateTotal();
+        // --- WHATSAPP SUBMISSION LOGIC ---
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Impede o recarregamento da página
+
+            // 1. Capturar dados
+            const name = document.getElementById('nameInput').value;
+            const contact = document.getElementById('contactInput').value;
+            const message = document.getElementById('messageInput').value;
+
+            // 2. Formatar mensagem para o WhatsApp
+            // A quebra de linha no WhatsApp link é feita com %0a
+            const whatsappMessage = 
+`*Olá Thiago! Gostaria de um orçamento.*%0a
+*Nome:* ${name}%0a
+*Contato:* ${contact}%0a
+--------------------------------%0a
+*Mensagem/Pedido:*%0a
+${message}`;
+
+            // 3. Montar URL (Número: 5583981181907)
+            const phoneNumber = "5583981181907"; // Mantido conforme seu histórico
+            const url = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+            // 4. Abrir em nova aba
+            window.open(url, '_blank');
         });
 
-        els.videoCheck.addEventListener('change', (e) => {
-            state.video = e.target.checked;
-            calculateTotal();
-        });
-
-        function scrollToContact() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Navigation Mobile
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Initialize Charts
+        // Charts
         let marketChartInstance = null;
         let breakdownChartInstance = null;
 
         function initCharts() {
-            // Chart 1: Market Comparison
             const ctx1 = document.getElementById('marketChart').getContext('2d');
             marketChartInstance = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['Média de Mercado', 'Creative Fotografia'],
+                    labels: ['Média RJ', 'Creative'],
                     datasets: [{
-                        label: 'Investimento Médio (R$)',
-                        data: [1500, 600], // Default data
+                        label: 'Investimento (R$)',
+                        data: [1500, 600],
                         backgroundColor: ['#e5e7eb', '#d4af37'],
-                        borderRadius: 5,
-                        barThickness: 40
+                        borderRadius: 5
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return 'R$ ' + context.raw;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { display: false }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
                     }
                 }
             });
 
-            // Chart 2: Cost Breakdown
             const ctx2 = document.getElementById('breakdownChart').getContext('2d');
             breakdownChartInstance = new Chart(ctx2, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Equipamento/Manutenção', 'Edição/Pós-Produção', 'Tempo de Sessão', 'Lucro/Arte'],
+                    labels: ['Equipamento', 'Edição', 'Sessão', 'Arte'],
                     datasets: [{
                         data: [20, 30, 25, 25],
-                        backgroundColor: [
-                            '#1a1a1a', // Dark
-                            '#d4af37', // Gold
-                            '#f3f4f6', // Light Gray
-                            '#9ca3af'  // Gray
-                        ],
-                        borderWidth: 0,
-                        hoverOffset: 4
+                        backgroundColor: ['#1a1a1a', '#d4af37', '#f3f4f6', '#9ca3af'],
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '70%',
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                usePointStyle: true,
-                                padding: 20
-                            }
-                        }
-                    }
+                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }
                 }
             });
         }
 
-        function updateCharts(currentTotal) {
-            // Update Market Chart comparison
-            // Market avg is roughly 2.5x our price logic for the sake of the demo
-            const estimatedMarketVal = Math.round(currentTotal * 2.2);
-            
+        function updateCharts(total) {
             if(marketChartInstance) {
-                marketChartInstance.data.datasets[0].data = [estimatedMarketVal, currentTotal];
+                marketChartInstance.data.datasets[0].data = [Math.round(total * 2.2), total];
                 marketChartInstance.update();
             }
         }
 
-        // --- CORREÇÃO: LÓGICA DE ENVIO REAL COM EMAILJS ---
-        
-        // 1. Inicializar o EmailJS com sua Public Key
-        (function() {
-            // Substitua 'mTYsg8S_ID55HTXDq' pela sua Public Key se for diferente
-            emailjs.init("mTYsg8S_ID55HTXDq");
-        })();
-
-        const form = document.getElementById('contactForm');
-        
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const btn = form.querySelector('button');
-            const originalText = btn.innerText;
-            
-            // Muda texto do botão para indicar processamento
-            btn.innerText = 'Enviando...';
-            btn.disabled = true;
-
-            // Prepara os parâmetros para o template do EmailJS
-            // Certifique-se que seu template no site do EmailJS espera: from_name, reply_to e message
-            const templateParams = {
-                from_name: document.getElementById('nameInput').value,
-                reply_to: document.getElementById('contactInput').value, 
-                message: document.getElementById('messageInput').value
-            };
-
-            // Envia o e-mail real
-            emailjs.send('service_wfc6ruz', 'template_h31lko5', templateParams)
-                .then(function() {
-                    alert('Sucesso! Sua solicitação foi enviada para o Thiago.');
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    form.reset();
-                    calculateTotal(); // Reseta o display da calculadora
-                }, function(error) {
-                    console.error('Erro:', error);
-                    alert('Ocorreu um erro ao enviar. Tente novamente ou chame no WhatsApp.');
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                });
-        });
-
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             initCharts();
             calculateTotal();
         });
 
     </script>
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </body>
 </html>
