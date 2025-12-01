@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- ADICIONADO: Biblioteca EmailJS necessária para o envio real -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -593,23 +597,48 @@
             }
         }
 
-        // EmailJS Integration (Reusing user's logic)
+        // --- CORREÇÃO: LÓGICA DE ENVIO REAL COM EMAILJS ---
+        
+        // 1. Inicializar o EmailJS com sua Public Key
+        (function() {
+            // Substitua 'mTYsg8S_ID55HTXDq' pela sua Public Key se for diferente
+            emailjs.init("mTYsg8S_ID55HTXDq");
+        })();
+
         const form = document.getElementById('contactForm');
+        
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Simulating send for the UI demo
+            
             const btn = form.querySelector('button');
             const originalText = btn.innerText;
+            
+            // Muda texto do botão para indicar processamento
             btn.innerText = 'Enviando...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                alert(`Obrigado! Sua proposta de R$ ${els.totalDisplay.innerText},00 foi enviada. Entraremos em contato em breve.`);
-                btn.innerText = originalText;
-                btn.disabled = false;
-                form.reset();
-                calculateTotal(); // Reset calc display
-            }, 1500);
+            // Prepara os parâmetros para o template do EmailJS
+            // Certifique-se que seu template no site do EmailJS espera: from_name, reply_to e message
+            const templateParams = {
+                from_name: document.getElementById('nameInput').value,
+                reply_to: document.getElementById('contactInput').value, 
+                message: document.getElementById('messageInput').value
+            };
+
+            // Envia o e-mail real
+            emailjs.send('service_wfc6ruz', 'template_h31lko5', templateParams)
+                .then(function() {
+                    alert('Sucesso! Sua solicitação foi enviada para o Thiago.');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    form.reset();
+                    calculateTotal(); // Reseta o display da calculadora
+                }, function(error) {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro ao enviar. Tente novamente ou chame no WhatsApp.');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
         });
 
         // Init
