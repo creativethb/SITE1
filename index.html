@@ -17,20 +17,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!-- Chosen Palette: "Golden Hour Editorial" - Warm Neutrals (Background), Charcoal (Text), Gold (Accent) -->
-    <!-- Application Structure Plan: 
-         1. Hero Section: Sets the emotional tone.
-         2. Interactive Simulator (The Core): Allows users to build their own package (Photos * Price + Extras). This is the "Task-Oriented" view.
-         3. Data Visualization Section: 
-            - Chart 1: Market Comparison (Bar) - Shows value for money (User's R$600 vs Market R$1500+).
-            - Chart 2: Cost Breakdown (Donut) - Educates client on what goes into the price (Editing, Gear, etc.).
-         4. Visual Portfolio: Proof of quality using user's images.
-         5. Contact/Action: Final conversion step.
-         Rationale: This structure moves from Emotion -> Logic (Price) -> Validation (Data/Photos) -> Action.
-    -->
-
     <script>
         tailwind.config = {
+            darkMode: 'class', // Ativa a troca manual de tema
             theme: {
                 extend: {
                     colors: {
@@ -90,59 +79,70 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-gold selection:text-white">
+<!-- ADICIONADO: dark:bg-neutral-900 e dark:text-gray-100 para o fundo geral -->
+<body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100">
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-brand-light/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm transition-all duration-300" id="navbar">
+    <!-- ADICIONADO: Cores escuras para o menu -->
+    <nav class="fixed w-full bg-brand-light/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/95 dark:border-neutral-800" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
                     <!-- Logo from Source -->
                     <img class="h-10 w-auto" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
-                    <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block">Creative Fotografia</span>
+                    <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100">Creative Fotografia</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition">Simulador</a>
-                    <a href="#market-analysis" class="text-gray-700 hover:text-brand-gold font-medium transition">Análise</a>
-                    <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition">Portfólio</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Simulador</a>
+                    <a href="#market-analysis" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Análise</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 dark:hover:text-brand-gold">Portfólio</a>
                     <a href="#contact" class="px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">Orçamento</a>
+                    
+                    <!-- BOTÃO DE TEMA (LUA/SOL) -->
+                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 dark:hover:text-brand-gold">
+                        <i class="fas fa-moon text-xl" id="theme-icon"></i>
+                    </button>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-gold focus:outline-none">
+                
+                <!-- Mobile menu button e Toggle Mobile -->
+                <div class="md:hidden flex items-center gap-4">
+                     <button id="theme-toggle-mobile" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300">
+                        <i class="fas fa-moon text-xl" id="theme-icon-mobile"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-gold focus:outline-none dark:text-gray-200">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+        <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50">Simulador</a>
-                <a href="#market-analysis" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50">Análise de Valor</a>
-                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50">Galeria</a>
+                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Simulador</a>
+                <a href="#market-analysis" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Análise de Valor</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-gold hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-neutral-800">Galeria</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-10">
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#f9f9f7] dark:bg-neutral-900 transition-colors duration-300">
+        <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20">
              <!-- Background pattern or subtle image -->
              <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" class="w-full h-full object-cover grayscale" alt="Background Texture">
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-dark mb-6 tracking-tight animate-fade-in-up">
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-dark mb-6 tracking-tight animate-fade-in-up dark:text-white">
                 Sua História, <span class="text-brand-gold">Eternizada.</span>
             </h1>
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600 font-light leading-relaxed">
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600 font-light leading-relaxed dark:text-gray-300">
                 Transparência e arte. Utilize nossa ferramenta interativa para personalizar seu ensaio e descobrir como tornamos a fotografia de alta qualidade acessível.
             </p>
             <div class="mt-10 flex justify-center gap-4">
-                <a href="#simulator" class="px-8 py-3 rounded-full bg-brand-dark text-white font-bold hover:bg-gray-800 transition shadow-xl">
+                <a href="#simulator" class="px-8 py-3 rounded-full bg-brand-dark text-white font-bold hover:bg-gray-800 transition shadow-xl dark:bg-white dark:text-brand-dark dark:hover:bg-gray-200">
                     Simular Investimento
                 </a>
-                <a href="#portfolio" class="px-8 py-3 rounded-full border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition">
+                <a href="#portfolio" class="px-8 py-3 rounded-full border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">
                     Ver Portfólio
                 </a>
             </div>
@@ -150,39 +150,33 @@
     </section>
 
     <!-- Interactive Simulator Section -->
-    <!-- Visualization & Content Choices: 
-         Goal: Inform & Change. 
-         Method: Custom JS Calculator + Interactive Text.
-         Interaction: Sliders and Toggles to adjust price.
-         Justification: Allows user to fit the service into their budget (R$600 target) transparently.
-    -->
-    <section id="simulator" class="py-20 bg-white">
+    <section id="simulator" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl">Planeje seu Investimento</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white">Planeje seu Investimento</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
                     Ajuste os controles abaixo para personalizar seu pacote. Nosso objetivo é oferecer um preço justo de aproximadamente <strong class="text-brand-gold">R$ 25,00 por foto</strong> em pacotes completos.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <!-- Controls -->
-                <div class="bg-brand-light p-8 rounded-2xl shadow-lg border border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <div class="bg-brand-light p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center dark:text-white">
                         <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Configurar Sessão
                     </h3>
 
                     <!-- Type Selector -->
                     <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Ensaio</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">Tipo de Ensaio</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition" data-type="wedding" onclick="selectType('wedding', this)">
+                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black" data-type="wedding" onclick="selectType('wedding', this)">
                                 Casamento
                             </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition" data-type="essay" onclick="selectType('essay', this)">
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="essay" onclick="selectType('essay', this)">
                                 Ensaio Externo
                             </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition" data-type="party" onclick="selectType('party', this)">
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="party" onclick="selectType('party', this)">
                                 Festa/Evento
                             </button>
                         </div>
@@ -191,10 +185,10 @@
                     <!-- Photo Slider -->
                     <div class="mb-8">
                         <div class="flex justify-between mb-2">
-                            <label class="text-sm font-medium text-gray-700">Quantidade de Fotos</label>
+                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantidade de Fotos</label>
                             <span class="text-brand-gold font-bold" id="photo-count-display">24 Fotos</span>
                         </div>
-                        <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb" id="photo-slider">
+                        <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb dark:bg-neutral-700" id="photo-slider">
                         <div class="flex justify-between text-xs text-gray-400 mt-2">
                             <span>10</span>
                             <span>50</span>
@@ -204,26 +198,27 @@
 
                     <!-- Extras -->
                     <div class="space-y-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Adicionais</label>
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">Adicionais</label>
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
                             <div class="flex items-center">
-                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded">
-                                <label for="drone-check" class="ml-3 block text-gray-700">Imagens Aéreas (Drone)</label>
+                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
+                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300">Imagens Aéreas (Drone)</label>
                             </div>
-                            <span class="text-sm font-semibold text-gray-500">+ R$ 150</span>
+                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700">
                             <div class="flex items-center">
-                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded">
-                                <label for="video-check" class="ml-3 block text-gray-700">Teaser em Vídeo (1 min)</label>
+                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600">
+                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300">Teaser em Vídeo (1 min)</label>
                             </div>
-                            <span class="text-sm font-semibold text-gray-500">+ R$ 250</span>
+                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Result Card -->
-                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full">
+                <!-- Mantém o estilo escuro por padrão, mas ajusta bordas se necessário -->
+                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700">
                     <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
                     
                     <div>
@@ -265,28 +260,19 @@
     </section>
 
     <!-- Data Analytics Section -->
-    <!-- Visualization & Content Choices:
-         Goal: Compare & Justify.
-         Method: Chart.js Bar and Doughnut charts.
-         Interaction: Hover tooltips.
-         Justification: 
-            - Bar Chart: Shows the user that R$600 is "Below Market Average" (Market typically ~R$1500 for weddings).
-            - Donut Chart: Shows where the money goes (transparency).
-         Constraint Check: Canvas in styled container divs.
-    -->
-    <section id="market-analysis" class="py-20 bg-brand-light">
+    <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 
                 <!-- Market Comparison -->
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6">Por que escolher a Creative?</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Por que escolher a Creative?</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
                         Realizamos uma pesquisa de mercado em João Pessoa/PB. Enquanto a média para cobertura de pequenos casamentos gira em torno de R$ 1.500, nosso modelo otimizado permite entregar qualidade premium por um valor acessível.
                     </p>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center">Comparativo de Mercado (Casamento Civil/Mini-Wedding)</h4>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center dark:text-gray-400">Comparativo de Mercado (Casamento Civil/Mini-Wedding)</h4>
                         <div class="chart-container">
                             <canvas id="marketChart"></canvas>
                         </div>
@@ -295,13 +281,13 @@
 
                 <!-- Cost Breakdown -->
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6">Transparência no Valor</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Transparência no Valor</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
                         Quando você investe R$ 600,00, seu dinheiro está garantindo muito mais que apenas o "clique". Veja como distribuímos o recurso para garantir a excelência.
                     </p>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center">Composição do Investimento</h4>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                        <h4 class="text-sm font-bold text-gray-500 uppercase mb-4 text-center dark:text-gray-400">Composição do Investimento</h4>
                         <div class="chart-container">
                             <canvas id="breakdownChart"></canvas>
                         </div>
@@ -313,17 +299,16 @@
     </section>
 
     <!-- Portfolio Gallery -->
-    <!-- Goal: Inspire. Displaying images extracted from user's GitHub provided in prompt. -->
-    <section id="portfolio" class="py-20 bg-white">
+    <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-gray-900">Portfólio Recente</h2>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white">Portfólio Recente</h2>
                 <div class="w-16 h-1 bg-brand-gold mx-auto mt-4"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Item 1 -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] bg-gray-200 dark:bg-neutral-700">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white text-xl font-serif">Ensaio Externo</h3>
@@ -349,7 +334,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center text-brand-dark font-bold hover:text-brand-gold transition">
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center text-brand-dark font-bold hover:text-brand-gold transition dark:text-white dark:hover:text-brand-gold">
                     <i class="fab fa-instagram mr-2"></i> Ver mais no Instagram
                 </a>
             </div>
@@ -357,9 +342,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-brand-dark text-white">
+    <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-serif font-bold mb-6">Vamos criar algo incrível?</h2>
+            <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos criar algo incrível?</h2>
             <p class="text-gray-400 mb-10">
                 Preencha o formulário com os detalhes da sua simulação ou me chame direto no WhatsApp.
             </p>
@@ -472,17 +457,68 @@
 
         function selectType(type, btn) {
             state.type = type;
+            
+            // Lógica Atualizada para suportar Dark Mode nos botões
             els.typeBtns.forEach(b => {
-                b.classList.remove('bg-brand-dark', 'text-white');
-                b.classList.add('bg-white', 'text-gray-600');
+                // Remove estilos de ativo
+                b.classList.remove('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
+                // Adiciona estilos de inativo
+                b.classList.add('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
             });
-            btn.classList.remove('bg-white', 'text-gray-600');
-            btn.classList.add('bg-brand-dark', 'text-white');
+            
+            // Aplica estilo ativo no botão clicado
+            btn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
+            btn.classList.add('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
             
             const labels = { 'wedding': 'Casamento', 'essay': 'Ensaio Externo', 'party': 'Festa/Evento' };
             els.selectedTypeName.innerText = labels[type];
             calculateTotal();
         }
+
+        // --- LÓGICA DO TEMA ESCURO (DARK MODE) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
+        const htmlElement = document.documentElement;
+
+        // Verifica preferência salva ou do sistema
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            updateIcons(true);
+        } else {
+            htmlElement.classList.remove('dark');
+            updateIcons(false);
+        }
+
+        function toggleTheme() {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateIcons(false);
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateIcons(true);
+            }
+        }
+
+        function updateIcons(isDark) {
+            themeIcons.forEach(icon => {
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun'); // Ícone de Sol no modo escuro
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon'); // Ícone de Lua no modo claro
+                }
+            });
+            
+            // Opcional: Atualizar cores dos gráficos se necessário (re-renderizar charts)
+            // Para simplicidade, os gráficos atuais tem cores que funcionam bem nos dois modos.
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
         // Event Listeners
         els.slider.addEventListener('input', (e) => {
