@@ -35,7 +35,8 @@
                     },
                     animation: {
                         'fade-in': 'fadeIn 1s ease-in-out',
-                        'slide-up': 'slideUp 0.8s ease-out forwards'
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -103,14 +104,14 @@
             visibility: visible;
         }
 
-        /* --- ESTILOS DA TRANSIÇÃO DE PÁGINA (CORRIGIDO) --- */
+        /* --- ESTILOS DA TRANSIÇÃO DE PÁGINA --- */
         #page-transition-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #0f0f0f; /* Fundo preto puro para contraste */
+            background-color: #0f0f0f;
             z-index: 9999;
             transform: translateY(100%);
             transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
@@ -124,7 +125,6 @@
             transform: translateY(0);
         }
 
-        /* Container da Logo para garantir centralização */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -132,15 +132,12 @@
             justify-content: center;
         }
 
-        /* Logo na Transição - SEM FILTROS BRANCOS AGRESSIVOS */
         .transition-logo {
-            width: 150px; /* Um pouco maior */
+            width: 150px;
             height: auto;
             opacity: 0;
             transition: opacity 0.3s ease;
             object-fit: contain;
-            /* Se a logo for muito escura, use este filtro suave para dar brilho, senão deixe sem */
-            /* filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); */
         }
 
         #page-transition-overlay.active .transition-logo {
@@ -148,10 +145,9 @@
             animation: pulseLogo 1.5s infinite;
         }
         
-        /* Texto de apoio caso a imagem falhe ou demore */
         .loading-text {
             font-family: 'Cormorant Garamond', serif;
-            color: #d4af37; /* Cor Dourada */
+            color: #d4af37;
             margin-top: 15px;
             letter-spacing: 0.2em;
             font-size: 1.2rem;
@@ -167,16 +163,43 @@
             50% { transform: scale(1.05); opacity: 1; }
             100% { transform: scale(1); opacity: 0.8; }
         }
+
+        /* --- SCROLL REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- TEXT HOVER EFFECTS --- */
+        /* Classe para textos que "pulam" ao passar o mouse */
+        .hover-jump {
+            display: inline-block; /* Necessário para transform funcionar em spans/links */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+        }
+        .hover-jump:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Icon Zoom sutil */
+        .icon-zoom {
+            transition: transform 0.3s ease;
+        }
+        .group:hover .icon-zoom {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100 relative">
 
-    <!-- CAMADA DE TRANSIÇÃO (OVERLAY) CORRIGIDA -->
+    <!-- CAMADA DE TRANSIÇÃO (OVERLAY) -->
     <div id="page-transition-overlay">
         <div class="logo-container">
-            <!-- Removi o filtro 'invert' que causava o quadrado branco -->
             <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative" class="transition-logo">
-            <!-- Adicionei um texto elegante abaixo -->
             <span class="loading-text">CREATIVE</span>
         </div>
     </div>
@@ -189,21 +212,22 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#home" class="nav-link flex items-center gap-3 group">
                         <img class="h-10 w-auto transform transition-transform group-hover:scale-110 duration-300" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
-                        <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100 group-hover:text-brand-gold transition-colors">Creative Fotografia</span>
+                        <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100 group-hover:text-brand-gold transition-colors hover-jump">Creative Fotografia</span>
                     </a>
                 </div>
 
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Início</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Sobre</a>
-                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Portfólio</a>
-                    <a href="#simulator" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Simulador</a>
-                    <a href="#contact" class="nav-link px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">
+                    <!-- Links com efeito hover-jump -->
+                    <a href="#home" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 hover-jump">Início</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 hover-jump">Sobre</a>
+                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 hover-jump">Portfólio</a>
+                    <a href="#simulator" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 hover-jump">Simulador</a>
+                    <a href="#contact" class="nav-link px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1 hover:scale-105 active:scale-95 duration-200">
                         <i class="fab fa-whatsapp mr-1"></i> Orçamento
                     </a>
                     
-                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2">
+                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2 hover:rotate-12 transform duration-300">
                         <i class="fas fa-moon text-xl" id="theme-icon"></i>
                     </button>
                 </div>
@@ -219,7 +243,7 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu Expandido -->
+        <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800 shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Início</a>
@@ -249,10 +273,10 @@
                 Especialista em capturar momentos autênticos com uma estética clean e cinematográfica.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-5 animate-slide-up" style="animation-delay: 0.4s;">
-                <a href="#portfolio" class="nav-link px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white">
+                <a href="#portfolio" class="nav-link px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white hover:scale-105 active:scale-95">
                     Ver Meus Trabalhos
                 </a>
-                <a href="#simulator" class="nav-link px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm">
+                <a href="#simulator" class="nav-link px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm hover:scale-105 active:scale-95">
                     Simular Investimento
                 </a>
             </div>
@@ -264,31 +288,51 @@
         </div>
     </section>
 
-    <!-- SECTION: SOBRE MIM -->
+    <!-- SECTION: SOBRE MIM (COM EFEITO DE ZOOM E COR) -->
     <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <div class="w-full lg:w-1/2 relative group">
-                    <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
+                <!-- IMAGEM COM EFEITO "KEN BURNS" E OVERFLOW HIDDEN PARA O ZOOM NÃO VAZAR -->
+                <div class="w-full lg:w-1/2 relative group rounded-2xl cursor-pointer">
+                    <!-- Fundo rotacionado (Moldura) -->
+                    <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform duration-500 group-hover:rotate-2 opacity-20"></div>
+                    
+                    <!-- Container da imagem com máscara -->
+                    <div class="relative rounded-2xl shadow-2xl overflow-hidden w-full h-[500px] lg:h-[600px]">
+                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110">
+                        
+                        <!-- Brilho sutil ao passar o mouse -->
+                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    </div>
                 </div>
+                
                 <div class="w-full lg:w-1/2">
-                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
-                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
+                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 hover-jump cursor-default">Quem sou eu</h4>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white hover-jump cursor-default">Thiago | Creative</h2>
                     <p class="text-lg text-gray-600 mb-6 leading-relaxed dark:text-gray-300 text-justify">
                         Muito prazer! Acredito que a fotografia vai além do clique; é sobre <strong>conexão</strong>. Com um olhar treinado para a luz natural e composições elegantes, busco transformar a atmosfera do Rio de Janeiro no cenário perfeito para a sua história.
                     </p>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed dark:text-gray-300 text-justify">
                         Atendo clientes que buscam não apenas um registro, mas uma <strong>experiência visual</strong>. Seja em um mini-wedding intimista, um editorial de moda ou conteúdo estratégico para marcas, meu foco é a excelência e a autenticidade.
                     </p>
+                    
+                    <!-- Lista com ícones que pulam -->
                     <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Estilo Clean</span>
+                        <div class="flex items-center gap-3 group cursor-default">
+                            <i class="fas fa-check-circle text-brand-gold icon-zoom"></i>
+                            <span class="text-gray-700 dark:text-gray-300 hover-jump">Estilo Clean</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Alta Resolução</span>
+                        <div class="flex items-center gap-3 group cursor-default">
+                            <i class="fas fa-check-circle text-brand-gold icon-zoom"></i>
+                            <span class="text-gray-700 dark:text-gray-300 hover-jump">Alta Resolução</span>
+                        </div>
+                        <div class="flex items-center gap-3 group cursor-default">
+                            <i class="fas fa-check-circle text-brand-gold icon-zoom"></i>
+                            <span class="text-gray-700 dark:text-gray-300 hover-jump">Direção Natural</span>
+                        </div>
+                        <div class="flex items-center gap-3 group cursor-default">
+                            <i class="fas fa-check-circle text-brand-gold icon-zoom"></i>
+                            <span class="text-gray-700 dark:text-gray-300 hover-jump">Atendimento VIP</span>
                         </div>
                     </div>
                 </div>
@@ -298,31 +342,31 @@
 
     <!-- SECTION: PORTFÓLIO -->
     <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300 min-h-screen">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Trabalhos Recentes</span>
-                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2">Galeria Selecionada</h2>
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm hover-jump">Trabalhos Recentes</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2 hover-jump">Galeria Selecionada</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
-                        <span class="text-brand-gold font-bold">Ensaio Externo</span>
-                        <span class="text-white text-sm">Luz Natural</span>
+                        <span class="text-brand-gold font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-500">Ensaio Externo</span>
+                        <span class="text-white text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-500 delay-100">Luz Natural</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
-                        <span class="text-brand-gold font-bold">Retrato</span>
-                        <span class="text-white text-sm">Estúdio</span>
+                        <span class="text-brand-gold font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-500">Retrato</span>
+                        <span class="text-white text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-500 delay-100">Estúdio</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
-                        <span class="text-brand-gold font-bold">Urbano</span>
-                        <span class="text-white text-sm">Lifestyle</span>
+                        <span class="text-brand-gold font-bold transform translate-y-4 group-hover:translate-y-0 transition duration-500">Urbano</span>
+                        <span class="text-white text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-500 delay-100">Lifestyle</span>
                     </div>
                 </div>
             </div>
@@ -331,25 +375,25 @@
 
     <!-- SECTION: SIMULADOR -->
     <section id="simulator" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Planejamento</span>
-                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white mt-2">Simulador de Investimento</h2>
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm hover-jump">Planejamento</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white mt-2 hover-jump">Simulador de Investimento</h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
                     Monte seu pacote ideal e descubra que qualidade premium cabe no seu orçamento.
                 </p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700 transform transition hover:shadow-xl">
                     <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center dark:text-white">
-                        <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Personalizar
+                        <i class="fas fa-sliders-h mr-3 text-brand-gold icon-zoom"></i> Personalizar
                     </h3>
                     <div class="mb-8">
                         <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md transform hover:scale-105" data-type="wedding" onclick="selectType('wedding', this)">Casamento</button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="essay" onclick="selectType('essay', this)">Ensaio</button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="party" onclick="selectType('party', this)">Festa/Loja</button>
+                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md transform hover:scale-105 active:scale-95" data-type="wedding" onclick="selectType('wedding', this)">Casamento</button>
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105 active:scale-95" data-type="essay" onclick="selectType('essay', this)">Ensaio</button>
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105 active:scale-95" data-type="party" onclick="selectType('party', this)">Festa/Loja</button>
                         </div>
                     </div>
                     <div class="mb-8">
@@ -360,14 +404,14 @@
                         <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb dark:bg-neutral-700" id="photo-slider">
                     </div>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('drone-check').click()">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]" onclick="document.getElementById('drone-check').click()">
                             <div class="flex items-center pointer-events-none">
                                 <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-600 dark:border-neutral-500 pointer-events-auto">
                                 <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Drone (Takes Aéreos)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('video-check').click()">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]" onclick="document.getElementById('video-check').click()">
                             <div class="flex items-center pointer-events-none">
                                 <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-600 dark:border-neutral-500 pointer-events-auto">
                                 <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Vídeo Maker (Reels)</label>
@@ -376,7 +420,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700">
+                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700 transform transition hover:shadow-2xl">
                     <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
                     <div>
                         <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Total Estimado</h3>
@@ -387,18 +431,18 @@
                         </div>
                         <hr class="border-gray-700 my-6">
                         <div class="space-y-3 text-sm">
-                            <div class="flex justify-between">
+                            <div class="flex justify-between hover-jump cursor-default">
                                 <span class="text-gray-300">Fotos (<span id="extra-photos-count">24</span> un.)</span>
                                 <span class="font-mono text-gray-400" id="photos-breakdown">R$ 600,00</span>
                             </div>
-                            <div class="flex justify-between text-brand-gold">
+                            <div class="flex justify-between text-brand-gold hover-jump cursor-default">
                                 <span>Adicionais</span>
                                 <span class="font-mono" id="extras-breakdown">R$ 0,00</span>
                             </div>
                         </div>
                     </div>
                     <div class="mt-8">
-                        <button onclick="triggerPageTransition('#contact')" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02]">
+                        <button onclick="triggerPageTransition('#contact')" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]">
                             Verificar Disponibilidade <i class="fas fa-calendar-check"></i>
                         </button>
                         <p class="text-xs text-center text-gray-500 mt-4">* Taxa de deslocamento calculada conforme bairro (RJ).</p>
@@ -410,36 +454,36 @@
 
     <!-- SECTION: COMERCIAL -->
     <section id="commercial" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
              <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Empresas</span>
-                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2">Soluções Visuais</h2>
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm hover-jump">Empresas</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2 hover-jump">Soluções Visuais</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2 cursor-default">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fab fa-instagram"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-gold transition">Reels & TikTok</h3>
                     <p class="text-gray-600 dark:text-gray-400">Engajamento total com edições dinâmicas.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2 cursor-default">
                     <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-gold transition">Institucional</h3>
                     <p class="text-gray-600 dark:text-gray-400">Apresente sua empresa com autoridade.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2 cursor-default">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fas fa-helicopter"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Drone 4K</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-gold transition">Drone 4K</h3>
                     <p class="text-gray-600 dark:text-gray-400">Imagens aéreas para grandes eventos.</p>
                 </div>
             </div>
              <div class="mt-12 text-center">
-                <button onclick="triggerPageTransition('#contact')" class="inline-flex items-center text-brand-dark font-bold border-b-2 border-brand-dark hover:text-brand-gold hover:border-brand-gold transition dark:text-white dark:border-white dark:hover:text-brand-gold dark:hover:border-brand-gold pb-1">
+                <button onclick="triggerPageTransition('#contact')" class="inline-flex items-center text-brand-dark font-bold border-b-2 border-brand-dark hover:text-brand-gold hover:border-brand-gold transition dark:text-white dark:border-white dark:hover:text-brand-gold dark:hover:border-brand-gold pb-1 hover:scale-105 active:scale-95">
                     Solicitar Proposta Empresarial <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
@@ -448,25 +492,25 @@
 
     <!-- SECTION: ANÁLISE DE MERCADO -->
     <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Por que a Creative?</h2>
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white hover-jump">Por que a Creative?</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
                         Nossa pesquisa no RJ mostra que entregamos qualidade premium por um valor justo.
                     </p>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700 transform transition hover:scale-[1.01]">
                         <div class="chart-container">
                             <canvas id="marketChart"></canvas>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Transparência</h2>
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white hover-jump">Transparência</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
                         Veja como cada real é utilizado.
                     </p>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700 transform transition hover:scale-[1.01]">
                         <div class="chart-container">
                             <canvas id="breakdownChart"></canvas>
                         </div>
@@ -478,33 +522,33 @@
 
     <!-- SECTION: CONTATO -->
     <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800 min-h-screen flex items-center">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos conversar?</h2>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+            <h2 class="text-3xl font-serif font-bold mb-6 text-white hover-jump">Vamos conversar?</h2>
             <p class="text-gray-400 mb-10">
                 Preencha abaixo para enviar direto para meu WhatsApp.
             </p>
-            <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 relative overflow-hidden group">
+            <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 relative overflow-hidden group hover:shadow-brand-gold/20 hover:shadow-2xl transition duration-500">
                 <div class="absolute top-0 left-0 w-1 h-full bg-brand-gold transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">Seu Nome</label>
-                    <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="Nome Completo" required>
+                    <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition hover:border-gray-500" placeholder="Nome Completo" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">WhatsApp</label>
-                    <input type="text" id="contactInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="(21) 99999-9999" required>
+                    <input type="text" id="contactInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition hover:border-gray-500" placeholder="(21) 99999-9999" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">Mensagem</label>
-                    <textarea id="messageInput" rows="5" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
+                    <textarea id="messageInput" rows="5" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition hover:border-gray-500"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-lg hover:bg-[#128C7E] transition duration-300 flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-1">
+                <button type="submit" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-lg hover:bg-[#128C7E] transition duration-300 flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98]">
                     <i class="fab fa-whatsapp text-2xl"></i> Enviar para WhatsApp
                 </button>
             </form>
             <div class="mt-8 flex justify-center space-x-6">
-                <a href="https://wa.me/5583981181907" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:scale-110"><i class="fab fa-whatsapp text-3xl"></i></a>
-                <a href="https://www.facebook.com/Creativethb/?locale=pt_BR" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-110"><i class="fab fa-facebook text-3xl"></i></a>
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-110"><i class="fab fa-instagram text-3xl"></i></a>
+                <a href="https://wa.me/5583981181907" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:scale-110 hover:-translate-y-1"><i class="fab fa-whatsapp text-3xl"></i></a>
+                <a href="https://www.facebook.com/Creativethb/?locale=pt_BR" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-110 hover:-translate-y-1"><i class="fab fa-facebook text-3xl"></i></a>
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-110 hover:-translate-y-1"><i class="fab fa-instagram text-3xl"></i></a>
             </div>
         </div>
     </section>
@@ -512,7 +556,7 @@
     <!-- FOOTER -->
     <footer class="bg-black text-gray-500 py-8 text-center text-sm">
         <div class="max-w-7xl mx-auto px-4">
-            <a href="javascript:void(0)" onclick="triggerPageTransition('#home')" class="inline-block">
+            <a href="javascript:void(0)" onclick="triggerPageTransition('#home')" class="inline-block hover:scale-110 transition duration-300">
                 <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-8 mx-auto mb-4 opacity-50 grayscale hover:grayscale-0 transition cursor-pointer">
             </a>
             <p>&copy; 2025 Creative Fotografia. Todos os direitos reservados.</p>
@@ -526,31 +570,44 @@
 
     <!-- SCRIPTS -->
     <script>
+        // --- SCROLL ANIMATION OBSERVER (O SEGREDO DO "ALIVE") ---
+        const observerOptions = {
+            threshold: 0.15, // Ativa quando 15% do elemento estiver visível
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Anima apenas uma vez
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
         // --- PAGE TRANSITION LOGIC ---
         function triggerPageTransition(targetId) {
             const overlay = document.getElementById('page-transition-overlay');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            // 1. Fecha menu mobile se estiver aberto
             if(!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
             }
 
-            // 2. Sobe a cortina
             overlay.classList.add('active');
 
-            // 3. Aguarda a cortina cobrir a tela (600ms)
             setTimeout(() => {
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
                 }
-                
-                // 4. Pequeno delay e remove a cortina
                 setTimeout(() => {
                     overlay.classList.remove('active');
                 }, 400);
-
             }, 600);
         }
 
@@ -674,7 +731,7 @@
             window.open(`https://wa.me/5583981181907?text=${whatsappMessage}`, '_blank');
         });
 
-        // --- BACK TO TOP BUTTON VISIBILITY ---
+        // --- BACK TO TOP BUTTON ---
         const backToTopBtn = document.getElementById('backToTopBtn');
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
