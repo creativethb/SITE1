@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,7 +65,11 @@
                 height: 350px;
             }
         }
-        body { scroll-behavior: smooth; }
+        
+        body { 
+            overflow-x: hidden;
+        }
+
         .slider-thumb::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -76,7 +80,6 @@
             border-radius: 50%;
         }
         
-        /* Estilos do Slider Hero */
         .hero-slide {
             position: absolute;
             top: 0;
@@ -90,7 +93,6 @@
         }
         .hero-slide.active { opacity: 1; }
         
-        /* Botão Back to Top */
         #backToTopBtn {
             opacity: 0;
             visibility: hidden;
@@ -100,17 +102,92 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* --- ESTILOS DA TRANSIÇÃO DE PÁGINA (CORRIGIDO) --- */
+        #page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0f0f0f; /* Fundo preto puro para contraste */
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #page-transition-overlay.active {
+            transform: translateY(0);
+        }
+
+        /* Container da Logo para garantir centralização */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Logo na Transição - SEM FILTROS BRANCOS AGRESSIVOS */
+        .transition-logo {
+            width: 150px; /* Um pouco maior */
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            object-fit: contain;
+            /* Se a logo for muito escura, use este filtro suave para dar brilho, senão deixe sem */
+            /* filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); */
+        }
+
+        #page-transition-overlay.active .transition-logo {
+            opacity: 1;
+            animation: pulseLogo 1.5s infinite;
+        }
+        
+        /* Texto de apoio caso a imagem falhe ou demore */
+        .loading-text {
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4af37; /* Cor Dourada */
+            margin-top: 15px;
+            letter-spacing: 0.2em;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.1s;
+        }
+         #page-transition-overlay.active .loading-text {
+            opacity: 1;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100 relative">
+
+    <!-- CAMADA DE TRANSIÇÃO (OVERLAY) CORRIGIDA -->
+    <div id="page-transition-overlay">
+        <div class="logo-container">
+            <!-- Removi o filtro 'invert' que causava o quadrado branco -->
+            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative" class="transition-logo">
+            <!-- Adicionei um texto elegante abaixo -->
+            <span class="loading-text">CREATIVE</span>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-brand-light/90 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/90 dark:border-neutral-800" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- LOGO CLICÁVEL (Implementado) -->
+                <!-- LOGO CLICÁVEL -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#home" class="flex items-center gap-3 group">
+                    <a href="#home" class="nav-link flex items-center gap-3 group">
                         <img class="h-10 w-auto transform transition-transform group-hover:scale-110 duration-300" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
                         <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100 group-hover:text-brand-gold transition-colors">Creative Fotografia</span>
                     </a>
@@ -118,15 +195,15 @@
 
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Início</a>
-                    <a href="#about" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Sobre</a>
-                    <a href="#portfolio" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Portfólio</a>
-                    <a href="#simulator" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Simulador</a>
-                    <a href="#contact" class="px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Início</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Sobre</a>
+                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Portfólio</a>
+                    <a href="#simulator" class="nav-link text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-brand-gold after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Simulador</a>
+                    <a href="#contact" class="nav-link px-5 py-2 rounded-full bg-brand-gold text-white font-bold hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-0.5">
                         <i class="fab fa-whatsapp mr-1"></i> Orçamento
                     </a>
                     
-                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2" title="Alternar Modo Escuro">
+                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2">
                         <i class="fas fa-moon text-xl" id="theme-icon"></i>
                     </button>
                 </div>
@@ -145,51 +222,42 @@
         <!-- Mobile Menu Expandido -->
         <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800 shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Início</a>
-                <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Sobre Mim</a>
-                <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Portfólio</a>
-                <a href="#simulator" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Simulador</a>
-                <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold hover:bg-gray-100 dark:hover:bg-neutral-800">WhatsApp</a>
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Início</a>
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Sobre Mim</a>
+                <a href="#portfolio" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Portfólio</a>
+                <a href="#simulator" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Simulador</a>
+                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold hover:bg-gray-100 dark:hover:bg-neutral-800">WhatsApp</a>
             </div>
         </div>
     </nav>
 
     <!-- HERO SLIDER SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Slides -->
         <div class="absolute inset-0 z-0">
             <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg');"></div>
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg');"></div>
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg');"></div>
         </div>
-
-        <!-- Overlay Escura -->
         <div class="absolute inset-0 bg-black/50 z-10"></div>
-
-        <!-- Conteúdo Hero -->
         <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
             <h2 class="text-brand-gold uppercase tracking-[0.3em] text-sm md:text-base mb-4 font-bold animate-fade-in">Rio de Janeiro & Regiões</h2>
-            
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl animate-slide-up">
                 Não é só uma foto.<br>
                 <span class="italic font-light">É a sua essência.</span>
             </h1>
-
             <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light drop-shadow-md animate-slide-up" style="animation-delay: 0.2s;">
-                Especialista em capturar momentos autênticos com uma estética clean e cinematográfica. Do casamento ao corporativo.
+                Especialista em capturar momentos autênticos com uma estética clean e cinematográfica.
             </p>
-
             <div class="flex flex-col sm:flex-row justify-center gap-5 animate-slide-up" style="animation-delay: 0.4s;">
-                <a href="#portfolio" class="px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white">
+                <a href="#portfolio" class="nav-link px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white">
                     Ver Meus Trabalhos
                 </a>
-                <a href="#simulator" class="px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm">
+                <a href="#simulator" class="nav-link px-8 py-4 rounded-full bg-transparent border-2 border-white text-white font-bold hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm">
                     Simular Investimento
                 </a>
             </div>
-            
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <a href="#about" class="text-white opacity-70 hover:opacity-100 transition">
+                <a href="#about" class="nav-link text-white opacity-70 hover:opacity-100 transition">
                     <i class="fas fa-chevron-down text-3xl"></i>
                 </a>
             </div>
@@ -197,197 +265,45 @@
     </section>
 
     <!-- SECTION: SOBRE MIM -->
-    <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
+    <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="w-full lg:w-1/2 relative group">
                     <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago - Creative Fotografia" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
                 </div>
-                
                 <div class="w-full lg:w-1/2">
                     <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
                     <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
-                    
                     <p class="text-lg text-gray-600 mb-6 leading-relaxed dark:text-gray-300 text-justify">
                         Muito prazer! Acredito que a fotografia vai além do clique; é sobre <strong>conexão</strong>. Com um olhar treinado para a luz natural e composições elegantes, busco transformar a atmosfera do Rio de Janeiro no cenário perfeito para a sua história.
                     </p>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed dark:text-gray-300 text-justify">
                         Atendo clientes que buscam não apenas um registro, mas uma <strong>experiência visual</strong>. Seja em um mini-wedding intimista, um editorial de moda ou conteúdo estratégico para marcas, meu foco é a excelência e a autenticidade.
                     </p>
-
                     <div class="grid grid-cols-2 gap-4 mb-8">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Estilo Clean & Moderno</span>
+                            <span class="text-gray-700 dark:text-gray-300">Estilo Clean</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Entrega em Alta Resolução</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Direção de Poses Naturais</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-brand-gold"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Atendimento Humanizado</span>
+                            <span class="text-gray-700 dark:text-gray-300">Alta Resolução</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: SIMULADOR -->
-    <section id="simulator" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Planejamento</span>
-                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white mt-2">Simulador de Investimento</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
-                    Transparência é nosso pilar. Monte seu pacote ideal e descubra que qualidade premium cabe no seu orçamento.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <!-- Controls -->
-                <div class="bg-brand-light p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-900 dark:border-neutral-700">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center dark:text-white">
-                        <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Personalizar
-                    </h3>
-
-                    <!-- Type Selector -->
-                    <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md transform hover:scale-105" data-type="wedding" onclick="selectType('wedding', this)">
-                                Casamento
-                            </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="essay" onclick="selectType('essay', this)">
-                                Ensaio
-                            </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="party" onclick="selectType('party', this)">
-                                Festa/Loja
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Photo Slider -->
-                    <div class="mb-8">
-                        <div class="flex justify-between mb-2">
-                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantidade de Fotos</label>
-                            <span class="text-brand-gold font-bold" id="photo-count-display">24 Fotos</span>
-                        </div>
-                        <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb dark:bg-neutral-700" id="photo-slider">
-                    </div>
-
-                    <!-- Extras -->
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('drone-check').click()">
-                            <div class="flex items-center pointer-events-none">
-                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 pointer-events-auto">
-                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Drone (Takes Aéreos)</label>
-                            </div>
-                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('video-check').click()">
-                            <div class="flex items-center pointer-events-none">
-                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 pointer-events-auto">
-                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Vídeo Maker (Reels)</label>
-                            </div>
-                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Result Card -->
-                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
-                    
-                    <div>
-                        <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Total Estimado</h3>
-                        <div class="flex items-baseline">
-                            <span class="text-2xl font-light text-brand-gold mr-2">R$</span>
-                            <span class="text-6xl font-serif font-bold" id="total-price">600</span>
-                            <span class="text-xl text-gray-400">,00</span>
-                        </div>
-                        <hr class="border-gray-700 my-6">
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-300">Fotos (<span id="extra-photos-count">24</span> un.)</span>
-                                <span class="font-mono text-gray-400" id="photos-breakdown">R$ 600,00</span>
-                            </div>
-                            <div class="flex justify-between text-brand-gold">
-                                <span>Adicionais (Vídeo/Drone)</span>
-                                <span class="font-mono" id="extras-breakdown">R$ 0,00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <button onclick="scrollToContact()" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02]">
-                            Verificar Disponibilidade <i class="fas fa-calendar-check"></i>
-                        </button>
-                        <p class="text-xs text-center text-gray-500 mt-4">* Taxa de deslocamento calculada conforme bairro (RJ).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: COMERCIAL -->
-    <section id="commercial" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Business</span>
-                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 dark:text-white mt-2">Vídeo Maker & Comercial</h2>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">Soluções visuais estratégicas para alavancar seu negócio no Rio.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Cards -->
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Engajamento total com edições dinâmicas para redes sociais.</p>
-                </div>
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Apresente sua empresa com autoridade e qualidade de cinema.</p>
-                </div>
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
-                        <i class="fas fa-helicopter"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Drone 4K</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Imagens aéreas para imobiliárias e grandes eventos.</p>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <button onclick="selectType('party', this); scrollToContact()" class="inline-flex items-center text-brand-dark font-bold border-b-2 border-brand-dark hover:text-brand-gold hover:border-brand-gold transition dark:text-white dark:border-white dark:hover:text-brand-gold dark:hover:border-brand-gold pb-1">
-                    Solicitar Proposta para Minha Empresa <i class="fas fa-arrow-right ml-2"></i>
-                </button>
             </div>
         </div>
     </section>
 
     <!-- SECTION: PORTFÓLIO -->
-    <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
+    <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-center mb-16">
                 <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Trabalhos Recentes</span>
                 <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2">Galeria Selecionada</h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Imagens do Portfólio -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
@@ -410,15 +326,126 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center mt-12">
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center text-brand-dark font-bold hover:text-brand-gold transition dark:text-white dark:hover:text-brand-gold">
-                    <i class="fab fa-instagram mr-2"></i> Ver mais no Instagram
-                </a>
+        </div>
+    </section>
+
+    <!-- SECTION: SIMULADOR -->
+    <section id="simulator" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Planejamento</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 sm:text-4xl dark:text-white mt-2">Simulador de Investimento</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
+                    Monte seu pacote ideal e descubra que qualidade premium cabe no seu orçamento.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center dark:text-white">
+                        <i class="fas fa-sliders-h mr-3 text-brand-gold"></i> Personalizar
+                    </h3>
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md transform hover:scale-105" data-type="wedding" onclick="selectType('wedding', this)">Casamento</button>
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="essay" onclick="selectType('essay', this)">Ensaio</button>
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-700 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="party" onclick="selectType('party', this)">Festa/Loja</button>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantidade de Fotos</label>
+                            <span class="text-brand-gold font-bold" id="photo-count-display">24 Fotos</span>
+                        </div>
+                        <input type="range" min="10" max="100" value="24" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb dark:bg-neutral-700" id="photo-slider">
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('drone-check').click()">
+                            <div class="flex items-center pointer-events-none">
+                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-600 dark:border-neutral-500 pointer-events-auto">
+                                <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Drone (Takes Aéreos)</label>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 dark:bg-neutral-700 dark:border-neutral-600 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('video-check').click()">
+                            <div class="flex items-center pointer-events-none">
+                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-600 dark:border-neutral-500 pointer-events-auto">
+                                <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Vídeo Maker (Reels)</label>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-brand-dark text-white p-8 rounded-2xl shadow-2xl relative overflow-hidden flex flex-col justify-between h-full dark:border dark:border-gray-700">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
+                    <div>
+                        <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-1">Total Estimado</h3>
+                        <div class="flex items-baseline">
+                            <span class="text-2xl font-light text-brand-gold mr-2">R$</span>
+                            <span class="text-6xl font-serif font-bold" id="total-price">600</span>
+                            <span class="text-xl text-gray-400">,00</span>
+                        </div>
+                        <hr class="border-gray-700 my-6">
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Fotos (<span id="extra-photos-count">24</span> un.)</span>
+                                <span class="font-mono text-gray-400" id="photos-breakdown">R$ 600,00</span>
+                            </div>
+                            <div class="flex justify-between text-brand-gold">
+                                <span>Adicionais</span>
+                                <span class="font-mono" id="extras-breakdown">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <button onclick="triggerPageTransition('#contact')" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02]">
+                            Verificar Disponibilidade <i class="fas fa-calendar-check"></i>
+                        </button>
+                        <p class="text-xs text-center text-gray-500 mt-4">* Taxa de deslocamento calculada conforme bairro (RJ).</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- SECTION: COMERCIAL -->
+    <section id="commercial" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="text-center mb-16">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Empresas</span>
+                <h2 class="text-3xl font-serif font-bold text-gray-900 dark:text-white mt-2">Soluções Visuais</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Engajamento total com edições dinâmicas.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Apresente sua empresa com autoridade.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
+                        <i class="fas fa-helicopter"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Drone 4K</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Imagens aéreas para grandes eventos.</p>
+                </div>
+            </div>
+             <div class="mt-12 text-center">
+                <button onclick="triggerPageTransition('#contact')" class="inline-flex items-center text-brand-dark font-bold border-b-2 border-brand-dark hover:text-brand-gold hover:border-brand-gold transition dark:text-white dark:border-white dark:hover:text-brand-gold dark:hover:border-brand-gold pb-1">
+                    Solicitar Proposta Empresarial <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- SECTION: ANÁLISE DE MERCADO -->
     <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -426,7 +453,7 @@
                 <div>
                     <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Por que a Creative?</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
-                        Nossa pesquisa de mercado no Rio de Janeiro mostra que entregamos qualidade premium por um valor justo.
+                        Nossa pesquisa no RJ mostra que entregamos qualidade premium por um valor justo.
                     </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                         <div class="chart-container">
@@ -435,9 +462,9 @@
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Investimento Transparente</h2>
+                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Transparência</h2>
                     <p class="text-gray-600 mb-8 leading-relaxed dark:text-gray-400">
-                        Veja como cada real é utilizado para garantir a excelência.
+                        Veja como cada real é utilizado.
                     </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 dark:bg-neutral-800 dark:border-neutral-700">
                         <div class="chart-container">
@@ -450,44 +477,34 @@
     </section>
 
     <!-- SECTION: CONTATO -->
-    <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800">
+    <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800 min-h-screen flex items-center">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos conversar?</h2>
             <p class="text-gray-400 mb-10">
-                Preencha abaixo para <strong>enviar direto para meu WhatsApp</strong> e agilizar seu atendimento.
+                Preencha abaixo para enviar direto para meu WhatsApp.
             </p>
-
             <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 relative overflow-hidden group">
-                <!-- Efeito Hover no Form -->
                 <div class="absolute top-0 left-0 w-1 h-full bg-brand-gold transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">Seu Nome</label>
                     <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="Nome Completo" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Seu Telefone/WhatsApp</label>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">WhatsApp</label>
                     <input type="text" id="contactInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="(21) 99999-9999" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Detalhes do Pedido</label>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Mensagem</label>
                     <textarea id="messageInput" rows="5" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition"></textarea>
                 </div>
                 <button type="submit" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-lg hover:bg-[#128C7E] transition duration-300 flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-1">
                     <i class="fab fa-whatsapp text-2xl"></i> Enviar para WhatsApp
                 </button>
             </form>
-
             <div class="mt-8 flex justify-center space-x-6">
-                <a href="https://wa.me/5583981181907" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:scale-110">
-                    <i class="fab fa-whatsapp text-3xl"></i>
-                </a>
-                <a href="https://www.facebook.com/Creativethb/?locale=pt_BR" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-110">
-                    <i class="fab fa-facebook text-3xl"></i>
-                </a>
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-110">
-                    <i class="fab fa-instagram text-3xl"></i>
-                </a>
+                <a href="https://wa.me/5583981181907" target="_blank" class="text-gray-400 hover:text-green-400 transition transform hover:scale-110"><i class="fab fa-whatsapp text-3xl"></i></a>
+                <a href="https://www.facebook.com/Creativethb/?locale=pt_BR" target="_blank" class="text-gray-400 hover:text-blue-600 transition transform hover:scale-110"><i class="fab fa-facebook text-3xl"></i></a>
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-gray-400 hover:text-pink-500 transition transform hover:scale-110"><i class="fab fa-instagram text-3xl"></i></a>
             </div>
         </div>
     </section>
@@ -495,20 +512,56 @@
     <!-- FOOTER -->
     <footer class="bg-black text-gray-500 py-8 text-center text-sm">
         <div class="max-w-7xl mx-auto px-4">
-            <a href="#home" class="inline-block">
+            <a href="javascript:void(0)" onclick="triggerPageTransition('#home')" class="inline-block">
                 <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-8 mx-auto mb-4 opacity-50 grayscale hover:grayscale-0 transition cursor-pointer">
             </a>
             <p>&copy; 2025 Creative Fotografia. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- BOTÃO VOLTAR AO TOPO (Implementado) -->
-    <button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-brand-gold text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-yellow-600 transition-colors transform hover:scale-110 cursor-pointer show">
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <button id="backToTopBtn" onclick="triggerPageTransition('#home')" class="fixed bottom-8 right-8 bg-brand-gold text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-yellow-600 transition-colors transform hover:scale-110 cursor-pointer show">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- SCRIPTS -->
     <script>
+        // --- PAGE TRANSITION LOGIC ---
+        function triggerPageTransition(targetId) {
+            const overlay = document.getElementById('page-transition-overlay');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // 1. Fecha menu mobile se estiver aberto
+            if(!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+
+            // 2. Sobe a cortina
+            overlay.classList.add('active');
+
+            // 3. Aguarda a cortina cobrir a tela (600ms)
+            setTimeout(() => {
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+                }
+                
+                // 4. Pequeno delay e remove a cortina
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                }, 400);
+
+            }, 600);
+        }
+
+        document.querySelectorAll('.nav-link, .mobile-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const targetId = this.getAttribute('href');
+                triggerPageTransition(targetId);
+            });
+        });
+
         // --- HERO SLIDER ---
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
@@ -519,22 +572,12 @@
         }
         setInterval(nextSlide, 5000);
 
-
         // --- STATE MANAGEMENT ---
-        const state = {
-            type: 'wedding', 
-            photos: 24,
-            drone: false,
-            video: false,
-            basePricePerPhoto: 25
-        };
-
+        const state = { type: 'wedding', photos: 24, drone: false, video: false, basePricePerPhoto: 25 };
         const els = {
             slider: document.getElementById('photo-slider'),
             countDisplay: document.getElementById('photo-count-display'),
             typeBtns: document.querySelectorAll('.type-btn'),
-            droneCheck: document.getElementById('drone-check'),
-            videoCheck: document.getElementById('video-check'),
             totalDisplay: document.getElementById('total-price'),
             photosBreakdown: document.getElementById('photos-breakdown'),
             extrasBreakdown: document.getElementById('extras-breakdown'),
@@ -547,7 +590,6 @@
             let extrasCost = 0;
             if(state.drone) extrasCost += 150;
             if(state.video) extrasCost += 250;
-
             const total = photoCost + extrasCost;
 
             els.totalDisplay.innerText = total;
@@ -555,7 +597,6 @@
             els.photosBreakdown.innerText = `R$ ${photoCost.toFixed(2).replace('.', ',')}`;
             els.extrasBreakdown.innerText = `R$ ${extrasCost.toFixed(2).replace('.', ',')}`;
             els.extraPhotosCount.innerText = state.photos;
-            
             updateFormMessage(total);
             updateCharts(total);
         }
@@ -572,7 +613,6 @@
                 b.classList.remove('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
                 b.classList.add('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
             });
-            
             if(!btn) btn = document.querySelector(`.type-btn[data-type="${type}"]`);
             if(btn) {
                 btn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
@@ -581,24 +621,9 @@
             calculateTotal();
         }
 
-        function scrollToContact() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        els.slider.addEventListener('input', (e) => {
-            state.photos = parseInt(e.target.value);
-            calculateTotal();
-        });
-
-        // Clique nas divs dos checkboxes agora funciona (UX)
-        els.droneCheck.addEventListener('change', (e) => {
-            state.drone = e.target.checked;
-            calculateTotal();
-        });
-        els.videoCheck.addEventListener('change', (e) => {
-            state.video = e.target.checked;
-            calculateTotal();
-        });
+        els.slider.addEventListener('input', (e) => { state.photos = parseInt(e.target.value); calculateTotal(); });
+        document.getElementById('drone-check').addEventListener('change', (e) => { state.drone = e.target.checked; calculateTotal(); });
+        document.getElementById('video-check').addEventListener('change', (e) => { state.video = e.target.checked; calculateTotal(); });
 
         // --- DARK MODE ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -625,70 +650,37 @@
                 updateIcons(true);
             }
         }
-
         function updateIcons(isDark) {
             themeIcons.forEach(icon => {
-                if (isDark) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
+                if (isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } 
+                else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
             });
         }
-
         themeToggleBtn.addEventListener('click', toggleTheme);
         themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
-        // --- MENU MOBILE MELHORADO ---
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Fecha o menu ao clicar em um link (UX Improvement)
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        // --- MENU MOBILE ---
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
         // --- WHATSAPP SUBMISSION ---
-        const form = document.getElementById('contactForm');
-        form.addEventListener('submit', (e) => {
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault(); 
             const name = document.getElementById('nameInput').value;
             const contact = document.getElementById('contactInput').value;
             const message = document.getElementById('messageInput').value;
-
-            const whatsappMessage = 
-`*Olá Thiago! Gostaria de um orçamento.*%0a
-*Nome:* ${name}%0a
-*Contato:* ${contact}%0a
---------------------------------%0a
-*Mensagem/Pedido:*%0a
-${message}`;
-
-            const phoneNumber = "5583981181907"; 
-            const url = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-            window.open(url, '_blank');
+            const whatsappMessage = `*Olá Thiago! Gostaria de um orçamento.*%0a*Nome:* ${name}%0a*Contato:* ${contact}%0a--------------------------------%0a*Mensagem/Pedido:*%0a${message}`;
+            window.open(`https://wa.me/5583981181907?text=${whatsappMessage}`, '_blank');
         });
 
-        // --- BACK TO TOP BUTTON LOGIC ---
+        // --- BACK TO TOP BUTTON VISIBILITY ---
         const backToTopBtn = document.getElementById('backToTopBtn');
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 backToTopBtn.classList.add('show');
-                backToTopBtn.style.opacity = '1';
-                backToTopBtn.style.visibility = 'visible';
             } else {
                 backToTopBtn.classList.remove('show');
-                backToTopBtn.style.opacity = '0';
-                backToTopBtn.style.visibility = 'hidden';
             }
         };
 
@@ -700,58 +692,21 @@ ${message}`;
             const ctx1 = document.getElementById('marketChart').getContext('2d');
             marketChartInstance = new Chart(ctx1, {
                 type: 'bar',
-                data: {
-                    labels: ['Média RJ', 'Creative'],
-                    datasets: [{
-                        label: 'Investimento (R$)',
-                        data: [1500, 600],
-                        backgroundColor: ['#e5e7eb', '#d4af37'],
-                        borderRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: { 
-                        y: { beginAtZero: true, grid: { display: false } },
-                        x: { grid: { display: false } }
-                    }
-                }
+                data: { labels: ['Média RJ', 'Creative'], datasets: [{ label: 'Investimento (R$)', data: [1500, 600], backgroundColor: ['#e5e7eb', '#d4af37'], borderRadius: 5 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
             });
 
             const ctx2 = document.getElementById('breakdownChart').getContext('2d');
             breakdownChartInstance = new Chart(ctx2, {
                 type: 'doughnut',
-                data: {
-                    labels: ['Equipamento', 'Edição', 'Sessão', 'Arte'],
-                    datasets: [{
-                        data: [20, 30, 25, 25],
-                        backgroundColor: ['#1a1a1a', '#d4af37', '#f3f4f6', '#9ca3af'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }
-                }
+                data: { labels: ['Equipamento', 'Edição', 'Sessão', 'Arte'], datasets: [{ data: [20, 30, 25, 25], backgroundColor: ['#1a1a1a', '#d4af37', '#f3f4f6', '#9ca3af'], borderWidth: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } } }
             });
         }
-
         function updateCharts(total) {
-            if(marketChartInstance) {
-                marketChartInstance.data.datasets[0].data = [Math.round(total * 2.2), total];
-                marketChartInstance.update();
-            }
+            if(marketChartInstance) { marketChartInstance.data.datasets[0].data = [Math.round(total * 2.2), total]; marketChartInstance.update(); }
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initCharts();
-            calculateTotal();
-        });
-
+        document.addEventListener('DOMContentLoaded', () => { initCharts(); calculateTotal(); });
     </script>
 </body>
 </html>
