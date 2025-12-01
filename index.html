@@ -90,22 +90,32 @@
         }
         .hero-slide.active { opacity: 1; }
         
-        /* Overlay gradiente para leitura do texto */
-        .hero-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        /* Botão Back to Top */
+        #backToTopBtn {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100">
+<body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100 relative">
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-brand-light/90 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm transition-all duration-300 dark:bg-neutral-900/90 dark:border-neutral-800" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <img class="h-10 w-auto" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
-                    <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100">Creative Fotografia</span>
+                <!-- LOGO CLICÁVEL (Implementado) -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="flex items-center gap-3 group">
+                        <img class="h-10 w-auto transform transition-transform group-hover:scale-110 duration-300" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
+                        <span class="font-serif text-2xl font-semibold text-brand-dark tracking-wide hidden sm:block dark:text-gray-100 group-hover:text-brand-gold transition-colors">Creative Fotografia</span>
+                    </a>
                 </div>
+
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#home" class="text-gray-700 hover:text-brand-gold font-medium transition dark:text-gray-300">Início</a>
@@ -116,7 +126,7 @@
                         <i class="fab fa-whatsapp mr-1"></i> Orçamento
                     </a>
                     
-                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2">
+                    <button id="theme-toggle" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300 ml-2" title="Alternar Modo Escuro">
                         <i class="fas fa-moon text-xl" id="theme-icon"></i>
                     </button>
                 </div>
@@ -133,37 +143,33 @@
             </div>
         </div>
         <!-- Mobile Menu Expandido -->
-        <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800" id="mobile-menu">
+        <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800 shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Início</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Sobre Mim</a>
-                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Portfólio</a>
-                <a href="#simulator" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300">Simulador</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold">WhatsApp</a>
+                <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Início</a>
+                <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Sobre Mim</a>
+                <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Portfólio</a>
+                <a href="#simulator" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Simulador</a>
+                <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold hover:bg-gray-100 dark:hover:bg-neutral-800">WhatsApp</a>
             </div>
         </div>
     </nav>
 
-    <!-- NOVA HERO SECTION (SLIDER IMERSIVO) -->
+    <!-- HERO SLIDER SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <!-- Slides -->
         <div class="absolute inset-0 z-0">
-            <!-- Slide 1: Casamento/Geral (Usando imagem externa de alta qualidade) -->
             <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg');"></div>
-            <!-- Slide 2: Retrato -->
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg');"></div>
-            <!-- Slide 3: Urbano/Festa -->
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg');"></div>
         </div>
 
-        <!-- Overlay Escura para Texto -->
+        <!-- Overlay Escura -->
         <div class="absolute inset-0 bg-black/50 z-10"></div>
 
-        <!-- Conteúdo Centralizado -->
+        <!-- Conteúdo Hero -->
         <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
             <h2 class="text-brand-gold uppercase tracking-[0.3em] text-sm md:text-base mb-4 font-bold animate-fade-in">Rio de Janeiro & Regiões</h2>
             
-            <!-- Headline Dinâmica (Muda via JS ou fixa impactante) -->
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl animate-slide-up">
                 Não é só uma foto.<br>
                 <span class="italic font-light">É a sua essência.</span>
@@ -182,7 +188,6 @@
                 </a>
             </div>
             
-            <!-- Indicador de Scroll -->
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
                 <a href="#about" class="text-white opacity-70 hover:opacity-100 transition">
                     <i class="fas fa-chevron-down text-3xl"></i>
@@ -191,17 +196,15 @@
         </div>
     </section>
 
-    <!-- SECTION: SOBRE MIM (Invertida para vir logo após o Hero) -->
+    <!-- SECTION: SOBRE MIM -->
     <section id="about" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <!-- Imagem -->
                 <div class="w-full lg:w-1/2 relative group">
                     <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform group-hover:rotate-0 opacity-20"></div>
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobre.jpg" alt="Thiago - Creative Fotografia" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] grayscale group-hover:grayscale-0 transition duration-500">
                 </div>
                 
-                <!-- Texto -->
                 <div class="w-full lg:w-1/2">
                     <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2">Quem sou eu</h4>
                     <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 dark:text-white">Thiago | Creative</h2>
@@ -236,7 +239,7 @@
         </div>
     </section>
 
-    <!-- Interactive Simulator Section -->
+    <!-- SECTION: SIMULADOR -->
     <section id="simulator" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -258,13 +261,13 @@
                     <div class="mb-8">
                         <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-400">O que vamos fotografar?</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md" data-type="wedding" onclick="selectType('wedding', this)">
+                            <button class="type-btn active bg-brand-dark text-white py-2 rounded-lg font-medium text-sm transition dark:bg-brand-gold dark:text-black shadow-md transform hover:scale-105" data-type="wedding" onclick="selectType('wedding', this)">
                                 Casamento
                             </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="essay" onclick="selectType('essay', this)">
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="essay" onclick="selectType('essay', this)">
                                 Ensaio
                             </button>
-                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600" data-type="party" onclick="selectType('party', this)">
+                            <button class="type-btn bg-white text-gray-600 border border-gray-300 py-2 rounded-lg font-medium text-sm hover:border-brand-gold transition dark:bg-neutral-800 dark:text-gray-300 dark:border-neutral-600 hover:scale-105" data-type="party" onclick="selectType('party', this)">
                                 Festa/Loja
                             </button>
                         </div>
@@ -281,16 +284,16 @@
 
                     <!-- Extras -->
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 cursor-pointer">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('drone-check').click()">
+                            <div class="flex items-center pointer-events-none">
+                                <input type="checkbox" id="drone-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 pointer-events-auto">
                                 <label for="drone-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Drone (Takes Aéreos)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 150</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 cursor-pointer">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 hover:border-brand-gold transition cursor-pointer" onclick="document.getElementById('video-check').click()">
+                            <div class="flex items-center pointer-events-none">
+                                <input type="checkbox" id="video-check" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded dark:bg-neutral-700 dark:border-neutral-600 pointer-events-auto">
                                 <label for="video-check" class="ml-3 block text-gray-700 dark:text-gray-300 cursor-pointer">Vídeo Maker (Reels)</label>
                             </div>
                             <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">+ R$ 250</span>
@@ -323,7 +326,7 @@
                     </div>
 
                     <div class="mt-8">
-                        <button onclick="scrollToContact()" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2">
+                        <button onclick="scrollToContact()" class="w-full py-4 bg-brand-gold text-brand-dark font-bold rounded-xl hover:bg-white hover:text-brand-dark transition duration-300 shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02]">
                             Verificar Disponibilidade <i class="fas fa-calendar-check"></i>
                         </button>
                         <p class="text-xs text-center text-gray-500 mt-4">* Taxa de deslocamento calculada conforme bairro (RJ).</p>
@@ -333,7 +336,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: VÍDEO & COMERCIAL -->
+    <!-- SECTION: COMERCIAL -->
     <section id="commercial" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
@@ -344,21 +347,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Cards -->
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fab fa-instagram"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Reels & TikTok</h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-4">Engajamento total com edições dinâmicas para redes sociais.</p>
                 </div>
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
                     <div class="w-14 h-14 bg-brand-dark text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition dark:bg-white dark:text-black">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Institucional</h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-4">Apresente sua empresa com autoridade e qualidade de cinema.</p>
                 </div>
-                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 group border-b-4 border-transparent hover:border-brand-gold transform hover:-translate-y-2">
                     <div class="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-110 transition">
                         <i class="fas fa-helicopter"></i>
                     </div>
@@ -375,7 +378,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Gallery -->
+    <!-- SECTION: PORTFÓLIO -->
     <section id="portfolio" class="py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -385,22 +388,22 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Imagens do Portfólio -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Ensaio Externo" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Ensaio Externo</span>
                         <span class="text-white text-sm">Luz Natural</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/06-1.jpg" alt="Ensaio Sensual" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Retrato</span>
                         <span class="text-white text-sm">Estúdio</span>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110">
+                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg" alt="Retrato Estilizado" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Urbano</span>
                         <span class="text-white text-sm">Lifestyle</span>
@@ -416,7 +419,7 @@
         </div>
     </section>
     
-    <!-- Data Analytics Section -->
+    <!-- SECTION: ANÁLISE DE MERCADO -->
     <section id="market-analysis" class="py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -446,7 +449,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- SECTION: CONTATO -->
     <section id="contact" class="py-20 bg-brand-dark text-white border-t border-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-serif font-bold mb-6 text-white">Vamos conversar?</h2>
@@ -454,7 +457,10 @@
                 Preencha abaixo para <strong>enviar direto para meu WhatsApp</strong> e agilizar seu atendimento.
             </p>
 
-            <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700">
+            <form id="contactForm" class="space-y-4 text-left max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 relative overflow-hidden group">
+                <!-- Efeito Hover no Form -->
+                <div class="absolute top-0 left-0 w-1 h-full bg-brand-gold transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-1">Seu Nome</label>
                     <input type="text" id="nameInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold transition" placeholder="Nome Completo" required>
@@ -486,26 +492,31 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="bg-black text-gray-500 py-8 text-center text-sm">
         <div class="max-w-7xl mx-auto px-4">
-            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-8 mx-auto mb-4 opacity-50 grayscale hover:grayscale-0 transition">
+            <a href="#home" class="inline-block">
+                <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-8 mx-auto mb-4 opacity-50 grayscale hover:grayscale-0 transition cursor-pointer">
+            </a>
             <p>&copy; 2025 Creative Fotografia. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Logic Script -->
+    <!-- BOTÃO VOLTAR AO TOPO (Implementado) -->
+    <button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-brand-gold text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-yellow-600 transition-colors transform hover:scale-110 cursor-pointer show">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- SCRIPTS -->
     <script>
-        // --- HERO SLIDER LOGIC ---
+        // --- HERO SLIDER ---
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
-        
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-        
-        // Troca de slide a cada 5 segundos
         setInterval(nextSlide, 5000);
 
 
@@ -562,15 +573,11 @@
                 b.classList.add('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
             });
             
-            if(!btn) {
-                btn = document.querySelector(`.type-btn[data-type="${type}"]`);
-            }
-
+            if(!btn) btn = document.querySelector(`.type-btn[data-type="${type}"]`);
             if(btn) {
                 btn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-neutral-800', 'dark:text-gray-300');
                 btn.classList.add('bg-brand-dark', 'text-white', 'dark:bg-brand-gold', 'dark:text-black');
             }
-            
             calculateTotal();
         }
 
@@ -578,23 +585,22 @@
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Event Listeners
         els.slider.addEventListener('input', (e) => {
             state.photos = parseInt(e.target.value);
             calculateTotal();
         });
 
+        // Clique nas divs dos checkboxes agora funciona (UX)
         els.droneCheck.addEventListener('change', (e) => {
             state.drone = e.target.checked;
             calculateTotal();
         });
-
         els.videoCheck.addEventListener('change', (e) => {
             state.video = e.target.checked;
             calculateTotal();
         });
 
-        // Dark Mode
+        // --- DARK MODE ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
         const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
@@ -635,14 +641,23 @@
         themeToggleBtn.addEventListener('click', toggleTheme);
         themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
-        // Mobile Menu
+        // --- MENU MOBILE MELHORADO ---
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // WhatsApp Logic
+        // Fecha o menu ao clicar em um link (UX Improvement)
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- WHATSAPP SUBMISSION ---
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', (e) => {
             e.preventDefault(); 
@@ -663,7 +678,21 @@ ${message}`;
             window.open(url, '_blank');
         });
 
-        // Charts
+        // --- BACK TO TOP BUTTON LOGIC ---
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add('show');
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.visibility = 'visible';
+            } else {
+                backToTopBtn.classList.remove('show');
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.visibility = 'hidden';
+            }
+        };
+
+        // --- CHARTS ---
         let marketChartInstance = null;
         let breakdownChartInstance = null;
 
