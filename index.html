@@ -249,7 +249,8 @@
         </div>
         <div class="absolute inset-0 bg-black/50 z-10"></div>
         
-        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto h-full flex flex-col justify-center pb-32 md:pb-0">
+        <!-- ADJUSTMENT: Increased pb (padding-bottom) significantly to keep content higher -->
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto h-full flex flex-col justify-center pb-40 md:pb-0">
             <h2 class="text-brand-gold uppercase tracking-[0.3em] text-xs md:text-sm lg:text-base mb-3 md:mb-4 font-bold animate-fade-in">Rio de Janeiro & Regiões</h2>
             
             <h1 class="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-4 md:mb-6 leading-tight drop-shadow-2xl animate-slide-up">
@@ -270,6 +271,7 @@
                 </a>
             </div>
             
+            <!-- ADJUSTMENT: Seta absolutely positioned at bottom-8. Disconnected from content flow. -->
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
                 <a href="#about" class="nav-link text-white opacity-70 hover:opacity-100 transition p-4">
                     <i class="fas fa-chevron-down text-2xl md:text-3xl"></i>
@@ -278,7 +280,7 @@
         </div>
     </section>
 
-    <!-- SECTION: SOBRE MIM -->
+    <!-- SECTION: SOBRE MIM (Re-design: Título em cima, Subtítulo centralizado embaixo) -->
     <section id="about" class="py-16 md:py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
@@ -291,8 +293,23 @@
                 </div>
                 
                 <div class="w-full lg:w-1/2">
-                    <h4 class="text-brand-gold font-bold tracking-widest uppercase text-xs md:text-sm mb-2 hover-jump cursor-default">Quem sou eu</h4>
-                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-4 md:mb-6 dark:text-white hover-jump cursor-default">Thiago | Creative</h2>
+                    <!-- DESIGN CHANGE: Header container centered relative to itself -->
+                    <div class="flex flex-col items-start lg:items-start mb-6">
+                         <!-- Thiago | Creative (First) -->
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white hover-jump cursor-default leading-tight">
+                            Thiago | Creative
+                        </h2>
+                        <!-- Quem sou eu (Second, Centered relative to the title above? Or just below?) -->
+                        <!-- Para "centralizar embaixo", em um layout alinhado à esquerda, o ideal é alinhar o bloco. 
+                             Se for alinhar ao centro do texto "Thiago | Creative", usamos text-center no container ou mantemos left.
+                             Vou assumir que você quer uma hierarquia visual onde o "Quem sou eu" é um subtítulo elegante. -->
+                        <div class="w-full max-w-md mt-2 flex justify-start"> <!-- Container para alinhar -->
+                             <h4 class="text-brand-gold font-bold tracking-widest uppercase text-sm md:text-base border-t border-brand-gold/30 pt-2 w-full text-center lg:text-left">
+                                 Quem sou eu
+                             </h4>
+                        </div>
+                    </div>
+                    
                     <p class="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed dark:text-gray-300 text-justify">
                         Muito prazer! Acredito que a fotografia vai além do clique; é sobre <strong>conexão</strong>. Com um olhar treinado para a luz natural e composições elegantes, busco transformar a atmosfera do Rio de Janeiro no cenário perfeito para a sua história.
                     </p>
@@ -690,7 +707,7 @@
 
             // 1. CÁLCULO BASE (Fotos ou Vídeo Biz)
             if (state.type === 'business') {
-                // CORREÇÃO CRÍTICA AQUI: Se videos = 0, custo = 0
+                // Se videos = 0, custo = 0
                 if (state.bizVideos > 0) {
                      baseTotal += 400 + (state.bizVideos - 1) * 300;
                      details += `${state.bizVideos} Vídeos`;
@@ -814,7 +831,7 @@
             }, 500);
         }
 
-        // --- CHARTS (Simples, para não bugar) ---
+        // --- CHARTS ---
         document.addEventListener('DOMContentLoaded', () => {
              const marketCanvas = document.getElementById('marketChart');
              if (marketCanvas) {
