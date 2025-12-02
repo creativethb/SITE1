@@ -251,7 +251,7 @@
     <!-- HERO SLIDER SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Slider com imagens atualizadas -->
+            <!-- SLIDER ATUALIZADO: topo03.jpeg -->
             <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg');"></div>
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4114.jpg');"></div>
@@ -288,7 +288,7 @@
         </div>
     </section>
 
-    <!-- SECTION: SOBRE MIM (FIX FINAL: Fundo Branco + Object Contain) -->
+    <!-- SECTION: SOBRE MIM (ATUALIZADO PARA sobremimv2.jpg) -->
     <section id="about" class="py-16 md:py-20 bg-brand-light dark:bg-neutral-900 transition-colors duration-300 min-h-screen flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
@@ -296,10 +296,10 @@
                     <!-- Fundo decorativo -->
                     <div class="absolute inset-0 bg-brand-gold rounded-2xl transform -rotate-3 transition-transform duration-500 group-hover:rotate-2 opacity-20"></div>
                     
-                    <!-- Container da Imagem: bg-white para fundir com a foto, object-contain para não cortar -->
+                    <!-- Container da Imagem: bg-white essencial para o efeito infinito -->
                     <div class="relative rounded-2xl shadow-2xl overflow-hidden w-full aspect-[3/4] bg-white">
-                        <!-- IMAGEM COM AJUSTE DE "FUNDO INFINITO" -->
-                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremim.jpeg" alt="Thiago" class="w-full h-full object-contain object-bottom grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105">
+                        <!-- IMAGEM COM O NOME NOVO (sobremimv2.jpg) -->
+                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" alt="Thiago" class="w-full h-full object-contain object-bottom grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105">
                         <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     </div>
                 </div>
@@ -346,13 +346,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Imagem 1: Evento -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <img id="gallery-img-1" src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_5743-4x5.jpg" alt="Evento" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
+                    <!-- FIX: Corrigido o nome com espaço IMG_4006 2.jpg usando %20 -->
+                    <img id="gallery-img-1" src="https://raw.githubusercontent.com/creativethb/SITE1/main/IMG_4006%202.jpg" alt="Evento" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Evento</span>
                     </div>
                 </div>
-                <!-- Imagem 2: Retrato (Atualizada com a foto nova) -->
+                <!-- Imagem 2: Retrato -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <!-- FIX: Nome exato conforme seu repo retratodacolunatabalho.jpeg -->
                     <img id="gallery-img-2" src="https://raw.githubusercontent.com/creativethb/SITE1/main/retratodacolunatabalho.jpeg" alt="Retrato" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Retrato</span>
@@ -648,19 +650,17 @@
         // --- BASE URL DO REPO ---
         const BASE_URL = 'https://raw.githubusercontent.com/creativethb/SITE1/main/';
 
-        // --- GALLERY SLIDER LOGIC (COMPLETO E ATUALIZADO) ---
-        // Arrays com TODAS as imagens listadas no seu repositório
+        // --- GALLERY SLIDER LOGIC ---
         const galleryImages = {
             'event': [
                 'IMG_5743-4x5.jpg', 
                 '07.jpg', 
-                'IMG_4006%202.jpg',
+                'IMG_4006%202.jpg', 
                 'IMG_5743story.jpg',
                 'InShot_20201209_115856243.jpg',
                 'wf.jpg'
             ],
             'portrait': [
-                // ATUALIZADO: Usando 'tabalho' para bater com o print
                 'retratodacolunatabalho.jpeg', 
                 '06-1.jpg',
                 'IMG_4114.jpg',
@@ -699,10 +699,10 @@
                 imgElement.onload = () => {
                     imgElement.classList.remove('fade-out');
                 };
-            }, 1000); // Espera o fade out terminar (1s transition no CSS)
+            }, 1000); 
         }
 
-        // Inicia os timers para rodar o carrossel (tempos diferentes para dar ritmo orgânico)
+        // Timer ajustado para evitar que troquem todos juntos
         setInterval(() => rotateGallery('gallery-img-1', 'event'), 4500);
         setInterval(() => rotateGallery('gallery-img-2', 'portrait'), 5200);
         setInterval(() => rotateGallery('gallery-img-3', 'essay'), 6000);
