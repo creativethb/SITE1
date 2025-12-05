@@ -68,11 +68,9 @@
 
     <style>
         /* --- PERFORMANCE & VISUAL --- */
-        
-        /* Vidro mais leve no mobile para evitar travamento */
         .glass-panel {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); /* Reduzi de 20px para 10px para mobile fluir melhor */
+            backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -101,7 +99,6 @@
         #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
         #preloader.hidden { opacity: 0; visibility: hidden; }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #050505; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
@@ -139,7 +136,6 @@
         .text-scrolled { color: #1a1a1a; text-shadow: none; }
         .dark .text-scrolled { color: #ffffff; }
 
-        /* Scroll Indicator Transition */
         #scroll-indicator { transition: opacity 0.5s ease-out; }
     </style>
 </head>
@@ -198,18 +194,14 @@
         <a href="#contact" class="px-10 py-4 border border-brand-gold text-brand-gold font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-brand-dark transition-all duration-300" onclick="toggleMobileMenu()">Contato</a>
     </div>
 
-    <!-- HERO SECTION (Carrossel Expandido) -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-black">
-             <!-- Slide 1 -->
+             <!-- Slides -->
              <div class="hero-slide active bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
-             <!-- Slide 2 -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
-             <!-- Slide 3 -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
-             <!-- Slide 4 (NOVO) -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
-             <!-- Slide 5 (NOVO) -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
              
              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
@@ -230,8 +222,7 @@
             </div>
         </div>
         
-        <!-- SCROLL INDICATOR (CORRIGIDO: Mais visível e some no scroll) -->
-        <div id="scroll-indicator" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-100 mix-blend-overlay">
+        <div id="scroll-indicator" class="absolute bottom-10 left-0 right-0 mx-auto w-fit text-center animate-bounce opacity-100 mix-blend-overlay z-20">
             <span class="text-[10px] uppercase tracking-widest text-white mb-2 block font-bold shadow-lg">Scroll Down</span>
             <span class="block w-[1px] h-12 bg-white mx-auto shadow-lg"></span>
         </div>
@@ -287,11 +278,22 @@
                     <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Ensaios</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
                 </div>
             </div>
-            <div class="md:hidden flex justify-center mt-6"><span class="text-xs text-gray-400 uppercase tracking-widest animate-pulse">Deslize &rarr;</span></div>
+            
+            <!-- NOVO BOTÃO INSTAGRAM -->
+            <div class="text-center mt-12 md:hidden">
+                <span class="text-xs text-gray-400 uppercase tracking-widest animate-pulse">Deslize &rarr;</span>
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-brand-gold transition-colors duration-300 group">
+                    <span>Ver mais no Instagram</span>
+                    <i class="fab fa-instagram text-lg group-hover:rotate-12 transition-transform"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- METRICS SECTION (Mobile Optimization Fix) -->
+    <!-- METRICS SECTION -->
     <section id="metrics" class="py-24 bg-brand-dark relative">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -306,22 +308,21 @@
                         <p class="text-white text-sm italic">"A maioria dos fotógrafos esconde os custos. Eu prefiro mostrar exatamente onde seu investimento é aplicado para garantir um resultado eterno."</p>
                     </div>
                 </div>
-                <!-- Gráficos com Container Responsivo Fixo -->
-                <div class="glass-panel p-8 rounded-xl bg-black/40 w-full">
+                <div class="glass-panel p-8 rounded-xl bg-black/40 w-full overflow-hidden">
                     <div class="mb-8 w-full">
                         <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-bar text-brand-gold"></i> Comparativo de Mercado (RJ)</h4>
-                        <div class="h-48 w-full relative"><canvas id="marketChart"></canvas></div>
+                        <div class="h-40 md:h-48 w-full relative"><canvas id="marketChart"></canvas></div>
                     </div>
                     <div class="w-full">
                         <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-pie text-brand-gold"></i> Destino do Investimento</h4>
-                        <div class="h-48 w-full flex justify-center relative"><canvas id="breakdownChart"></canvas></div>
+                        <div class="h-40 md:h-48 w-full flex justify-center relative"><canvas id="breakdownChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS (Mobile Fix - Agora stacka no mobile) -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials" class="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
@@ -330,50 +331,22 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Depoimento 1 -->
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado.
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
-                        <div>
-                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Mariana Costa</span>
-                            <span class="block text-brand-gold text-[10px] uppercase">Ensaio Pessoal</span>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado.</p>
+                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Mariana Costa</span><span class="block text-brand-gold text-[10px] uppercase">Ensaio Pessoal</span></div></div>
                 </div>
-                <!-- Depoimento 2 -->
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300 md:-mt-4">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram.
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
-                        <div>
-                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Pedro Alvarez</span>
-                            <span class="block text-brand-gold text-[10px] uppercase">E-commerce</span>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram.</p>
+                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Pedro Alvarez</span><span class="block text-brand-gold text-[10px] uppercase">E-commerce</span></div></div>
                 </div>
-                <!-- Depoimento 3 -->
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi.
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
-                        <div>
-                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Ana & Felipe</span>
-                            <span class="block text-brand-gold text-[10px] uppercase">Casamento</span>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi.</p>
+                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Ana & Felipe</span><span class="block text-brand-gold text-[10px] uppercase">Casamento</span></div></div>
                 </div>
             </div>
-            <p class="text-center text-xs text-gray-500 mt-8 italic">* Troque estas fotos por fotos reais de clientes depois.</p>
         </div>
     </section>
 
@@ -498,19 +471,27 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER COM REDES SOCIAIS -->
     <footer class="bg-black text-white/30 py-16 text-center text-[10px] tracking-[0.2em] uppercase border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4">
              <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-6 mx-auto mb-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition duration-700">
+             
+             <!-- Social Icons -->
+             <div class="flex justify-center gap-8 mb-8">
+                 <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-white/40 hover:text-brand-gold transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
+                 <a href="#" class="text-white/40 hover:text-blue-500 transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
+                 <a href="https://wa.me/5583981181907" target="_blank" class="text-white/40 hover:text-green-500 transition-colors duration-300"><i class="fab fa-whatsapp text-xl"></i></a>
+             </div>
+             
             <p class="hover:text-white/60 transition-colors">&copy; 2025 Creative Fotografia. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Whatsapp Floating -->
+    <!-- Whatsapp Floating (Ajustado tamanho) -->
     <a href="https://wa.me/5583981181907" target="_blank" class="fixed bottom-8 right-8 z-50 group hover:-translate-y-2 transition-transform duration-300">
         <div class="absolute inset-0 bg-brand-gold/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
         <div class="absolute inset-0 bg-green-500/20 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] delay-75"></div>
-        <div class="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-gold-glow text-white text-3xl transition-colors hover:bg-[#128C7E] border-2 border-white/20 backdrop-blur-md">
+        <div class="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-gold-glow text-white text-2xl transition-colors hover:bg-[#128C7E] border-2 border-white/20 backdrop-blur-md">
             <i class="fab fa-whatsapp"></i>
         </div>
     </a>
@@ -533,21 +514,21 @@
         const navText = document.querySelectorAll('.nav-item');
         const navLogo = document.getElementById('nav-text-logo');
         const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, #menu-icon');
-        const scrollIndicator = document.getElementById('scroll-indicator'); // Captura o indicador
+        const scrollIndicator = document.getElementById('scroll-indicator'); 
 
         function handleScroll() {
             const scrollY = window.scrollY;
 
-            // Lógica do Indicador de Scroll (Desaparece ao rolar)
+            // Scroll Indicator
             if (scrollY > 50) {
                 scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.pointerEvents = 'none'; // Evita clique fantasma
+                scrollIndicator.style.pointerEvents = 'none'; 
             } else {
                 scrollIndicator.style.opacity = '1';
                 scrollIndicator.style.pointerEvents = 'auto';
             }
 
-            // Lógica do Menu
+            // Menu Control
             if(scrollY > 50) {
                 navBg.classList.add('nav-scrolled-bg');
                 navBg.classList.remove('nav-at-top');
@@ -562,7 +543,7 @@
                 themeToggles.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
             }
             
-            // Parallax (Leve ajuste para não travar no mobile)
+            // Parallax
             if (window.innerWidth > 768) {
                 document.querySelectorAll('.parallax-element').forEach(el => {
                     const speed = el.getAttribute('data-speed');
@@ -574,10 +555,9 @@
         document.addEventListener('scroll', handleScroll);
         handleScroll();
 
-        // --- CHART JS CONFIG (Mobile Responsive) ---
+        // --- CHART JS CONFIG ---
         Chart.defaults.font.family = "'Montserrat', sans-serif";
         Chart.defaults.color = '#9ca3af';
-        // Ajuste: maintainAspectRatio false permite que o CSS controle a altura (essencial p/ mobile)
         const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }, x: { grid: { display: false }, ticks: { color: '#9ca3af' } } } };
         
         const ctx1 = document.getElementById('marketChart').getContext('2d');
@@ -586,7 +566,7 @@
         const ctx2 = document.getElementById('breakdownChart').getContext('2d');
         new Chart(ctx2, { type: 'doughnut', data: { labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'], datasets: [{ data: [30, 25, 25, 20], backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#333'], borderColor: 'rgba(0,0,0,0)', borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 8 } } } } });
 
-        // --- SLIDER (Agora com 5 slides) ---
+        // --- SLIDER ---
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
         function nextSlide() {
