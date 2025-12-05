@@ -13,7 +13,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- Google Fonts Premium (Cormorant para Títulos, Montserrat para Leitura) -->
+    <!-- Google Fonts Premium -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <script>
@@ -23,11 +23,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            gold: '#d4af37',       /* Ouro Clássico */
-                            goldLight: '#f9f1d0',  /* Ouro Claro (Brilho) */
-                            goldDark: '#aa8c2c',   /* Ouro Escuro (Sombra) */
-                            dark: '#050505',       /* Preto Absoluto */
-                            charcoal: '#121212'    /* Cinza Premium */
+                            gold: '#d4af37',       
+                            goldLight: '#f9f1d0',  
+                            goldDark: '#aa8c2c',   
+                            dark: '#050505',       
+                            charcoal: '#121212'    
                         }
                     },
                     fontFamily: {
@@ -68,8 +68,6 @@
 
     <style>
         /* --- ESTILOS DE LUXO E EFEITOS ESPECIAIS --- */
-
-        /* 1. Efeito de Vidro (Glassmorphism) Melhorado */
         .glass-panel {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -77,78 +75,33 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        
         .dark .glass-panel {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* 2. Botão com Efeito "Shine" (O Brilho que passa) */
-        .btn-shine {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        
+        .btn-shine { position: relative; overflow: hidden; transition: all 0.4s ease; }
         .btn-shine::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: 0.5s;
         }
-        
-        .btn-shine:hover::after {
-            left: 100%;
-            transition: 0.7s;
-        }
+        .btn-shine:hover::after { left: 100%; transition: 0.7s; }
 
-        .btn-float:hover {
-            transform: translateY(-4px); /* O botão sobe fisicamente */
-            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.5); /* Sombra dourada cresce */
-        }
+        .btn-float:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.5); }
 
-        /* 3. Texto Dourado Metálico */
         .text-gold-gradient {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: shine 5s linear infinite;
+            -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% auto; animation: shine 5s linear infinite;
         }
-        
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        /* 4. Preloader */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #050505;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
-        }
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #050505; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        /* Range Slider Luxury */
         input[type=range] { -webkit-appearance: none; background: transparent; }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none; height: 20px; width: 20px;
@@ -156,10 +109,37 @@
             border: 2px solid #fff; margin-top: -8px; cursor: pointer;
             box-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 4px; cursor: pointer;
-            background: rgba(255,255,255,0.2); border-radius: 2px;
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.2); border-radius: 2px; }
+        
+        /* Chart Override */
+        canvas { filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5)); }
+
+        /* --- CONTROLE DO MENU (AJUSTE FINO) --- */
+        
+        /* Estado inicial (Topo): TOTALMENTE TRANSPARENTE */
+        .nav-at-top {
+            background-color: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: 1px solid transparent;
         }
+        
+        /* Estado rolado (Scroll): Vidro fosco (85% opacidade) */
+        .nav-scrolled-bg {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .dark .nav-scrolled-bg {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        /* Cores dos textos */
+        .text-top { color: #ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .text-scrolled { color: #1a1a1a; text-shadow: none; }
+        .dark .text-scrolled { color: #ffffff; }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50 dark:bg-brand-dark dark:text-gray-200 transition-colors duration-500 overflow-x-hidden">
@@ -174,221 +154,227 @@
         </div>
     </div>
 
-    <!-- NAVBAR (Glassmorphism Heavy) -->
+    <!-- NAVBAR -->
     <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
-        <!-- O fundo blurado é separado para podermos controlar a opacidade no scroll -->
-        <div class="absolute inset-0 bg-white/70 dark:bg-black/40 backdrop-blur-xl border-b border-white/10 transition-all duration-500" id="navbar-bg"></div>
+        <!-- O fundo agora obedece a lógica de CSS definida acima -->
+        <div class="absolute inset-0 transition-all duration-500 nav-at-top" id="navbar-bg"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="flex justify-between items-center h-20 md:h-24">
+            <div class="flex justify-between items-center h-24 transition-all duration-500" id="navbar-container">
                 
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <img class="h-10 md:h-12 w-auto transition transform group-hover:scale-105 duration-500" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
+                    <img class="h-10 md:h-12 w-auto transition transform group-hover:scale-105 duration-500 filter drop-shadow-md" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
                     <div class="ml-3 hidden sm:block">
-                        <span class="block font-serif text-2xl tracking-widest uppercase text-brand-dark dark:text-white group-hover:text-brand-gold transition-colors">Creative</span>
+                        <span class="block font-serif text-2xl tracking-widest uppercase transition-colors text-top" id="nav-text-logo">Creative</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#home" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group">
-                        Início
-                        <span class="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                    </a>
-                    <a href="#about" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group">
-                        Sobre
-                        <span class="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                    </a>
-                    <a href="#portfolio" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group">
-                        Portfólio
-                         <span class="absolute -bottom-2 left-1/2 w-0 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-                    </a>
+                <div class="hidden md:flex items-center space-x-10" id="nav-links-container">
+                    <a href="#home" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Início</a>
+                    <a href="#about" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Sobre</a>
+                    <a href="#portfolio" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Portfólio</a>
+                    <a href="#metrics" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Diferenciais</a>
                     
-                    <!-- Botão Orçamento Desktop com Efeito Float + Shine -->
-                    <a href="#simulator" class="btn-shine btn-float px-8 py-3 rounded-sm bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] shadow-lg">
-                        Simular Valor
-                    </a>
+                    <a href="#simulator" class="btn-shine btn-float px-8 py-3 rounded-sm bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] shadow-lg border border-transparent hover:border-white/30 text-shadow-none">Simular Valor</a>
                     
-                    <button id="theme-toggle" class="text-gray-500 hover:text-brand-gold transition-transform hover:rotate-180 duration-500">
+                    <button id="theme-toggle" class="hover:text-brand-gold transition-transform hover:rotate-180 duration-500 text-top">
                         <i class="fas fa-moon text-lg"></i>
                     </button>
                 </div>
                 
                 <!-- Mobile Toggle -->
                 <div class="md:hidden flex items-center gap-6">
-                     <button id="theme-toggle-mobile" class="text-gray-600 dark:text-gray-300">
-                        <i class="fas fa-moon text-lg"></i>
-                    </button>
-                    <button onclick="toggleMobileMenu()" class="text-brand-dark dark:text-white relative z-50 p-2">
-                        <i class="fas fa-bars text-2xl transition-transform duration-300" id="menu-icon"></i>
-                    </button>
+                     <button id="theme-toggle-mobile" class="text-top hover:text-brand-gold"><i class="fas fa-moon text-lg"></i></button>
+                    <button onclick="toggleMobileMenu()" class="text-top relative z-50 p-2"><i class="fas fa-bars text-2xl transition-transform duration-300 drop-shadow-md" id="menu-icon"></i></button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- MOBILE MENU (Glass Overlay) -->
+    <!-- MOBILE MENU -->
     <div class="fixed inset-0 bg-black/80 backdrop-blur-2xl z-40 flex flex-col justify-center items-center text-center space-y-10 md:hidden transition-transform duration-500 translate-x-full" id="mobile-menu">
         <a href="#home" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Início</a>
         <a href="#about" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Sobre</a>
         <a href="#portfolio" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Portfólio</a>
+        <a href="#metrics" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Diferenciais</a>
         <a href="#simulator" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Simulador</a>
         <a href="#contact" class="px-10 py-4 border border-brand-gold text-brand-gold font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-brand-dark transition-all duration-300" onclick="toggleMobileMenu()">Contato</a>
     </div>
 
-    <!-- HERO SECTION (Com Parallax Real) -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Fundo Fixo para Parallax CSS Base -->
         <div class="absolute inset-0 z-0 bg-black">
-             <!-- Slider -->
              <div class="hero-slide active bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
-             
-             <!-- Overlay Gradiente Cinematico -->
              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
         </div>
         
-        <!-- Conteúdo com Parallax JS (data-speed controla a velocidade) -->
         <div class="relative z-10 text-center px-4 max-w-6xl mx-auto mt-20 parallax-element" data-speed="0.5">
-            <p class="text-brand-gold font-bold tracking-[0.5em] uppercase text-xs md:text-sm mb-6 animate-fade-in-up">
-                Rio de Janeiro • Brasil
-            </p>
-            
+            <p class="text-brand-gold font-bold tracking-[0.5em] uppercase text-xs md:text-sm mb-6 animate-fade-in-up">Rio de Janeiro • Brasil</p>
             <h1 class="font-serif text-6xl md:text-8xl lg:text-[9rem] text-white leading-none mb-8 drop-shadow-2xl animate-fade-in-up" style="animation-delay: 0.2s">
                 <span class="font-light italic block opacity-90 text-4xl md:text-6xl lg:text-7xl mb-2">A Essência</span>
                 <span class="font-bold block text-gold-gradient">Eternizada</span>
             </h1>
-            
             <p class="text-gray-200 text-sm md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-12 animate-fade-in-up leading-relaxed" style="animation-delay: 0.4s">
                 Fotografia de alto padrão. Unindo a luz natural do Rio com uma estética cinematográfica e atemporal.
             </p>
-            
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6 animate-fade-in-up" style="animation-delay: 0.6s">
-                <a href="#portfolio" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-white/5 backdrop-blur-md border border-white/30 text-white font-bold uppercase text-xs tracking-[0.25em] hover:bg-brand-gold hover:border-brand-gold hover:text-brand-dark">
-                    Ver Galeria
-                </a>
-                <a href="#contact" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-brand-gold text-brand-dark font-bold uppercase text-xs tracking-[0.25em] shadow-gold-glow">
-                    Falar no WhatsApp
-                </a>
+                <a href="#portfolio" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-white/5 backdrop-blur-md border border-white/30 text-white font-bold uppercase text-xs tracking-[0.25em] hover:bg-brand-gold hover:border-brand-gold hover:text-brand-dark">Ver Galeria</a>
+                <a href="#contact" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-brand-gold text-brand-dark font-bold uppercase text-xs tracking-[0.25em] shadow-gold-glow">Falar no WhatsApp</a>
             </div>
         </div>
         
-        <!-- Scroll Indicator -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-60 mix-blend-overlay">
             <span class="text-[10px] uppercase tracking-widest text-white mb-2 block">Scroll</span>
             <span class="block w-[1px] h-12 bg-white mx-auto"></span>
         </div>
     </section>
 
-    <!-- SOBRE MIM (Imagem Flutuante) -->
+    <!-- SOBRE MIM -->
     <section id="about" class="py-24 bg-white dark:bg-brand-dark relative overflow-hidden transition-colors duration-500">
-        <!-- Detalhe de fundo -->
         <div class="absolute top-0 right-0 w-[40%] h-full bg-gray-100 dark:bg-white/5 skew-x-12 transform origin-top-right z-0"></div>
-        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-                
-                <!-- Imagem com Efeito Float -->
                 <div class="w-full lg:w-1/2 relative group reveal">
-                    <!-- Moldura Dourada que desloca no hover -->
                     <div class="absolute top-6 -left-6 w-full h-full border-2 border-brand-gold/40 transition-transform duration-700 group-hover:top-4 group-hover:-left-4 z-0"></div>
-                    
                     <div class="relative rounded-sm overflow-hidden shadow-2xl aspect-[3/4] z-10 animate-float" style="animation-duration: 8s;">
                         <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" alt="Thiago" class="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-1000">
-                        <!-- Brilho sobre a imagem -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
                     </div>
                 </div>
-                
-                <!-- Texto -->
                 <div class="w-full lg:w-1/2 reveal">
                     <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Bastidores</span>
-                    <h2 class="text-5xl md:text-6xl font-serif text-brand-dark dark:text-white mb-8 leading-tight">
-                        Thiago <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-300 font-light italic">& Creative</span>
-                    </h2>
-                    
-                    <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6 font-light text-justify">
-                        Não acredito em fotos posadas demais. Acredito na <strong>elegância do espontâneo</strong>. Meu trabalho é criar um ambiente onde você se sinta tão à vontade que a câmera desapareça.
-                    </p>
-                    
+                    <h2 class="text-5xl md:text-6xl font-serif text-brand-dark dark:text-white mb-8 leading-tight">Thiago <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-300 font-light italic">& Creative</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6 font-light text-justify">Não acredito em fotos posadas demais. Acredito na <strong>elegância do espontâneo</strong>. Meu trabalho é criar um ambiente onde você se sinta tão à vontade que a câmera desapareça.</p>
                     <div class="grid grid-cols-2 gap-8 mt-10 border-t border-gray-200 dark:border-gray-800 pt-8">
-                        <div>
-                            <span class="block text-4xl font-serif text-brand-gold mb-1">500+</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Histórias Contadas</span>
-                        </div>
-                        <div>
-                            <span class="block text-4xl font-serif text-brand-gold mb-1">High</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">End Equipment</span>
-                        </div>
+                        <div><span class="block text-4xl font-serif text-brand-gold mb-1">500+</span><span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Histórias Contadas</span></div>
+                        <div><span class="block text-4xl font-serif text-brand-gold mb-1">100%</span><span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Clientes Satisfeitos</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO (Cards de Vidro + Hover Lift) -->
+    <!-- PORTFOLIO -->
     <section id="portfolio" class="py-24 bg-gray-50 dark:bg-[#0a0a0a] transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
                 <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Portfólio</span>
                 <h2 class="text-4xl md:text-5xl font-serif text-brand-dark dark:text-white">Seleção Curada</h2>
             </div>
-
-            <!-- Mobile Swipe / Desktop Grid -->
-            <!-- Adicionei padding-x no mobile container para o primeiro item não colar na borda -->
             <div class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto md:overflow-visible pb-10 md:pb-0 snap-x snap-mandatory no-scrollbar px-4 md:px-0 reveal">
-                
-                <!-- Card 1 -->
+                <!-- Cards -->
                 <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
-                    <!-- Overlay Gradiente -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <!-- Texto Flutuante -->
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500">
-                        <span class="text-brand-gold font-serif text-4xl italic block mb-2">Eventos</span>
-                        <div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div>
-                    </div>
-                    <!-- Borda Dourada no Hover -->
-                    <div class="absolute inset-0 border border-brand-gold/0 group-hover:border-brand-gold/50 transition duration-500 m-4"></div>
+                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Eventos</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
                 </div>
-
-                <!-- Card 2 -->
                 <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl md:-mt-12">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500">
-                        <span class="text-brand-gold font-serif text-4xl italic block mb-2">Retratos</span>
-                        <div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div>
-                    </div>
-                    <div class="absolute inset-0 border border-brand-gold/0 group-hover:border-brand-gold/50 transition duration-500 m-4"></div>
+                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Retratos</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
                 </div>
-
-                <!-- Card 3 -->
                 <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl">
                     <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500">
-                        <span class="text-brand-gold font-serif text-4xl italic block mb-2">Ensaios</span>
-                        <div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div>
-                    </div>
-                    <div class="absolute inset-0 border border-brand-gold/0 group-hover:border-brand-gold/50 transition duration-500 m-4"></div>
+                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Ensaios</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
                 </div>
             </div>
-            
-            <!-- Mobile Indicator -->
-            <div class="md:hidden flex justify-center mt-6">
-                <span class="text-xs text-gray-400 uppercase tracking-widest animate-pulse">Deslize &rarr;</span>
+            <div class="md:hidden flex justify-center mt-6"><span class="text-xs text-gray-400 uppercase tracking-widest animate-pulse">Deslize &rarr;</span></div>
+        </div>
+    </section>
+
+    <!-- METRICS SECTION (Reintegrada) -->
+    <section id="metrics" class="py-24 bg-brand-dark relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center reveal">
+                <div>
+                    <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Transparência</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Por que investir na <span class="text-gold-gradient">Creative?</span></h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
+                        No mercado atual, preço é o que você paga, valor é o que você leva. Minha política é de total transparência: você paga por equipamentos de ponta, edição premium e uma experiência sem estresse.
+                    </p>
+                    <div class="glass-panel p-6 rounded-lg border-l-4 border-brand-gold">
+                        <p class="text-white text-sm italic">"A maioria dos fotógrafos esconde os custos. Eu prefiro mostrar exatamente onde seu investimento é aplicado para garantir um resultado eterno."</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-xl bg-black/40">
+                    <div class="mb-8">
+                        <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-bar text-brand-gold"></i> Comparativo de Mercado (RJ)</h4>
+                        <div class="h-48 w-full"><canvas id="marketChart"></canvas></div>
+                    </div>
+                    <div>
+                        <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-pie text-brand-gold"></i> Destino do Investimento</h4>
+                        <div class="h-48 w-full flex justify-center"><canvas id="breakdownChart"></canvas></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SIMULADOR (Glassmorphism Dark & Gold) -->
+    <!-- TESTIMONIALS (Reintegrada com fotos realistas) -->
+    <section id="testimonials" class="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center mb-16">
+                <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Depoimentos</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark dark:text-white">Quem já viveu a experiência</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
+                        Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado, exatamente como eu queria.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
+                        <div>
+                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Mariana Costa</span>
+                            <span class="block text-brand-gold text-[10px] uppercase">Ensaio Pessoal</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300 md:-mt-4">
+                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
+                        Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram. Profissionalismo puro.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
+                        <div>
+                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Pedro Alvarez</span>
+                            <span class="block text-brand-gold text-[10px] uppercase">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
+                        As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi. Vale cada centavo.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
+                        <div>
+                            <span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Ana & Felipe</span>
+                            <span class="block text-brand-gold text-[10px] uppercase">Casamento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-500 mt-8 italic">* Troque estas fotos por fotos reais de clientes depois.</p>
+        </div>
+    </section>
+
+    <!-- SIMULADOR -->
     <section id="simulator" class="py-24 bg-brand-dark relative bg-[url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg')] bg-fixed bg-cover bg-center">
-        <!-- Máscara escura pesada para legibilidade -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">Investimento</h2>
@@ -396,7 +382,6 @@
             </div>
 
             <div class="grid lg:grid-cols-2 gap-10">
-                <!-- Painel de Controle (Vidro) -->
                 <div class="glass-panel p-8 rounded-xl text-white transition-transform hover:scale-[1.01] duration-500">
                     <div class="mb-10">
                         <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-4 font-bold">Experiência Desejada</label>
@@ -407,7 +392,6 @@
                         </div>
                     </div>
 
-                    <!-- Slider -->
                     <div id="photo-section" class="mb-10">
                         <div class="flex justify-between text-sm mb-4">
                             <span class="text-gray-300 font-light tracking-wide">Volume de Entrega</span>
@@ -416,7 +400,6 @@
                         <input type="range" min="0" max="100" value="24" class="w-full transition-all duration-300" id="photo-slider">
                     </div>
 
-                    <!-- Video Options (Business) -->
                     <div id="business-options" class="hidden mb-8 space-y-4 bg-white/5 p-6 rounded-lg border border-white/10">
                         <div class="flex items-center justify-between">
                             <span class="text-sm font-bold tracking-wide">Vídeos Reels (Shorts)</span>
@@ -428,7 +411,6 @@
                         </div>
                     </div>
 
-                    <!-- Toggles -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-5 border border-white/10 rounded-lg hover:border-brand-gold/50 hover:bg-white/5 transition-all cursor-pointer group" onclick="toggleDrone()">
                             <div class="flex items-center gap-4">
@@ -452,9 +434,7 @@
                     </div>
                 </div>
 
-                <!-- Painel de Resultado (Dark Gold) -->
                 <div class="glass-panel bg-gradient-to-br from-[#1a1a1a] to-black p-10 rounded-xl flex flex-col justify-between shadow-2xl relative overflow-hidden group">
-                    <!-- Glow effect no background -->
                     <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-[80px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
                     
                     <div class="relative z-10">
@@ -484,7 +464,7 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION (Minimal Luxury) -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="py-24 bg-white dark:bg-brand-dark transition-colors duration-500">
         <div class="max-w-3xl mx-auto px-4 text-center reveal">
             <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block animate-pulse">Exclusive</span>
@@ -521,13 +501,10 @@
         </div>
     </footer>
 
-    <!-- Whatsapp Floating (Pulsação Luxury) -->
+    <!-- Whatsapp Floating -->
     <a href="https://wa.me/5583981181907" target="_blank" class="fixed bottom-8 right-8 z-50 group hover:-translate-y-2 transition-transform duration-300">
-        <!-- Anéis de pulsação -->
         <div class="absolute inset-0 bg-brand-gold/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
         <div class="absolute inset-0 bg-green-500/20 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] delay-75"></div>
-        
-        <!-- Botão Real -->
         <div class="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-gold-glow text-white text-3xl transition-colors hover:bg-[#128C7E] border-2 border-white/20 backdrop-blur-md">
             <i class="fab fa-whatsapp"></i>
         </div>
@@ -535,229 +512,130 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- PRELOADER LOGIC ---
+        // --- PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 preloader.classList.add('hidden');
-                // Ativar animações de entrada após carregar
                 document.querySelector('.hero-slide').classList.add('active');
-            }, 1000); // 1 segundo de "charme"
+            }, 1000);
         });
 
-        // --- PARALLAX EFFECT LOGIC ---
+        // --- NAVBAR CONTROL (Híbrido Ajustado) ---
+        const navBg = document.getElementById('navbar-bg');
+        const navText = document.querySelectorAll('.nav-item');
+        const navLogo = document.getElementById('nav-text-logo');
+        const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, #menu-icon');
+
         document.addEventListener('scroll', () => {
-            const parallaxElements = document.querySelectorAll('.parallax-element');
             const scrollY = window.scrollY;
 
-            parallaxElements.forEach(el => {
+            if(scrollY > 50) {
+                // Scroll: Vidro mais fosco (menos transparente)
+                navBg.classList.add('nav-scrolled-bg');
+                navBg.classList.remove('nav-at-top');
+
+                // Textos voltam a cor normal do tema (preto no claro / branco no escuro)
+                navText.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
+                navLogo.classList.remove('text-top'); navLogo.classList.add('text-scrolled');
+                themeToggles.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
+
+            } else {
+                // Topo: TOTALMENTE TRANSPARENTE
+                navBg.classList.remove('nav-scrolled-bg');
+                navBg.classList.add('nav-at-top');
+
+                // Textos brancos para contrastar com a foto
+                navText.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
+                navLogo.classList.add('text-top'); navLogo.classList.remove('text-scrolled');
+                themeToggles.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
+            }
+            
+            // Parallax
+            document.querySelectorAll('.parallax-element').forEach(el => {
                 const speed = el.getAttribute('data-speed');
                 el.style.transform = `translateY(${scrollY * speed}px)`;
             });
-            
-            // Navbar Blur Control
-            const navBg = document.getElementById('navbar-bg');
-            if(scrollY > 50) {
-                navBg.classList.add('opacity-100');
-                navBg.classList.remove('opacity-0');
-            } else {
-                // No topo absoluto, navbar mais transparente
-                navBg.classList.remove('opacity-100');
-                navBg.classList.add('opacity-0');
-            }
         });
 
-        // --- SLIDER LOGIC ---
+        // --- CHART JS CONFIG ---
+        Chart.defaults.font.family = "'Montserrat', sans-serif";
+        Chart.defaults.color = '#9ca3af';
+        const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }, x: { grid: { display: false }, ticks: { color: '#9ca3af' } } } };
+        
+        const ctx1 = document.getElementById('marketChart').getContext('2d');
+        new Chart(ctx1, { type: 'bar', data: { labels: ['Média RJ', 'Creative'], datasets: [{ label: 'Investimento (R$)', data: [1500, 600], backgroundColor: ['rgba(255,255,255,0.2)', '#d4af37'], borderRadius: 4, borderWidth: 0 }] }, options: chartOptions });
+        
+        const ctx2 = document.getElementById('breakdownChart').getContext('2d');
+        new Chart(ctx2, { type: 'doughnut', data: { labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'], datasets: [{ data: [30, 25, 25, 20], backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#333'], borderColor: 'rgba(0,0,0,0)', borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 8 } } } } });
+
+        // --- SLIDER ---
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
-
         function nextSlide() {
-            // Remove active class
-            slides[currentSlide].classList.remove('opacity-100');
-            slides[currentSlide].classList.add('opacity-0');
-            
-            // Next slide
+            slides[currentSlide].classList.remove('opacity-100'); slides[currentSlide].classList.add('opacity-0');
             currentSlide = (currentSlide + 1) % slides.length;
-            
-            // Add active class
-            slides[currentSlide].classList.remove('opacity-0');
-            slides[currentSlide].classList.add('opacity-100');
+            slides[currentSlide].classList.remove('opacity-0'); slides[currentSlide].classList.add('opacity-100');
         }
         setInterval(nextSlide, 5000);
 
         // --- MOBILE MENU ---
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            
-            if (menu.classList.contains('translate-x-full')) {
-                menu.classList.remove('translate-x-full'); // Abre
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                menu.classList.add('translate-x-full'); // Fecha
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            const menu = document.getElementById('mobile-menu'); const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('translate-x-full')) { menu.classList.remove('translate-x-full'); icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); } 
+            else { menu.classList.add('translate-x-full'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
         }
 
-        // --- SIMULATOR LOGIC ---
+        // --- CALCULATOR ---
         const state = { type: 'wedding', photos: 24, drone: false, video: false, bizVideos: 0, pricePerPhoto: 25 };
-
         function selectType(type, btn) {
             state.type = type;
-            document.querySelectorAll('.type-btn').forEach(b => {
-                b.className = 'type-btn py-4 border border-white/10 hover:border-brand-gold text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:text-white';
-            });
+            document.querySelectorAll('.type-btn').forEach(b => b.className = 'type-btn py-4 border border-white/10 hover:border-brand-gold text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:text-white');
             btn.className = 'type-btn py-4 border border-brand-gold bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]';
-            
-            const bizOptions = document.getElementById('business-options');
-            const simpleVideo = document.getElementById('simple-video-option');
-            
-            if(type === 'business') {
-                bizOptions.classList.remove('hidden');
-                simpleVideo.classList.add('hidden');
-            } else {
-                bizOptions.classList.add('hidden');
-                simpleVideo.classList.remove('hidden');
-            }
+            const bizOptions = document.getElementById('business-options'); const simpleVideo = document.getElementById('simple-video-option');
+            if(type === 'business') { bizOptions.classList.remove('hidden'); simpleVideo.classList.add('hidden'); } else { bizOptions.classList.add('hidden'); simpleVideo.classList.remove('hidden'); }
             calculate();
         }
-
         function toggleDrone() {
             state.drone = !state.drone;
-            const check = document.getElementById('drone-check-inner');
-            const box = document.getElementById('drone-box');
-            
-            if(state.drone) {
-                check.classList.remove('hidden');
-                box.classList.add('border-brand-gold');
-                box.classList.remove('border-gray-500');
-            } else {
-                check.classList.add('hidden');
-                box.classList.remove('border-brand-gold');
-                box.classList.add('border-gray-500');
-            }
+            const check = document.getElementById('drone-check-inner'); const box = document.getElementById('drone-box');
+            if(state.drone) { check.classList.remove('hidden'); box.classList.add('border-brand-gold'); box.classList.remove('border-gray-500'); } else { check.classList.add('hidden'); box.classList.remove('border-brand-gold'); box.classList.add('border-gray-500'); }
             calculate();
         }
-
         function toggleVideo() {
             state.video = !state.video;
-            const check = document.getElementById('video-check-inner');
-            const box = document.getElementById('video-box');
-            
-            if(state.video) {
-                check.classList.remove('hidden');
-                box.classList.add('border-brand-gold');
-                box.classList.remove('border-gray-500');
-            } else {
-                check.classList.add('hidden');
-                box.classList.remove('border-brand-gold');
-                box.classList.add('border-gray-500');
-            }
+            const check = document.getElementById('video-check-inner'); const box = document.getElementById('video-box');
+            if(state.video) { check.classList.remove('hidden'); box.classList.add('border-brand-gold'); box.classList.remove('border-gray-500'); } else { check.classList.add('hidden'); box.classList.remove('border-brand-gold'); box.classList.add('border-gray-500'); }
             calculate();
         }
-
-        function changeVideoQty(delta) {
-            const newQty = state.bizVideos + delta;
-            if(newQty >= 0) {
-                state.bizVideos = newQty;
-                document.getElementById('video-qty-display').innerText = newQty;
-                calculate();
-            }
-        }
-
-        document.getElementById('photo-slider').addEventListener('input', (e) => {
-            state.photos = parseInt(e.target.value);
-            document.getElementById('photo-count-display').innerText = state.photos;
-            calculate();
-        });
-
+        function changeVideoQty(delta) { const newQty = state.bizVideos + delta; if(newQty >= 0) { state.bizVideos = newQty; document.getElementById('video-qty-display').innerText = newQty; calculate(); } }
+        document.getElementById('photo-slider').addEventListener('input', (e) => { state.photos = parseInt(e.target.value); document.getElementById('photo-count-display').innerText = state.photos; calculate(); });
+        
         function calculate() {
-            let base = 0;
-            let extras = 0;
-
-            if(state.type === 'business') {
-                if(state.bizVideos > 0) base += 400 + (state.bizVideos - 1) * 300;
-                if(state.photos > 0) base += state.photos * state.pricePerPhoto;
-            } else {
-                base = state.photos * state.pricePerPhoto;
-            }
-
-            if(state.drone) extras += 850;
-            if(state.video && state.type !== 'business') extras += 250;
-
+            let base = 0, extras = 0;
+            if(state.type === 'business') { if(state.bizVideos > 0) base += 400 + (state.bizVideos - 1) * 300; if(state.photos > 0) base += state.photos * state.pricePerPhoto; } else { base = state.photos * state.pricePerPhoto; }
+            if(state.drone) extras += 850; if(state.video && state.type !== 'business') extras += 250;
             const total = base + extras;
-
-            // Animate Numbers
-            const display = document.getElementById('total-price');
-            const start = parseInt(display.innerText);
-            animateValue(display, start, total, 500);
-            
-            document.getElementById('base-breakdown').innerText = `R$ ${base}`;
-            document.getElementById('extras-breakdown').innerText = `R$ ${extras}`;
-            
-            updateMessage(total);
+            animateValue(document.getElementById('total-price'), parseInt(document.getElementById('total-price').innerText), total, 500);
+            document.getElementById('base-breakdown').innerText = `R$ ${base}`; document.getElementById('extras-breakdown').innerText = `R$ ${extras}`;
+            document.getElementById('messageInput').value = `Olá! Simulação (${state.type}): Total R$ ${total}`;
         }
-
         function animateValue(obj, start, end, duration) {
             if (start === end) return;
             let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
+            const step = (timestamp) => { if (!startTimestamp) startTimestamp = timestamp; const progress = Math.min((timestamp - startTimestamp) / duration, 1); obj.innerHTML = Math.floor(progress * (end - start) + start); if (progress < 1) window.requestAnimationFrame(step); };
             window.requestAnimationFrame(step);
         }
+        document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('nameInput').value; const contact = document.getElementById('contactInput').value; const msg = document.getElementById('messageInput').value; window.open(`https://wa.me/5583981181907?text=*Nome:* ${name}%0a*Contato:* ${contact}%0a*Mensagem:* ${msg}`, '_blank'); });
 
-        function updateMessage(total) {
-            const msg = `Olá! Simulação do site (${state.type}):\nTotal Estimado: R$ ${total}`;
-            // Prepara input escondido ou variável global se necessário
-        }
-        
-        // --- WHATSAPP FORM ---
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('nameInput').value;
-            const contact = document.getElementById('contactInput').value;
-            const msg = document.getElementById('messageInput').value;
-            const link = `https://wa.me/5583981181907?text=*Nome:* ${name}%0a*Contato:* ${contact}%0a*Mensagem:* ${msg}`;
-            window.open(link, '_blank');
-        });
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animate-fade-in-up'); entry.target.style.opacity = 1; } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 0; observer.observe(el); });
 
-        // --- SCROLL REVEAL ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                    entry.target.style.opacity = 1;
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            el.style.opacity = 0;
-            observer.observe(el);
-        });
-
-        // --- DARK MODE INIT ---
-        const html = document.documentElement;
-        if(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        }
-        
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
-        document.getElementById('theme-toggle-mobile').addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
+        // Dark Mode
+        const html = document.documentElement; if(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); }
+        document.getElementById('theme-toggle').addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
+        document.getElementById('theme-toggle-mobile').addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
     </script>
 </body>
 </html>
