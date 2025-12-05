@@ -251,7 +251,7 @@
     <!-- HERO SLIDER SECTION -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- SLIDER LIMPO E ATUALIZADO: APENAS AS NOVAS -->
+            <!-- SLIDER ATUALIZADO: APENAS IMAGENS CONFIRMADAS -->
             <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
             <!-- 15 anos bokeh.jpg -->
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
@@ -303,7 +303,7 @@
                     
                     <!-- Container da Imagem -->
                     <div class="relative rounded-2xl shadow-2xl overflow-hidden w-full aspect-[3/4] bg-white">
-                        <!-- IMAGEM CORRETA: sobremimv2.jpg -->
+                        <!-- IMAGEM CONFIRMADA: sobremimv2.jpg -->
                         <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" alt="Thiago" class="w-full h-full object-contain object-bottom grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105">
                         <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     </div>
@@ -349,22 +349,25 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Imagem 1: Evento (Atualizado para foto nova) -->
+                <!-- Imagem 1: Evento -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <!-- Usando 15 anos bokeh.jpg -->
                     <img id="gallery-img-1" src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" alt="Evento" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Eventos</span>
                     </div>
                 </div>
-                <!-- Imagem 2: Retrato (Atualizado para foto nova) -->
+                <!-- Imagem 2: Retrato -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <!-- Usando retrato femininoPB.jpg -->
                     <img id="gallery-img-2" src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" alt="Retrato" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Retratos</span>
                     </div>
                 </div>
-                <!-- Imagem 3: Ensaio (Atualizado para foto nova) -->
+                <!-- Imagem 3: Ensaio -->
                 <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
+                    <!-- Usando tambaba1.jpg -->
                     <img id="gallery-img-3" src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" alt="Ensaio" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Ensaios</span>
@@ -653,25 +656,19 @@
         // --- BASE URL DO REPO ---
         const BASE_URL = 'https://raw.githubusercontent.com/creativethb/SITE1/main/';
 
-        // --- GALLERY SLIDER LOGIC - APENAS IMAGENS NOVAS E LIMPAS ---
+        // --- GALLERY SLIDER LOGIC - APENAS AS 5 IMAGENS GARANTIDAS ---
         const galleryImages = {
             'event': [
                 '15%20anos%20bokeh.jpg',
-                'fire%20bombeiro.jpg',
-                '07.jpg', 
-                'InShot_20201209_115856243.jpg'
+                'fire%20bombeiro.jpg'
             ],
             'portrait': [
                 'retrato%20femininoPB.jpg',
-                'topo03.jpeg',
-                '06-1.jpg',
-                'sdrr.jpg'
+                'topo03.jpeg'
             ],
             'essay': [
                 'tambaba1.jpg',
-                'IMG_4114.jpg', 
-                'PicsArt_11-25-09.17.29_copy_1168x2076.jpg',
-                'IMG_4049.jpg'
+                '15%20anos%20bokeh.jpg' // Reutilizando para não ficar vazio
             ]
         };
 
