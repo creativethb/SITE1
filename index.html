@@ -137,6 +137,19 @@
         .dark .text-scrolled { color: #ffffff; }
 
         #scroll-indicator { transition: opacity 0.5s ease-out; }
+        
+        /* Botão Back to Top */
+        #back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease-in-out;
+            transform: translateY(20px);
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50 dark:bg-brand-dark dark:text-gray-200 transition-colors duration-500 overflow-x-hidden">
@@ -496,6 +509,11 @@
         </div>
     </a>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="window.scrollTo(0,0)" class="fixed bottom-8 left-8 z-50 w-12 h-12 bg-black border border-brand-gold text-brand-gold rounded-full flex items-center justify-center shadow-gold-glow hover:bg-brand-gold hover:text-black transition-all duration-300 group">
+        <i class="fas fa-arrow-up text-lg group-hover:-translate-y-1 transition-transform"></i>
+    </button>
+
     <!-- SCRIPTS -->
     <script>
         // --- PRELOADER ---
@@ -509,23 +527,31 @@
             handleScroll(); 
         });
 
-        // --- NAVBAR & SCROLL INDICATOR CONTROL ---
+        // --- NAVBAR, SCROLL INDICATOR & BACK TO TOP CONTROL ---
         const navBg = document.getElementById('navbar-bg');
         const navText = document.querySelectorAll('.nav-item');
         const navLogo = document.getElementById('nav-text-logo');
         const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, #menu-icon');
         const scrollIndicator = document.getElementById('scroll-indicator'); 
+        const backToTopBtn = document.getElementById('back-to-top');
 
         function handleScroll() {
             const scrollY = window.scrollY;
 
-            // Scroll Indicator
+            // Scroll Indicator (Desaparece ao rolar)
             if (scrollY > 50) {
                 scrollIndicator.style.opacity = '0';
                 scrollIndicator.style.pointerEvents = 'none'; 
             } else {
                 scrollIndicator.style.opacity = '1';
                 scrollIndicator.style.pointerEvents = 'auto';
+            }
+
+            // Back to Top Button (Aparece ao rolar)
+            if (scrollY > 500) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
             }
 
             // Menu Control
