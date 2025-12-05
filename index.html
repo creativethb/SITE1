@@ -36,6 +36,7 @@
                     animation: {
                         'fade-in': 'fadeIn 1s ease-in-out',
                         'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -53,6 +54,15 @@
     </script>
 
     <style>
+        /* Custom Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -191,6 +201,19 @@
         .gallery-img.fade-out {
             opacity: 0;
         }
+
+        /* --- MOBILE MENU ANIMATION --- */
+        #mobile-menu {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300 dark:bg-neutral-900 dark:text-gray-100 relative">
@@ -227,24 +250,25 @@
                     </button>
                 </div>
                 
+                <!-- Botões Mobile -->
                 <div class="md:hidden flex items-center gap-4">
                      <button id="theme-toggle-mobile" class="text-gray-600 hover:text-brand-gold focus:outline-none transition dark:text-gray-300">
                         <i class="fas fa-moon text-lg" id="theme-icon-mobile"></i>
                     </button>
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-gold focus:outline-none dark:text-gray-200">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-gold focus:outline-none dark:text-gray-200 relative z-50">
+                        <i class="fas fa-bars text-xl" id="menu-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="md:hidden hidden bg-white border-t dark:bg-neutral-900 dark:border-neutral-800 shadow-xl" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Início</a>
-                <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Sobre Mim</a>
-                <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Portfólio</a>
-                <a href="#simulator" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-800">Simulador</a>
-                <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-gold font-bold hover:bg-gray-100 dark:hover:bg-neutral-800">WhatsApp</a>
-            </div>
+
+        <!-- FULL SCREEN MOBILE MENU (NOVO) -->
+        <div class="fixed inset-0 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center text-center space-y-8 md:hidden" id="mobile-menu">
+            <a href="#home" class="mobile-link text-2xl font-serif font-bold text-gray-800 dark:text-white hover:text-brand-gold transition-colors" onclick="toggleMobileMenu()">Início</a>
+            <a href="#about" class="mobile-link text-2xl font-serif font-bold text-gray-800 dark:text-white hover:text-brand-gold transition-colors" onclick="toggleMobileMenu()">Sobre Mim</a>
+            <a href="#portfolio" class="mobile-link text-2xl font-serif font-bold text-gray-800 dark:text-white hover:text-brand-gold transition-colors" onclick="toggleMobileMenu()">Portfólio</a>
+            <a href="#simulator" class="mobile-link text-2xl font-serif font-bold text-gray-800 dark:text-white hover:text-brand-gold transition-colors" onclick="toggleMobileMenu()">Simulador</a>
+            <a href="#contact" class="mobile-link text-2xl font-serif font-bold text-brand-gold border-2 border-brand-gold px-8 py-2 rounded-full hover:bg-brand-gold hover:text-white transition-all" onclick="toggleMobileMenu()">WhatsApp</a>
         </div>
     </nav>
 
@@ -253,34 +277,31 @@
         <div class="absolute inset-0 z-0">
             <!-- SLIDER ATUALIZADO: APENAS IMAGENS CONFIRMADAS -->
             <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
-            <!-- 15 anos bokeh.jpg -->
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
-            <!-- fire bombeiro.jpg -->
             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
-            <!-- tambaba1.jpg -->
-             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
-             <!-- retrato femininoPB.jpg -->
-             <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
         </div>
         <div class="absolute inset-0 bg-black/50 z-10"></div>
         
-        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto h-full flex flex-col justify-center pb-40 md:pb-0">
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto h-full flex flex-col justify-center pb-20 md:pb-0">
             <h2 class="text-brand-gold uppercase tracking-[0.3em] text-xs md:text-sm lg:text-base mb-3 md:mb-4 font-bold animate-fade-in">Rio de Janeiro & Regiões</h2>
             
-            <h1 class="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-4 md:mb-6 leading-tight drop-shadow-2xl animate-slide-up">
+            <!-- Título ajustado para mobile (text-4xl em vez de 3xl para não ficar pequeno demais, mas com quebra melhor) -->
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-4 md:mb-6 leading-tight drop-shadow-2xl animate-slide-up">
                 Não é só uma foto.<br>
                 <span class="italic font-light">É a sua essência.</span>
             </h1>
             
-            <p class="text-gray-200 text-base md:text-xl max-w-2xl mx-auto mb-10 md:mb-12 font-light drop-shadow-md animate-slide-up px-4" style="animation-delay: 0.2s;">
+            <p class="text-gray-200 text-sm md:text-xl max-w-2xl mx-auto mb-8 md:mb-12 font-light drop-shadow-md animate-slide-up px-4" style="animation-delay: 0.2s;">
                 Especialista em capturar momentos autênticos com uma estética clean e cinematográfica.
             </p>
             
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-y-6 sm:gap-y-0 sm:gap-x-8 animate-slide-up px-4 w-full" style="animation-delay: 0.4s;">
-                <a href="#portfolio" class="nav-link px-6 py-3 md:px-8 md:py-4 rounded-full bg-white text-brand-dark font-bold text-sm md:text-base hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white hover:scale-105 active:scale-95 w-full sm:w-auto text-center max-w-xs">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-x-8 animate-slide-up px-4 w-full" style="animation-delay: 0.4s;">
+                <a href="#portfolio" class="nav-link px-8 py-3 md:py-4 rounded-full bg-white text-brand-dark font-bold text-sm md:text-base hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg border border-white hover:scale-105 active:scale-95 w-full sm:w-auto text-center max-w-xs">
                     Ver Meus Trabalhos
                 </a>
-                <a href="#simulator" class="nav-link px-6 py-3 md:px-8 md:py-4 rounded-full bg-transparent border-2 border-white text-white font-bold text-sm md:text-base hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm hover:scale-105 active:scale-95 w-full sm:w-auto text-center max-w-xs">
+                <a href="#simulator" class="nav-link px-8 py-3 md:py-4 rounded-full bg-transparent border-2 border-white text-white font-bold text-sm md:text-base hover:bg-white hover:text-brand-dark transition duration-300 backdrop-blur-sm hover:scale-105 active:scale-95 w-full sm:w-auto text-center max-w-xs">
                     Simular Investimento
                 </a>
             </div>
@@ -339,7 +360,7 @@
         </div>
     </section>
 
-    <!-- SECTION: PORTFÓLIO -->
+    <!-- SECTION: PORTFÓLIO (MOBILE SWIPE / DESKTOP GRID) -->
     <section id="portfolio" class="py-16 md:py-20 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
@@ -348,31 +369,34 @@
                 <div class="w-16 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- ALTERADO: Flex no mobile (para scroll horizontal) e Grid no Desktop -->
+            <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-6 md:pb-0">
                 <!-- Imagem 1: Evento -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <!-- Usando 15 anos bokeh.jpg -->
+                <div class="min-w-[85%] md:min-w-0 snap-center group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] flex-shrink-0">
                     <img id="gallery-img-1" src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" alt="Evento" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Eventos</span>
                     </div>
                 </div>
                 <!-- Imagem 2: Retrato -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <!-- Usando retrato femininoPB.jpg -->
+                <div class="min-w-[85%] md:min-w-0 snap-center group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] flex-shrink-0">
                     <img id="gallery-img-2" src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" alt="Retrato" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Retratos</span>
                     </div>
                 </div>
                 <!-- Imagem 3: Ensaio -->
-                <div class="group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5]">
-                    <!-- Usando tambaba1.jpg -->
+                <div class="min-w-[85%] md:min-w-0 snap-center group relative overflow-hidden rounded-lg cursor-pointer shadow-md aspect-[4/5] flex-shrink-0">
                     <img id="gallery-img-3" src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" alt="Ensaio" class="gallery-img w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                      <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                         <span class="text-brand-gold font-bold">Ensaios</span>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Indicador de Scroll no Mobile -->
+            <div class="md:hidden text-center mt-2 text-gray-400 text-sm animate-pulse">
+                <i class="fas fa-hand-pointer mr-2"></i> Deslize para o lado
             </div>
             
             <div class="text-center mt-8 md:mt-12">
@@ -637,7 +661,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black text-gray-500 py-8 text-center text-sm">
+    <footer class="bg-black text-gray-500 py-8 text-center text-sm mb-16 md:mb-0">
         <div class="max-w-7xl mx-auto px-4">
             <a href="javascript:void(0)" onclick="triggerPageTransition('#home')" class="inline-block hover:scale-110 transition duration-300">
                 <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-8 mx-auto mb-4 opacity-50 grayscale hover:grayscale-0 transition cursor-pointer">
@@ -646,9 +670,14 @@
         </div>
     </footer>
 
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP (FIXO MOBILE/DESKTOP) -->
+    <a href="https://wa.me/5583981181907" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#128C7E] transition-all transform hover:scale-110 animate-pulse-slow">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
     <!-- BOTÃO VOLTAR AO TOPO -->
-    <button id="backToTopBtn" onclick="triggerPageTransition('#home')" class="fixed bottom-8 right-8 bg-brand-gold text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-yellow-600 transition-colors transform hover:scale-110 cursor-pointer show">
-        <i class="fas fa-arrow-up"></i>
+    <button id="backToTopBtn" onclick="triggerPageTransition('#home')" class="fixed bottom-24 right-6 bg-brand-gold text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-yellow-600 transition-colors transform hover:scale-110 cursor-pointer show opacity-0">
+        <i class="fas fa-arrow-up text-sm"></i>
     </button>
 
     <!-- SCRIPTS -->
@@ -890,7 +919,12 @@
         function triggerPageTransition(targetId) {
             const overlay = document.getElementById('page-transition-overlay');
             const mobileMenu = document.getElementById('mobile-menu');
-            if(!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+            
+            // Fechar mobile menu se estiver aberto
+            if(mobileMenu.classList.contains('open')) {
+                 toggleMobileMenu();
+            }
+
             overlay.classList.add('active');
             setTimeout(() => {
                 const targetElement = document.querySelector(targetId);
@@ -958,10 +992,23 @@
         themeToggleBtn.addEventListener('click', toggleTheme);
         themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
-        // --- MENU MOBILE ---
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        // --- MENU MOBILE FULLSCREEN LOGIC ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            menu.classList.toggle('open');
+            
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
 
         // --- WHATSAPP SUBMISSION ---
         document.getElementById('contactForm').addEventListener('submit', (e) => {
@@ -978,8 +1025,12 @@
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 backToTopBtn.classList.add('show');
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.visibility = 'visible';
             } else {
                 backToTopBtn.classList.remove('show');
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.visibility = 'hidden';
             }
         };
 
