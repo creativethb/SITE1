@@ -67,11 +67,13 @@
     </script>
 
     <style>
-        /* --- ESTILOS DE LUXO E EFEITOS ESPECIAIS --- */
+        /* --- PERFORMANCE & VISUAL --- */
+        
+        /* Vidro mais leve no mobile para evitar travamento */
         .glass-panel {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px); /* Reduzi de 20px para 10px para mobile fluir melhor */
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
@@ -99,6 +101,7 @@
         #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
         #preloader.hidden { opacity: 0; visibility: hidden; }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #050505; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
@@ -111,12 +114,9 @@
         }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.2); border-radius: 2px; }
         
-        /* Chart Override */
         canvas { filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5)); }
 
-        /* --- CONTROLE DO MENU (AJUSTE FINO) --- */
-        
-        /* Estado inicial (Topo): TOTALMENTE TRANSPARENTE */
+        /* --- CONTROLE DO MENU --- */
         .nav-at-top {
             background-color: transparent !important;
             backdrop-filter: none !important;
@@ -124,7 +124,6 @@
             border-bottom: 1px solid transparent;
         }
         
-        /* Estado rolado (Scroll): Vidro fosco (85% opacidade) */
         .nav-scrolled-bg {
             background-color: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
@@ -136,10 +135,12 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        /* Cores dos textos */
         .text-top { color: #ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
         .text-scrolled { color: #1a1a1a; text-shadow: none; }
         .dark .text-scrolled { color: #ffffff; }
+
+        /* Scroll Indicator Transition */
+        #scroll-indicator { transition: opacity 0.5s ease-out; }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50 dark:bg-brand-dark dark:text-gray-200 transition-colors duration-500 overflow-x-hidden">
@@ -156,9 +157,7 @@
 
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
-        <!-- O fundo agora obedece a lógica de CSS definida acima -->
         <div class="absolute inset-0 transition-all duration-500 nav-at-top" id="navbar-bg"></div>
-        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="flex justify-between items-center h-24 transition-all duration-500" id="navbar-container">
                 
@@ -176,12 +175,8 @@
                     <a href="#about" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Sobre</a>
                     <a href="#portfolio" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Portfólio</a>
                     <a href="#metrics" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Diferenciais</a>
-                    
                     <a href="#simulator" class="btn-shine btn-float px-8 py-3 rounded-sm bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] shadow-lg border border-transparent hover:border-white/30 text-shadow-none">Simular Valor</a>
-                    
-                    <button id="theme-toggle" class="hover:text-brand-gold transition-transform hover:rotate-180 duration-500 text-top">
-                        <i class="fas fa-moon text-lg"></i>
-                    </button>
+                    <button id="theme-toggle" class="hover:text-brand-gold transition-transform hover:rotate-180 duration-500 text-top"><i class="fas fa-moon text-lg"></i></button>
                 </div>
                 
                 <!-- Mobile Toggle -->
@@ -194,21 +189,29 @@
     </nav>
 
     <!-- MOBILE MENU -->
-    <div class="fixed inset-0 bg-black/80 backdrop-blur-2xl z-40 flex flex-col justify-center items-center text-center space-y-10 md:hidden transition-transform duration-500 translate-x-full" id="mobile-menu">
-        <a href="#home" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Início</a>
-        <a href="#about" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Sobre</a>
-        <a href="#portfolio" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Portfólio</a>
-        <a href="#metrics" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Diferenciais</a>
-        <a href="#simulator" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 transform hover:scale-110" onclick="toggleMobileMenu()">Simulador</a>
+    <div class="fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col justify-center items-center text-center space-y-10 md:hidden transition-transform duration-500 translate-x-full" id="mobile-menu">
+        <a href="#home" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Início</a>
+        <a href="#about" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Sobre</a>
+        <a href="#portfolio" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Portfólio</a>
+        <a href="#metrics" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Diferenciais</a>
+        <a href="#simulator" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Simulador</a>
         <a href="#contact" class="px-10 py-4 border border-brand-gold text-brand-gold font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-brand-dark transition-all duration-300" onclick="toggleMobileMenu()">Contato</a>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Carrossel Expandido) -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-black">
+             <!-- Slide 1 -->
              <div class="hero-slide active bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
+             <!-- Slide 2 -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
+             <!-- Slide 3 -->
              <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
+             <!-- Slide 4 (NOVO) -->
+             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
+             <!-- Slide 5 (NOVO) -->
+             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
+             
              <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
         </div>
         
@@ -227,9 +230,10 @@
             </div>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-60 mix-blend-overlay">
-            <span class="text-[10px] uppercase tracking-widest text-white mb-2 block">Scroll</span>
-            <span class="block w-[1px] h-12 bg-white mx-auto"></span>
+        <!-- SCROLL INDICATOR (CORRIGIDO: Mais visível e some no scroll) -->
+        <div id="scroll-indicator" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-100 mix-blend-overlay">
+            <span class="text-[10px] uppercase tracking-widest text-white mb-2 block font-bold shadow-lg">Scroll Down</span>
+            <span class="block w-[1px] h-12 bg-white mx-auto shadow-lg"></span>
         </div>
     </section>
 
@@ -287,12 +291,12 @@
         </div>
     </section>
 
-    <!-- METRICS SECTION (Reintegrada) -->
+    <!-- METRICS SECTION (Mobile Optimization Fix) -->
     <section id="metrics" class="py-24 bg-brand-dark relative">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center reveal">
-                <div>
+                <div class="mb-8 lg:mb-0">
                     <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Transparência</span>
                     <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Por que investir na <span class="text-gold-gradient">Creative?</span></h2>
                     <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
@@ -302,21 +306,22 @@
                         <p class="text-white text-sm italic">"A maioria dos fotógrafos esconde os custos. Eu prefiro mostrar exatamente onde seu investimento é aplicado para garantir um resultado eterno."</p>
                     </div>
                 </div>
-                <div class="glass-panel p-8 rounded-xl bg-black/40">
-                    <div class="mb-8">
+                <!-- Gráficos com Container Responsivo Fixo -->
+                <div class="glass-panel p-8 rounded-xl bg-black/40 w-full">
+                    <div class="mb-8 w-full">
                         <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-bar text-brand-gold"></i> Comparativo de Mercado (RJ)</h4>
-                        <div class="h-48 w-full"><canvas id="marketChart"></canvas></div>
+                        <div class="h-48 w-full relative"><canvas id="marketChart"></canvas></div>
                     </div>
-                    <div>
+                    <div class="w-full">
                         <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-pie text-brand-gold"></i> Destino do Investimento</h4>
-                        <div class="h-48 w-full flex justify-center"><canvas id="breakdownChart"></canvas></div>
+                        <div class="h-48 w-full flex justify-center relative"><canvas id="breakdownChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS (Reintegrada com fotos realistas) -->
+    <!-- TESTIMONIALS (Mobile Fix - Agora stacka no mobile) -->
     <section id="testimonials" class="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
@@ -324,12 +329,12 @@
                 <h2 class="text-4xl md:text-5xl font-serif text-brand-dark dark:text-white">Quem já viveu a experiência</h2>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Depoimento 1 -->
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
                     <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado, exatamente como eu queria.
+                        Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
@@ -343,7 +348,7 @@
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300 md:-mt-4">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
                     <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram. Profissionalismo puro.
+                        Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
@@ -357,7 +362,7 @@
                 <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
                     <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
                     <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">
-                        As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi. Vale cada centavo.
+                        As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi.
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div>
@@ -519,48 +524,60 @@
                 preloader.classList.add('hidden');
                 document.querySelector('.hero-slide').classList.add('active');
             }, 1000);
+            
+            handleScroll(); 
         });
 
-        // --- NAVBAR CONTROL (Híbrido Ajustado) ---
+        // --- NAVBAR & SCROLL INDICATOR CONTROL ---
         const navBg = document.getElementById('navbar-bg');
         const navText = document.querySelectorAll('.nav-item');
         const navLogo = document.getElementById('nav-text-logo');
         const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, #menu-icon');
+        const scrollIndicator = document.getElementById('scroll-indicator'); // Captura o indicador
 
-        document.addEventListener('scroll', () => {
+        function handleScroll() {
             const scrollY = window.scrollY;
 
+            // Lógica do Indicador de Scroll (Desaparece ao rolar)
+            if (scrollY > 50) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none'; // Evita clique fantasma
+            } else {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+            }
+
+            // Lógica do Menu
             if(scrollY > 50) {
-                // Scroll: Vidro mais fosco (menos transparente)
                 navBg.classList.add('nav-scrolled-bg');
                 navBg.classList.remove('nav-at-top');
-
-                // Textos voltam a cor normal do tema (preto no claro / branco no escuro)
                 navText.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
                 navLogo.classList.remove('text-top'); navLogo.classList.add('text-scrolled');
                 themeToggles.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
-
             } else {
-                // Topo: TOTALMENTE TRANSPARENTE
                 navBg.classList.remove('nav-scrolled-bg');
                 navBg.classList.add('nav-at-top');
-
-                // Textos brancos para contrastar com a foto
                 navText.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
                 navLogo.classList.add('text-top'); navLogo.classList.remove('text-scrolled');
                 themeToggles.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
             }
             
-            // Parallax
-            document.querySelectorAll('.parallax-element').forEach(el => {
-                const speed = el.getAttribute('data-speed');
-                el.style.transform = `translateY(${scrollY * speed}px)`;
-            });
-        });
+            // Parallax (Leve ajuste para não travar no mobile)
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.parallax-element').forEach(el => {
+                    const speed = el.getAttribute('data-speed');
+                    el.style.transform = `translateY(${scrollY * speed}px)`;
+                });
+            }
+        }
 
-        // --- CHART JS CONFIG ---
+        document.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        // --- CHART JS CONFIG (Mobile Responsive) ---
         Chart.defaults.font.family = "'Montserrat', sans-serif";
         Chart.defaults.color = '#9ca3af';
+        // Ajuste: maintainAspectRatio false permite que o CSS controle a altura (essencial p/ mobile)
         const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }, x: { grid: { display: false }, ticks: { color: '#9ca3af' } } } };
         
         const ctx1 = document.getElementById('marketChart').getContext('2d');
@@ -569,7 +586,7 @@
         const ctx2 = document.getElementById('breakdownChart').getContext('2d');
         new Chart(ctx2, { type: 'doughnut', data: { labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'], datasets: [{ data: [30, 25, 25, 20], backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#333'], borderColor: 'rgba(0,0,0,0)', borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 8 } } } } });
 
-        // --- SLIDER ---
+        // --- SLIDER (Agora com 5 slides) ---
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
         function nextSlide() {
