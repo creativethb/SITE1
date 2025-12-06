@@ -60,6 +60,7 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
             html { scroll-behavior: auto; }
         }
@@ -689,6 +690,12 @@
             html:not(.dark) #portfolio a.bg-white {
                 background: #ffffff;
             }
+            
+            /* Mobile glass cards in light mode */
+            html:not(.dark) .glass-ultra {
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(212, 175, 55, 0.25);
+            }
         }
         
         /* Small phones light mode */
@@ -1011,8 +1018,8 @@
                     <!-- Logo -->
                     <a href="#home" class="flex-shrink-0 flex items-center group" aria-label="Ir para início">
                         <img class="h-10 md:h-12 w-auto transition-transform duration-500 group-hover:scale-110" 
-                             src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" 
-                             alt="Creative Fotografia" width="48" height="48" loading="eager">
+                            src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" 
+                            alt="Creative Fotografia" width="48" height="48" loading="eager">
                         <span class="ml-3 hidden sm:block font-serif text-2xl tracking-widest uppercase nav-text transition-colors duration-300">Creative</span>
                     </a>
 
@@ -1077,7 +1084,7 @@
             
             <!-- Background Slides -->
             <div class="absolute inset-0 z-0 bg-black">
-                <div class="hero-slide active bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
+                <div class="hero-slide active bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/6611df2a-f297-4478-a5f1-81426674f74f.jpg');"></div>
                 <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
                 <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
                 <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
@@ -1133,9 +1140,9 @@
                         <div class="absolute top-8 -left-8 w-full h-full border-2 border-brand-gold/30 transition-all duration-700 hover:top-4 hover:-left-4 z-0"></div>
                         <div class="relative overflow-hidden shadow-2xl z-10 img-reveal aspect-[3/4]" style="animation: float 8s ease-in-out infinite;">
                             <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" 
-                                 alt="Thiago, fotógrafo profissional no Rio de Janeiro" 
-                                 class="w-full h-full object-cover object-top transition-all duration-1000 grayscale hover:grayscale-0"
-                                 loading="lazy" width="600" height="800">
+                                alt="Thiago, fotógrafo profissional no Rio de Janeiro" 
+                                class="w-full h-full object-cover object-top transition-all duration-1000 grayscale hover:grayscale-0"
+                                loading="lazy" width="600" height="800">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             
                             <!-- Floating Badge -->
@@ -1200,8 +1207,8 @@
                     <!-- Card 1 -->
                     <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm">
                         <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" 
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                             alt="Fotografia de eventos - 15 anos com bokeh" loading="lazy" width="400" height="550">
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            alt="Fotografia de eventos - 15 anos com bokeh" loading="lazy" width="400" height="550">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div class="absolute bottom-8 left-8 right-8">
                             <span class="text-brand-gold font-serif text-3xl md:text-4xl italic block mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Eventos</span>
@@ -1213,8 +1220,8 @@
                     <!-- Card 2 (Featured) -->
                     <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm md:-mt-8 md:mb-8">
                         <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" 
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                             alt="Retrato feminino em preto e branco" loading="lazy" width="400" height="550">
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            alt="Retrato feminino em preto e branco" loading="lazy" width="400" height="550">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div class="absolute top-6 right-6">
                             <span class="bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Destaque</span>
@@ -1229,8 +1236,8 @@
                     <!-- Card 3 -->
                     <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm">
                         <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" 
-                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                             alt="Ensaio fotográfico externo" loading="lazy" width="400" height="550">
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            alt="Ensaio fotográfico externo" loading="lazy" width="400" height="550">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
                         <div class="absolute bottom-8 left-8 right-8">
                             <span class="text-brand-gold font-serif text-3xl md:text-4xl italic block mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Ensaios</span>
@@ -1249,7 +1256,7 @@
                 <!-- Instagram Link -->
                 <div class="text-center mt-8 md:mt-16 reveal-element" style="transition-delay: 0.3s;">
                     <a href="https://www.instagram.com/creative__fotografia/" target="_blank" rel="noopener noreferrer" 
-                       class="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.15em] text-gray-500 hover:text-brand-gold transition-all duration-300 group bg-white dark:bg-white/5 px-8 py-4 rounded-full shadow-md hover:shadow-xl">
+                        class="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.15em] text-gray-500 hover:text-brand-gold transition-all duration-300 group bg-white dark:bg-white/5 px-8 py-4 rounded-full shadow-md hover:shadow-xl">
                         <span>Ver mais no Instagram</span>
                         <i class="fab fa-instagram text-xl group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300"></i>
                     </a>
@@ -1341,7 +1348,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
                                 <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" 
-                                     class="w-full h-full object-cover" alt="Mariana Costa" loading="lazy" width="48" height="48">
+                                    class="w-full h-full object-cover" alt="Mariana Costa" loading="lazy" width="48" height="48">
                             </div>
                             <div>
                                 <span class="block text-brand-dark dark:text-white font-bold text-sm">Mariana Costa</span>
@@ -1364,7 +1371,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
                                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" 
-                                     class="w-full h-full object-cover" alt="Pedro Alvarez" loading="lazy" width="48" height="48">
+                                    class="w-full h-full object-cover" alt="Pedro Alvarez" loading="lazy" width="48" height="48">
                             </div>
                             <div>
                                 <span class="block text-brand-dark dark:text-white font-bold text-sm">Pedro Alvarez</span>
@@ -1387,7 +1394,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
                                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" 
-                                     class="w-full h-full object-cover" alt="Ana e Felipe" loading="lazy" width="48" height="48">
+                                    class="w-full h-full object-cover" alt="Ana e Felipe" loading="lazy" width="48" height="48">
                             </div>
                             <div>
                                 <span class="block text-brand-dark dark:text-white font-bold text-sm">Ana & Felipe</span>
@@ -1536,8 +1543,8 @@
                             <p class="text-center mt-4 text-xs text-gray-500 tracking-wider uppercase">
                                 Precisa de flexibilidade? 
                                 <a href="https://wa.me/5583981181907?text=Oi%20Thiago,%20gostei%20do%20trabalho%20mas%20gostaria%20de%20negociar%20o%20valor." 
-                                   target="_blank" rel="noopener" 
-                                   class="text-brand-gold hover:underline ml-1">Podemos Negociar</a>
+                                    target="_blank" rel="noopener" 
+                                    class="text-brand-gold hover:underline ml-1">Podemos Negociar</a>
                             </p>
                         </div>
                     </div>
@@ -1574,8 +1581,8 @@
                     
                     <div class="group relative">
                         <textarea id="messageInput" rows="2" placeholder="CONTE SOBRE SUA IDEIA" required
-                                  class="w-full bg-transparent border-b-2 border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl resize-none"
-                                  aria-label="Sua mensagem"></textarea>
+                                     class="w-full bg-transparent border-b-2 border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl resize-none"
+                                     aria-label="Sua mensagem"></textarea>
                         <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-gold transition-all duration-500 group-focus-within:w-full group-focus-within:left-0"></span>
                     </div>
                     
@@ -1592,24 +1599,24 @@
         <div class="max-w-7xl mx-auto px-4 text-center">
             <!-- LOGO FIXED: w-auto object-contain (removed width=80) -->
             <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia" 
-                 class="h-8 w-auto object-contain mx-auto mb-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700"
-                 loading="lazy">
+                class="h-8 w-auto object-contain mx-auto mb-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700"
+                loading="lazy">
             
             <!-- Social Icons -->
             <div class="flex justify-center gap-6 mb-8">
                 <a href="https://www.instagram.com/creative__fotografia/" target="_blank" rel="noopener noreferrer" 
-                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold hover:scale-110 transition-all duration-300"
-                   aria-label="Instagram">
+                    class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold hover:scale-110 transition-all duration-300"
+                    aria-label="Instagram">
                     <i class="fab fa-instagram text-lg"></i>
                 </a>
                 <a href="https://www.facebook.com/Creativethb?locale=pt_BR" target="_blank" rel="noopener noreferrer" 
-                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-blue-500 hover:text-blue-500 hover:scale-110 transition-all duration-300"
-                   aria-label="Facebook">
+                    class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-blue-500 hover:text-blue-500 hover:scale-110 transition-all duration-300"
+                    aria-label="Facebook">
                     <i class="fab fa-facebook-f text-lg"></i>
                 </a>
                 <a href="https://wa.me/5583981181907" target="_blank" rel="noopener noreferrer" 
-                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-green-500 hover:text-green-500 hover:scale-110 transition-all duration-300"
-                   aria-label="WhatsApp">
+                    class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-green-500 hover:text-green-500 hover:scale-110 transition-all duration-300"
+                    aria-label="WhatsApp">
                     <i class="fab fa-whatsapp text-lg"></i>
                 </a>
             </div>
@@ -1622,7 +1629,7 @@
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/5583981181907" target="_blank" rel="noopener noreferrer" 
-       class="fixed bottom-6 right-6 z-50 group" aria-label="Contato via WhatsApp">
+        class="fixed bottom-6 right-6 z-50 group" aria-label="Contato via WhatsApp">
         <div class="absolute inset-0 bg-green-500/30 rounded-full animate-ping"></div>
         <div class="relative w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg text-white text-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl">
             <i class="fab fa-whatsapp"></i>
@@ -1703,6 +1710,9 @@
             } else {
                 backToTop.classList.remove('visible');
             }
+            
+            // Reveal elements (optional, if using the IntersectionObserver below)
+            // handleReveal();
         }, 16);
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -1713,8 +1723,13 @@
         let currentSlide = 0;
 
         const nextSlide = () => {
+            // Fade out current slide
             slides[currentSlide].classList.remove('active');
+            
+            // Move to next slide
             currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Fade in new slide
             slides[currentSlide].classList.add('active');
         };
 
@@ -1771,6 +1786,9 @@
         // Initial theme
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             setTheme(true);
+        } else {
+             // Apply light mode styles initially if not dark mode (to ensure quick transition)
+             setTheme(false); 
         }
 
         themeToggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
@@ -1781,6 +1799,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target); // Stop observing once revealed
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -1791,47 +1810,69 @@
         Chart.defaults.font.family = "'Montserrat', sans-serif";
         Chart.defaults.color = '#9ca3af';
 
-        const ctx1 = document.getElementById('marketChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'bar',
-            data: {
-                labels: ['Média RJ', 'Creative'],
-                datasets: [{
-                    label: 'Investimento (R$)',
-                    data: [1500, 600],
-                    backgroundColor: ['rgba(255,255,255,0.15)', '#d4af37'],
-                    borderRadius: 8,
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } },
-                    x: { grid: { display: false }, ticks: { color: '#9ca3af' } }
+        // Wait for elements to exist before initializing charts
+        window.addEventListener('load', () => {
+            const ctx1 = document.getElementById('marketChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Média RJ', 'Creative'],
+                    datasets: [{
+                        label: 'Investimento (R$)',
+                        data: [1500, 600],
+                        backgroundColor: ['rgba(255,255,255,0.15)', '#d4af37'],
+                        borderRadius: 8,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } },
+                        x: { grid: { display: false }, ticks: { color: '#9ca3af' } }
+                    }
                 }
-            }
-        });
+            });
 
-        const ctx2 = document.getElementById('breakdownChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'],
-                datasets: [{
-                    data: [30, 25, 25, 20],
-                    backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#444'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '70%',
-                plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 10, padding: 15 } } }
-            }
+            const ctx2 = document.getElementById('breakdownChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'],
+                    datasets: [{
+                        data: [30, 25, 25, 20],
+                        backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#444'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 10, padding: 15 } } }
+                }
+            });
+            
+            // Recalculate color on theme change
+            themeToggle.addEventListener('click', () => {
+                setTimeout(() => {
+                    const isDark = html.classList.contains('dark');
+                    const color = isDark ? '#9ca3af' : '#5a5449';
+                    
+                    // Update Chart 1
+                    Chart.getChart(ctx1).options.scales.y.ticks.color = color;
+                    Chart.getChart(ctx1).options.scales.x.ticks.color = color;
+                    Chart.getChart(ctx1).options.scales.y.grid.color = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(26,21,18,0.1)';
+                    Chart.getChart(ctx1).data.datasets[0].backgroundColor = isDark ? ['rgba(255,255,255,0.15)', '#d4af37'] : ['rgba(26,21,18,0.1)', '#d4af37'];
+                    Chart.getChart(ctx1).update();
+
+                    // Update Chart 2
+                    Chart.getChart(ctx2).options.plugins.legend.labels.color = color;
+                    Chart.getChart(ctx2).update();
+                }, 500);
+            });
         });
 
         // === CALCULATOR ===
@@ -1895,21 +1936,33 @@
         function calculate() {
             let base = 0, extras = 0;
             
+            // Base service calculation
             if (state.type === 'business') {
+                // Business price structure: R$25/photo + Videos
                 if (state.bizVideos > 0) base += 400 + (state.bizVideos - 1) * 300;
                 if (state.photos > 0) base += state.photos * state.pricePerPhoto;
             } else {
+                 // Standard price structure: R$25/photo
                 base = state.photos * state.pricePerPhoto;
             }
             
+            // Addons
             if (state.drone) extras += 850;
-            if (state.video && state.type !== 'business') extras += 250;
+            if (state.video && state.type !== 'business') extras += 250; // Simple video excluded for business packages
             
             const total = base + extras;
-            animateValue(document.getElementById('total-price'), parseInt(document.getElementById('total-price').innerText), total, 400);
+            
+            // Update display
+            const totalDisplay = document.getElementById('total-price');
+            const currentTotal = parseInt(totalDisplay.innerText.replace(/\./g, '')) || 0;
+            
+            animateValue(totalDisplay, currentTotal, total, 400);
+            
             document.getElementById('base-breakdown').innerText = `R$ ${base}`;
             document.getElementById('extras-breakdown').innerText = `R$ ${extras}`;
-            document.getElementById('messageInput').value = `Simulação (${state.type}): Total R$ ${total}`;
+            
+            // Update contact form message (pre-filled with simulation)
+            document.getElementById('messageInput').value = `Olá! Gostaria de agendar o pacote simulado. Tipo: ${state.type}. Fotos: ${state.photos}. Adicionais: Drone (${state.drone ? 'Sim' : 'Não'}), Vídeos (${state.video || state.bizVideos > 0 ? 'Sim' : 'Não'}). Total Estimado: R$ ${total}.`;
         }
 
         function animateValue(obj, start, end, duration) {
@@ -1919,13 +1972,17 @@
             const update = (currentTime) => {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic function for smooth start/stop
                 const eased = 1 - Math.pow(1 - progress, 3);
-                obj.innerHTML = Math.floor(eased * (end - start) + start);
+                obj.innerHTML = Math.floor(eased * (end - start) + start).toLocaleString('pt-BR');
                 if (progress < 1) requestAnimationFrame(update);
             };
             
             requestAnimationFrame(update);
         }
+
+        // Initial calculation call to set defaults
+        selectType(state.type, document.querySelector('[data-type="wedding"]'));
 
         // === CONTACT FORM ===
         document.getElementById('contactForm').addEventListener('submit', (e) => {
@@ -1933,7 +1990,13 @@
             const name = document.getElementById('nameInput').value;
             const contact = document.getElementById('contactInput').value;
             const msg = document.getElementById('messageInput').value;
-            window.open(`https://wa.me/5583981181907?text=*Nome:* ${encodeURIComponent(name)}%0a*Contato:* ${encodeURIComponent(contact)}%0a*Mensagem:* ${encodeURIComponent(msg)}`, '_blank');
+            
+            // Sanitize inputs for URL
+            const encodedMsg = encodeURIComponent(msg);
+            const encodedName = encodeURIComponent(name);
+            const encodedContact = encodeURIComponent(contact);
+            
+            window.open(`https://wa.me/5583981181907?text=*Nome:* ${encodedName}%0a*Contato:* ${encodedContact}%0a*Mensagem:* ${encodedMsg}`, '_blank');
         });
     </script>
 </body>
