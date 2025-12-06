@@ -2,696 +2,1939 @@
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Creative Fotografia | Thiago</title>
     
-    <!-- --- META TAGS PARA REDES SOCIAIS (OPEN GRAPH) - OTIMIZADO --- -->
-    
-    <!-- 1. Título e Descrição -->
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Fotografia de luxo no Rio de Janeiro. Ensaios, festas, retratos e drone. Solicite uma simulação de valor exclusiva.">
     <meta property="og:title" content="Creative Fotografia | A Essência Eternizada">
-    <meta property="og:description" content="Portfólio de luxo no Rio de Janeiro. Ensaios, festas, retratos e drone. Solicite uma simulação de valor exclusiva.">
-    
-    <!-- 2. Tipo e URL (ajuste esta URL se comprar um domínio) -->
+    <meta property="og:description" content="Portfólio de luxo no Rio de Janeiro. Ensaios, festas, retratos e drone.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://creativethb.github.io/SITE1/"> 
-
-    <!-- 3. Configuração da Imagem (Imagem de Capa do Link) -->
-    <!-- URL Completa da Imagem -->
+    <meta property="og:url" content="https://creativethb.github.io/SITE1/">
     <meta property="og:image" content="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg">
-    <!-- Redundância de URL segura (melhora a compatibilidade) -->
-    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg">
-    <!-- Tamanhos ideais para pré-visualização -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Foto de 15 Anos com efeito Bokeh. Fotografia de Evento de Luxo.">
-    <meta property="og:image:type" content="image/jpeg">
-    
-    <!-- Configurações para Twitter (X) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Creative Fotografia | Thiago">
-    <meta name="twitter:description" content="Fotografia de alto padrão no Rio de Janeiro. Veja o portfólio.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- Google Fonts Premium -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class', 
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            gold: '#d4af37',       
-                            goldLight: '#f9f1d0',  
-                            goldDark: '#aa8c2c',   
-                            dark: '#050505',       
-                            charcoal: '#121212'    
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Montserrat"', 'sans-serif']
-                    },
-                    backgroundImage: {
-                        'gold-gradient': 'linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f9f1d0 100%)',
-                        'luxury-dark': 'radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)'
-                    },
-                    boxShadow: {
-                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
-                        'gold-hover': '0 10px 30px rgba(212, 175, 55, 0.4)',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-gold': 'pulseGold 3s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(60px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        pulseGold: {
-                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0.4)' },
-                            '70%': { boxShadow: '0 0 0 15px rgba(212, 175, 55, 0)' },
-                        }
-                    }
-                }
-            }
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand-gold: #d4af37;
+            --color-brand-gold-light: #f9f1d0;
+            --color-brand-gold-dark: #aa8c2c;
+            --color-brand-dark: #050505;
+            --color-brand-charcoal: #121212;
+            --color-brand-cream: #faf8f5;
+            --color-brand-warm-white: #fffef9;
+            --color-brand-soft-gray: #f5f3f0;
+            --font-serif: "Cormorant Garamond", serif;
+            --font-sans: "Montserrat", sans-serif;
         }
-    </script>
+    </style>
 
     <style>
-        /* --- PERFORMANCE & VISUAL --- */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        .dark .glass-panel {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .btn-shine { position: relative; overflow: hidden; transition: all 0.4s ease; }
-        .btn-shine::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-        .btn-shine:hover::after { left: 100%; transition: 0.7s; }
-
-        .btn-float:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.5); }
-
-        .text-gold-gradient {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% auto; animation: shine 5s linear infinite;
-        }
-        @keyframes shine { to { background-position: 200% center; } }
-
-        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
-        #preloader.hidden { opacity: 0; visibility: hidden; }
-
-        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #050505; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-
-        input[type=range] { -webkit-appearance: none; background: transparent; }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; height: 20px; width: 20px;
-            border-radius: 50%; background: #d4af37;
-            border: 2px solid #fff; margin-top: -8px; cursor: pointer;
-            box-shadow: 0 0 10px rgba(212,175,55,0.5);
-        }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.2); border-radius: 2px; }
+        /* === CRITICAL PERFORMANCE OPTIMIZATIONS === */
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         
-        canvas { filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5)); }
+        html { scroll-behavior: smooth; }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
 
-        /* --- CONTROLE DO MENU --- */
-        .nav-at-top {
-            background-color: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+        /* === PRELOADER === */
+        #preloader {
+            position: fixed; inset: 0; background: #050505; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .loader-ring {
+            width: 60px; height: 60px; border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #d4af37;
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* === GLASSMORPHISM 2025 === */
+        .glass-ultra {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        
+        .dark .glass-ultra {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* === ADVANCED ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        @keyframes morphBlob {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 30px 10px rgba(212, 175, 55, 0.2); }
+        }
+
+        .animate-fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-morph { animation: morphBlob 8s ease-in-out infinite; }
+
+        /* === GOLDEN GRADIENT TEXT === */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #d4af37 50%, #fbf5b7 75%, #aa771c 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+
+        /* === MAGNETIC BUTTON EFFECT === */
+        .btn-magnetic {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            will-change: transform;
+        }
+        
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .btn-magnetic:hover::before { transform: translateX(100%); }
+        .btn-magnetic:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.4); }
+
+        /* === NAVBAR STATES === */
+        .nav-transparent {
+            background: transparent;
+            backdrop-filter: none;
             border-bottom: 1px solid transparent;
         }
         
-        .nav-scrolled-bg {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .nav-solid {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
-        .dark .nav-scrolled-bg {
-            background-color: rgba(0, 0, 0, 0.85);
+        
+        .dark .nav-solid {
+            background: rgba(5, 5, 5, 0.9);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .text-top { color: #ffffff !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-        .text-scrolled { color: #1a1a1a; text-shadow: none; }
-        .dark .text-scrolled { color: #ffffff; }
 
-        #scroll-indicator { transition: opacity 0.5s ease-out; }
+        /* === SCROLL INDICATOR === */
+        .scroll-line {
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
         
-        /* Botão Back to Top */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(0.8); }
+        }
+
+        /* === CUSTOM SCROLLBAR === */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, #d4af37, #aa8c2c);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #f9f1d0; }
+
+        /* === RANGE SLIDER === */
+        input[type=range] { -webkit-appearance: none; background: transparent; cursor: pointer; }
+        input[type=range]::-webkit-slider-track {
+            height: 6px; background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 24px; height: 24px;
+            background: linear-gradient(135deg, #d4af37, #f9f1d0);
+            border: 3px solid #fff; border-radius: 50%; margin-top: -9px;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.7);
+        }
+
+        /* === REVEAL ANIMATIONS === */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal-element.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === IMAGE HOVER EFFECTS === */
+        .img-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .img-reveal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, #d4af37, transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .img-reveal:hover::after { opacity: 0.2; }
+
+        /* === FOCUS STATES (Accessibility) === */
+        *:focus-visible {
+            outline: 2px solid #d4af37;
+            outline-offset: 2px;
+        }
+        
+        /* === SKIP LINK === */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            color: #000;
+            padding: 1rem 2rem;
+            z-index: 10000;
+            transition: top 0.3s ease;
+        }
+        
+        .skip-link:focus { top: 0; }
+
+        /* === NOISE TEXTURE OVERLAY === */
+        .noise-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* === FLOATING SHAPES === */
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05));
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* === HERO SLIDE TRANSITIONS === */
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* === CARD 3D HOVER === */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-3d:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateZ(20px);
+        }
+
+        /* === CURSOR GLOW === */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .cursor-glow.active { opacity: 1; }
+
+        /* === BACK TO TOP === */
         #back-to-top {
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease-in-out;
-            transform: translateY(20px);
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        #back-to-top.show {
+        
+        #back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+        }
+
+        /* === TESTIMONIAL CARDS === */
+        .testimonial-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px -20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* === HORIZONTAL SCROLL FADE === */
+        .scroll-fade-left::before,
+        .scroll-fade-right::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .scroll-fade-left::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-color, #f9fafb), transparent);
+        }
+        
+        .scroll-fade-right::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-color, #f9fafb), transparent);
+        }
+
+        /* ============================================ */
+        /* === MOBILE-SPECIFIC OPTIMIZATIONS 2025 === */
+        /* ============================================ */
+        
+        /* Safe area support for notched devices */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+            .fixed.bottom-6 {
+                bottom: max(1.5rem, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Mobile touch optimizations */
+        @media (max-width: 767px) {
+            /* Disable heavy effects on mobile for performance */
+            .floating-shape { display: none; }
+            .cursor-glow { display: none !important; }
+            .noise-overlay::before { display: none; }
+            
+            /* Larger touch targets */
+            .btn-magnetic, button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Better text sizing for mobile */
+            html { font-size: 16px; }
+            
+            /* Disable 3D effects on mobile */
+            .card-3d:hover {
+                transform: none;
+            }
+            .card-3d:active {
+                transform: scale(0.98);
+            }
+            
+            /* Mobile menu improvements */
+            #mobile-menu nav a {
+                padding: 0.75rem 1rem;
+                font-size: 2rem;
+            }
+            
+            /* Portfolio horizontal scroll on mobile */
+            .portfolio-mobile-scroll {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .portfolio-mobile-scroll::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .portfolio-mobile-scroll > article {
+                flex: 0 0 85%;
+                scroll-snap-align: center;
+            }
+            
+            /* Better spacing on mobile */
+            section {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            
+            /* Mobile hero adjustments */
+            #home h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+            
+            #home h1 span:first-child {
+                font-size: 1.5rem;
+            }
+            
+            /* Simulator mobile layout */
+            .glass-ultra {
+                padding: 1.5rem;
+            }
+            
+            #total-price {
+                font-size: 4rem;
+            }
+            
+            /* Type buttons stack better */
+            .type-btn {
+                padding: 1rem 0.5rem;
+                font-size: 0.65rem;
+            }
+            
+            .type-btn i {
+                font-size: 1.25rem;
+            }
+            
+            /* Footer social icons */
+            footer .flex.gap-6 {
+                gap: 1rem;
+            }
+            
+            footer .w-12.h-12 {
+                width: 2.75rem;
+                height: 2.75rem;
+            }
+            
+            /* Floating buttons repositioning */
+            #back-to-top {
+                bottom: 5.5rem;
+                left: 1rem;
+                width: 2.75rem;
+                height: 2.75rem;
+            }
+            
+            .fixed.bottom-6.right-6 {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .fixed.bottom-6.right-6 > div:last-child {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            
+            /* Charts resize for mobile */
+            canvas {
+                max-height: 160px !important;
+            }
+            
+            /* Testimonial cards on mobile */
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .testimonial-card:hover {
+                transform: none;
+            }
+            
+            /* About section image on mobile */
+            #about .absolute.top-8.-left-8 {
+                display: none;
+            }
+            
+            /* Stats grid on mobile */
+            .grid.grid-cols-2.gap-8 {
+                gap: 1.5rem;
+            }
+            
+            .text-5xl.font-serif {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Small phones (iPhone SE, etc) */
+        @media (max-width: 375px) {
+            #home h1 {
+                font-size: 2rem;
+            }
+            
+            #home h1 span:first-child {
+                font-size: 1.25rem;
+            }
+            
+            .btn-magnetic {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.65rem;
+            }
+            
+            #total-price {
+                font-size: 3rem;
+            }
+        }
+
+        /* Tablet optimizations */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .card-3d:hover {
+                transform: translateY(-8px);
+            }
+            
+            .glass-ultra {
+                padding: 2rem;
+            }
+        }
+
+        /* Touch device haptic feedback simulation */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-magnetic:active {
+                transform: scale(0.97);
+                transition: transform 0.1s ease;
+            }
+            
+            .testimonial-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+            
+            /* Remove hover effects that don't work well on touch */
+            .card-3d:hover {
+                transform: none;
+            }
+            
+            .btn-magnetic:hover::before {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            #home {
+                min-height: 100vh;
+                padding-top: 5rem;
+            }
+            
+            #home h1 {
+                font-size: 2rem;
+            }
+            
+            #scroll-indicator {
+                display: none;
+            }
+        }
+
+        /* Mobile swipe indicator */
+        .swipe-indicator {
+            display: none;
+        }
+        
+        @media (max-width: 767px) {
+            .swipe-indicator {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 1rem;
+                color: #9ca3af;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            
+            .swipe-indicator i {
+                animation: swipeHint 1.5s ease-in-out infinite;
+            }
+            
+            @keyframes swipeHint {
+                0%, 100% { transform: translateX(0); }
+                50% { transform: translateX(8px); }
+            }
+        }
+
+        /* iOS rubber band scroll fix */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Dark mode on mobile - better contrast */
+        @media (max-width: 767px) {
+            .dark .glass-ultra {
+                background: rgba(0, 0, 0, 0.8);
+            }
+            
+            /* === LIGHT MODE MOBILE SPECIFIC === */
+            html:not(.dark) body {
+                background: #f5f2ed;
+            }
+            
+            html:not(.dark) #about,
+            html:not(.dark) #testimonials,
+            html:not(.dark) #contact {
+                background: #f5f2ed;
+            }
+            
+            html:not(.dark) #portfolio {
+                background: #ebe7e0;
+            }
+            
+            /* Mobile glass cards in light mode */
+            html:not(.dark) .glass-ultra {
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(212, 175, 55, 0.25);
+            }
+            
+            /* Mobile testimonial cards */
+            html:not(.dark) .testimonial-card {
+                background: #ffffff;
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                box-shadow: 0 8px 30px rgba(26, 21, 18, 0.08);
+            }
+            
+            /* Mobile navbar light mode */
+            html:not(.dark) .nav-solid {
+                background: rgba(245, 242, 237, 0.98);
+            }
+            
+            /* Swipe indicator light mode mobile */
+            html:not(.dark) .swipe-indicator {
+                color: #5a5449;
+            }
+            
+            /* Portfolio cards mobile light mode */
+            html:not(.dark) .card-3d {
+                box-shadow: 0 15px 40px rgba(26, 21, 18, 0.12);
+            }
+            
+            /* Back to top mobile light */
+            html:not(.dark) #back-to-top {
+                background: #ffffff;
+                box-shadow: 0 4px 15px rgba(26, 21, 18, 0.1);
+            }
+            
+            /* Instagram button mobile light */
+            html:not(.dark) #portfolio a.bg-white {
+                background: #ffffff;
+            }
+        }
+        
+        /* Small phones light mode */
+        @media (max-width: 375px) {
+            html:not(.dark) .testimonial-card {
+                padding: 1.25rem;
+            }
+            
+            html:not(.dark) .glass-ultra {
+                padding: 1.25rem;
+            }
+        }
+
+        /* ============================================ */
+        /* === LIGHT MODE PREMIUM ENHANCEMENTS 2025 === */
+        /* ============================================ */
+        
+        /* Light mode base - warm cream tones instead of pure white */
+        html:not(.dark) {
+            --light-bg-primary: #f8f6f3;
+            --light-bg-secondary: #f3f0eb;
+            --light-bg-tertiary: #ede9e3;
+            --light-text-primary: #1a1512;
+            --light-text-secondary: #4a453d;
+            --light-text-muted: #7a7268;
+            --light-border: rgba(212, 175, 55, 0.2);
+        }
+        
+        html:not(.dark) body {
+            background: linear-gradient(180deg, #f8f6f3 0%, #f3f0eb 50%, #f8f6f3 100%);
+            color: #1a1512;
+        }
+        
+        /* === LIGHT MODE SECTIONS === */
+        html:not(.dark) #about {
+            background: linear-gradient(180deg, #f8f6f3 0%, #f3f0eb 100%);
+        }
+        
+        html:not(.dark) #portfolio {
+            background: linear-gradient(180deg, #ede9e3 0%, #e8e4dc 50%, #ede9e3 100%);
+        }
+        
+        html:not(.dark) #testimonials {
+            background: linear-gradient(180deg, #f5f2ed 0%, #f8f6f3 100%);
+        }
+        
+        html:not(.dark) #contact {
+            background: linear-gradient(180deg, #f3f0eb 0%, #f8f6f3 100%);
+        }
+        
+        /* === LIGHT MODE NAVBAR === */
+        html:not(.dark) .nav-solid {
+            background: linear-gradient(180deg, rgba(248,246,243,0.97) 0%, rgba(243,240,235,0.95) 100%);
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 0 4px 30px rgba(26,21,18,0.08);
+        }
+        
+        html:not(.dark) .nav-solid .nav-text,
+        html:not(.dark) .nav-solid .nav-link {
+            color: #1a1512 !important;
+            text-shadow: none !important;
+        }
+        
+        /* === LIGHT MODE TYPOGRAPHY - HIGH CONTRAST === */
+        html:not(.dark) h1,
+        html:not(.dark) h2,
+        html:not(.dark) h3,
+        html:not(.dark) h4 {
+            color: #1a1512;
+        }
+        
+        html:not(.dark) .text-brand-dark {
+            color: #1a1512 !important;
+        }
+        
+        html:not(.dark) p,
+        html:not(.dark) .text-gray-600 {
+            color: #4a453d;
+        }
+        
+        html:not(.dark) .text-gray-500 {
+            color: #5a5449;
+        }
+        
+        html:not(.dark) .text-gray-400 {
+            color: #7a7268;
+        }
+        
+        /* === LIGHT MODE GLASS CARDS === */
+        html:not(.dark) .glass-ultra {
+            background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,246,243,0.9) 100%);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 
+                0 10px 40px rgba(26,21,18,0.08),
+                0 4px 12px rgba(212,175,55,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        
+        /* === LIGHT MODE TESTIMONIAL CARDS === */
+        html:not(.dark) .testimonial-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f6f3 100%);
+            border: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 
+                0 10px 40px rgba(26,21,18,0.06),
+                0 4px 16px rgba(212,175,55,0.05);
+        }
+        
+        html:not(.dark) .testimonial-card p {
+            color: #4a453d;
+        }
+        
+        html:not(.dark) .testimonial-card span.text-brand-dark,
+        html:not(.dark) .testimonial-card .font-bold {
+            color: #1a1512 !important;
+        }
+        
+        html:not(.dark) .testimonial-card:hover {
+            box-shadow: 
+                0 30px 60px rgba(26,21,18,0.1),
+                0 15px 30px rgba(212,175,55,0.08);
+        }
+        
+        /* === LIGHT MODE ABOUT SECTION === */
+        html:not(.dark) #about .absolute.top-0.right-0,
+        html:not(.dark) #about > div:first-child {
+            background: linear-gradient(135deg, rgba(237,233,227,0.6) 0%, rgba(248,246,243,0.4) 100%);
+        }
+        
+        html:not(.dark) #about .absolute.top-8.-left-8 {
+            border-color: rgba(212,175,55,0.5);
+        }
+        
+        /* About floating badge stays dark for contrast */
+        html:not(.dark) #about .glass-ultra.absolute {
+            background: linear-gradient(135deg, rgba(26,21,18,0.9) 0%, rgba(26,21,18,0.85) 100%);
+        }
+        
+        html:not(.dark) #about .glass-ultra.absolute span {
+            color: #fff !important;
+        }
+        
+        /* === LIGHT MODE STATS === */
+        html:not(.dark) .border-gray-200 {
+            border-color: rgba(212,175,55,0.2) !important;
+        }
+        
+        html:not(.dark) #about .text-xs.uppercase {
+            color: #5a5449;
+        }
+        
+        /* === LIGHT MODE PORTFOLIO === */
+        html:not(.dark) .card-3d {
+            box-shadow: 
+                0 20px 50px rgba(26,21,18,0.15),
+                0 8px 20px rgba(26,21,18,0.1);
+        }
+        
+        html:not(.dark) .card-3d:hover {
+            box-shadow: 
+                0 35px 70px rgba(26,21,18,0.18),
+                0 15px 35px rgba(212,175,55,0.08);
+        }
+        
+        /* Instagram button in light mode */
+        html:not(.dark) #portfolio a.bg-white,
+        html:not(.dark) #portfolio .bg-white {
+            background: linear-gradient(145deg, #ffffff 0%, #f5f2ed 100%);
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 4px 15px rgba(26,21,18,0.08);
+        }
+        
+        html:not(.dark) #portfolio a.bg-white:hover {
+            background: linear-gradient(145deg, #f8f6f3 0%, #f0ece5 100%);
+            border-color: rgba(212,175,55,0.4);
+        }
+        
+        html:not(.dark) #portfolio .text-gray-500 {
+            color: #5a5449;
+        }
+        
+        /* === LIGHT MODE BADGES === */
+        html:not(.dark) .bg-brand-gold\/10,
+        html:not(.dark) [class*="bg-brand-gold/10"] {
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.25);
+        }
+        
+        /* === LIGHT MODE CONTACT FORM === */
+        html:not(.dark) #contactForm input,
+        html:not(.dark) #contactForm textarea {
+            border-color: rgba(26,21,18,0.15);
+            color: #1a1512;
+            background: transparent;
+        }
+        
+        html:not(.dark) #contactForm input::placeholder,
+        html:not(.dark) #contactForm textarea::placeholder {
+            color: #9a958d;
+        }
+        
+        html:not(.dark) #contactForm input:focus,
+        html:not(.dark) #contactForm textarea:focus {
+            border-color: #d4af37;
+            background: rgba(212,175,55,0.03);
+        }
+        
+        html:not(.dark) #contactForm button[type="submit"] {
+            background: transparent;
+            border: 2px solid #1a1512;
+            color: #1a1512;
+        }
+        
+        html:not(.dark) #contactForm button[type="submit"]:hover {
+            background: #1a1512;
+            color: #f8f6f3;
+        }
+        
+        /* === LIGHT MODE FLOATING ELEMENTS === */
+        html:not(.dark) #back-to-top {
+            background: linear-gradient(145deg, #ffffff 0%, #f5f2ed 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: #aa8c2c;
+            box-shadow: 0 4px 20px rgba(26,21,18,0.1);
+        }
+        
+        html:not(.dark) #back-to-top:hover {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #1a1512;
+            border-color: #d4af37;
+        }
+        
+        /* === LIGHT MODE SCROLLBAR === */
+        html:not(.dark)::-webkit-scrollbar-track {
+            background: #ede9e3;
+        }
+        
+        html:not(.dark)::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #d4af37, #aa8c2c);
+        }
+        
+        /* === LIGHT MODE CURSOR GLOW === */
+        html:not(.dark) .cursor-glow {
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+        
+        /* === LIGHT MODE FLOATING SHAPES === */
+        html:not(.dark) .floating-shape {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05));
+        }
+        
+        /* === LIGHT MODE SWIPE INDICATOR === */
+        html:not(.dark) .swipe-indicator {
+            color: #7a7268;
+        }
+        
+        /* === LIGHT MODE FOOTER === */
+        html:not(.dark) footer {
+            background: #1a1512;
+        }
+        
+        /* === LIGHT MODE - ENSURE DARK TEXT ON LIGHT BG === */
+        html:not(.dark) #about h2,
+        html:not(.dark) #portfolio h2,
+        html:not(.dark) #testimonials h2,
+        html:not(.dark) #contact h2 {
+            color: #1a1512 !important;
+        }
+        
+        html:not(.dark) #about p,
+        html:not(.dark) #testimonials p:not(.text-brand-gold),
+        html:not(.dark) #contact p {
+            color: #4a453d !important;
+        }
+        
+        /* Fix gradient text subtitle in about */
+        html:not(.dark) #about h2 span {
+            background: linear-gradient(to right, #7a7268, #5a5449);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* === LIGHT MODE DECORATIVE BG === */
+        html:not(.dark) #about .absolute.top-0.right-0.w-1\/2 {
+            background: linear-gradient(to left, rgba(237,233,227,0.8), transparent) !important;
+        }
+        
+        /* Theme color for light mode */
+        @media (prefers-color-scheme: light) {
+            :root {
+                color-scheme: light;
+            }
         }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50 dark:bg-brand-dark dark:text-gray-200 transition-colors duration-500 overflow-x-hidden">
 
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link font-bold uppercase tracking-widest text-sm">Pular para o conteúdo</a>
+
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow hidden md:block" id="cursor-glow" aria-hidden="true"></div>
+
     <!-- PRELOADER -->
-    <div id="preloader">
+    <div id="preloader" role="status" aria-label="Carregando">
         <div class="text-center">
-            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" class="h-16 mx-auto mb-4 animate-pulse opacity-80" alt="Carregando">
-            <div class="h-0.5 w-32 bg-gray-800 rounded-full mx-auto overflow-hidden">
-                <div class="h-full bg-brand-gold w-full animate-[loading_1.5s_infinite]"></div>
-            </div>
+            <div class="loader-ring mb-6"></div>
+            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" class="h-12 mx-auto opacity-60" alt="" width="120" height="48">
         </div>
     </div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
-        <div class="absolute inset-0 transition-all duration-500 nav-at-top" id="navbar-bg"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="flex justify-between items-center h-24 transition-all duration-500" id="navbar-container">
-                
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <img class="h-10 md:h-12 w-auto transition transform group-hover:scale-105 duration-500 filter drop-shadow-md" src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia">
-                    <div class="ml-3 hidden sm:block">
-                        <span class="block font-serif text-2xl tracking-widest uppercase transition-colors text-top" id="nav-text-logo">Creative</span>
+    <header>
+        <nav class="fixed w-full z-50 transition-all duration-500 nav-transparent" id="navbar" role="navigation" aria-label="Menu principal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20 md:h-24 transition-all duration-500">
+                    
+                    <!-- Logo -->
+                    <a href="#home" class="flex-shrink-0 flex items-center group" aria-label="Ir para início">
+                        <img class="h-10 md:h-12 w-auto transition-transform duration-500 group-hover:scale-110" 
+                             src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" 
+                             alt="Creative Fotografia" width="48" height="48" loading="eager">
+                        <span class="ml-3 hidden sm:block font-serif text-2xl tracking-widest uppercase nav-text transition-colors duration-300">Creative</span>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center gap-8 lg:gap-12" id="nav-links">
+                        <a href="#home" class="nav-link nav-text text-xs font-semibold uppercase tracking-[0.2em] hover:text-brand-gold transition-all duration-300 relative group">
+                            Início
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#about" class="nav-link nav-text text-xs font-semibold uppercase tracking-[0.2em] hover:text-brand-gold transition-all duration-300 relative group">
+                            Sobre
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#portfolio" class="nav-link nav-text text-xs font-semibold uppercase tracking-[0.2em] hover:text-brand-gold transition-all duration-300 relative group">
+                            Portfólio
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#metrics" class="nav-link nav-text text-xs font-semibold uppercase tracking-[0.2em] hover:text-brand-gold transition-all duration-300 relative group">
+                            Diferenciais
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#simulator" class="btn-magnetic px-8 py-3 bg-gradient-to-r from-brand-gold-dark via-brand-gold to-brand-gold-light text-brand-dark font-bold text-xs uppercase tracking-[0.15em] rounded-sm shadow-lg">
+                            Simular Valor
+                        </a>
+                        <button id="theme-toggle" class="nav-text hover:text-brand-gold transition-all duration-500 p-2" aria-label="Alternar tema">
+                            <i class="fas fa-moon text-lg"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center gap-4">
+                        <button id="theme-toggle-mobile" class="nav-text hover:text-brand-gold p-2" aria-label="Alternar tema">
+                            <i class="fas fa-moon text-lg"></i>
+                        </button>
+                        <button onclick="toggleMobileMenu()" class="nav-text p-2 relative z-50" aria-label="Abrir menu" aria-expanded="false" id="menu-btn">
+                            <i class="fas fa-bars text-2xl transition-transform duration-300" id="menu-icon"></i>
+                        </button>
                     </div>
                 </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-10" id="nav-links-container">
-                    <a href="#home" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Início</a>
-                    <a href="#about" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Sobre</a>
-                    <a href="#portfolio" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Portfólio</a>
-                    <a href="#metrics" class="nav-item text-xs font-bold uppercase tracking-[0.2em] hover:text-brand-gold transition-colors relative group text-top">Diferenciais</a>
-                    <a href="#simulator" class="btn-shine btn-float px-8 py-3 rounded-sm bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] shadow-lg border border-transparent hover:border-white/30 text-shadow-none">Simular Valor</a>
-                    <button id="theme-toggle" class="hover:text-brand-gold transition-transform hover:rotate-180 duration-500 text-top"><i class="fas fa-moon text-lg"></i></button>
-                </div>
-                
-                <!-- Mobile Toggle -->
-                <div class="md:hidden flex items-center gap-6">
-                     <button id="theme-toggle-mobile" class="text-top hover:text-brand-gold"><i class="fas fa-moon text-lg"></i></button>
-                    <button onclick="toggleMobileMenu()" class="text-top relative z-50 p-2"><i class="fas fa-bars text-2xl transition-transform duration-300 drop-shadow-md" id="menu-icon"></i></button>
-                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- MOBILE MENU -->
-    <div class="fixed inset-0 bg-black/90 backdrop-blur-xl z-40 flex flex-col justify-center items-center text-center space-y-10 md:hidden transition-transform duration-500 translate-x-full" id="mobile-menu">
-        <a href="#home" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Início</a>
-        <a href="#about" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Sobre</a>
-        <a href="#portfolio" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Portfólio</a>
-        <a href="#metrics" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Diferenciais</a>
-        <a href="#simulator" class="text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300" onclick="toggleMobileMenu()">Simulador</a>
-        <a href="#contact" class="px-10 py-4 border border-brand-gold text-brand-gold font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-brand-dark transition-all duration-300" onclick="toggleMobileMenu()">Contato</a>
+    <div class="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center text-center md:hidden transition-all duration-500 translate-x-full opacity-0" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <nav class="space-y-8">
+            <a href="#home" class="block text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-2" onclick="toggleMobileMenu()">Início</a>
+            <a href="#about" class="block text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-2" onclick="toggleMobileMenu()">Sobre</a>
+            <a href="#portfolio" class="block text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-2" onclick="toggleMobileMenu()">Portfólio</a>
+            <a href="#metrics" class="block text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-2" onclick="toggleMobileMenu()">Diferenciais</a>
+            <a href="#simulator" class="block text-4xl font-serif text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-2" onclick="toggleMobileMenu()">Simulador</a>
+            <a href="#contact" class="inline-block mt-4 px-10 py-4 border-2 border-brand-gold text-brand-gold font-bold uppercase tracking-widest hover:bg-brand-gold hover:text-brand-dark transition-all duration-300" onclick="toggleMobileMenu()">Contato</a>
+        </nav>
     </div>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-black">
-             <!-- Slides -->
-             <div class="hero-slide active bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
-             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
-             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
-             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
-             <div class="hero-slide bg-cover bg-center absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
-             
-             <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
-        </div>
-        
-        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto mt-20 parallax-element" data-speed="0.5">
-            <p class="text-brand-gold font-bold tracking-[0.5em] uppercase text-xs md:text-sm mb-6 animate-fade-in-up">Rio de Janeiro • Brasil</p>
-            <h1 class="font-serif text-6xl md:text-8xl lg:text-[9rem] text-white leading-none mb-8 drop-shadow-2xl animate-fade-in-up" style="animation-delay: 0.2s">
-                <span class="font-light italic block opacity-90 text-4xl md:text-6xl lg:text-7xl mb-2">A Essência</span>
-                <span class="font-bold block text-gold-gradient">Eternizada</span>
-            </h1>
-            <p class="text-gray-200 text-sm md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-12 animate-fade-in-up leading-relaxed" style="animation-delay: 0.4s">
-                Fotografia de alto padrão. Unindo a luz natural do Rio com uma estética cinematográfica e atemporal.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 animate-fade-in-up" style="animation-delay: 0.6s">
-                <a href="#portfolio" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-white/5 backdrop-blur-md border border-white/30 text-white font-bold uppercase text-xs tracking-[0.25em] hover:bg-brand-gold hover:border-brand-gold hover:text-brand-dark">Ver Galeria</a>
-                <a href="#contact" class="btn-shine btn-float w-full sm:w-auto px-10 py-4 bg-brand-gold text-brand-dark font-bold uppercase text-xs tracking-[0.25em] shadow-gold-glow">Falar no WhatsApp</a>
+    <main id="main-content">
+        <!-- HERO SECTION -->
+        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden noise-overlay">
+            <!-- Floating Decorative Shapes -->
+            <div class="floating-shape w-96 h-96 top-20 -left-48 animate-morph" aria-hidden="true"></div>
+            <div class="floating-shape w-64 h-64 bottom-20 -right-32" style="animation-delay: -3s;" aria-hidden="true"></div>
+            
+            <!-- Background Slides -->
+            <div class="absolute inset-0 z-0 bg-black">
+                <div class="hero-slide active bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/topo03.jpeg');"></div>
+                <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg');"></div>
+                <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
+                <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg');"></div>
+                <div class="hero-slide bg-cover bg-center" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg');"></div>
+                
+                <!-- Gradient Overlays -->
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/90"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
             </div>
-        </div>
-        
-        <div id="scroll-indicator" class="absolute bottom-10 left-0 right-0 mx-auto w-fit text-center animate-bounce opacity-100 mix-blend-overlay z-20">
-            <span class="text-[10px] uppercase tracking-widest text-white mb-2 block font-bold shadow-lg">Scroll Down</span>
-            <span class="block w-[1px] h-12 bg-white mx-auto shadow-lg"></span>
-        </div>
-    </section>
-
-    <!-- SOBRE MIM -->
-    <section id="about" class="py-24 bg-white dark:bg-brand-dark relative overflow-hidden transition-colors duration-500">
-        <div class="absolute top-0 right-0 w-[40%] h-full bg-gray-100 dark:bg-white/5 skew-x-12 transform origin-top-right z-0"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="w-full lg:w-1/2 relative group reveal">
-                    <div class="absolute top-6 -left-6 w-full h-full border-2 border-brand-gold/40 transition-transform duration-700 group-hover:top-4 group-hover:-left-4 z-0"></div>
-                    <div class="relative rounded-sm overflow-hidden shadow-2xl aspect-[3/4] z-10 animate-float" style="animation-duration: 8s;">
-                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" alt="Thiago" class="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2 reveal">
-                    <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Bastidores</span>
-                    <h2 class="text-5xl md:text-6xl font-serif text-brand-dark dark:text-white mb-8 leading-tight">Thiago <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-300 font-light italic">& Creative</span></h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6 font-light text-justify">Não acredito em fotos posadas demais. Acredito na <strong>elegância do espontâneo</strong>. Meu trabalho é criar um ambiente onde você se sinta tão à vontade que a câmera desapareça.</p>
-                    <div class="grid grid-cols-2 gap-8 mt-10 border-t border-gray-200 dark:border-gray-800 pt-8">
-                        <div><span class="block text-4xl font-serif text-brand-gold mb-1">500+</span><span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Histórias Contadas</span></div>
-                        <div><span class="block text-4xl font-serif text-brand-gold mb-1">100%</span><span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Clientes Satisfeitos</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="py-24 bg-gray-50 dark:bg-[#0a0a0a] transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Portfólio</span>
-                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark dark:text-white">Seleção Curada</h2>
-            </div>
-            <div class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto md:overflow-visible pb-10 md:pb-0 snap-x snap-mandatory no-scrollbar px-4 md:px-0 reveal">
-                <!-- Cards -->
-                <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Eventos</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
-                </div>
-                <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl md:-mt-12">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Retratos</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
-                </div>
-                <div class="min-w-[85%] md:min-w-0 snap-center group relative h-[550px] overflow-hidden rounded-sm cursor-pointer shadow-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl">
-                    <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition duration-500"></div>
-                    <div class="absolute bottom-8 left-8 transform translate-y-4 group-hover:translate-y-0 transition duration-500"><span class="text-brand-gold font-serif text-4xl italic block mb-2">Ensaios</span><div class="h-[1px] w-12 bg-white group-hover:w-24 transition-all duration-500"></div></div>
+            
+            <!-- Hero Content -->
+            <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+                <p class="text-brand-gold font-semibold tracking-[0.5em] uppercase text-xs md:text-sm mb-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Rio de Janeiro • Brasil
+                </p>
+                
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-white leading-[0.9] mb-8">
+                    <span class="block font-light italic opacity-90 text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">A Essência</span>
+                    <span class="block font-bold text-gold-gradient animate-fade-in-up" style="animation-delay: 0.4s;">Eternizada</span>
+                </h1>
+                
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-12 animate-fade-in-up leading-relaxed" style="animation-delay: 0.6s;">
+                    Fotografia de alto padrão unindo a luz natural do Rio<br class="hidden sm:block"> com uma estética cinematográfica e atemporal.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 animate-fade-in-up" style="animation-delay: 0.8s;">
+                    <a href="#portfolio" class="btn-magnetic w-full sm:w-auto px-10 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black">
+                        <i class="fas fa-images mr-2"></i>Ver Galeria
+                    </a>
+                    <a href="#contact" class="btn-magnetic w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-brand-gold-dark via-brand-gold to-brand-gold-light text-brand-dark font-bold uppercase text-xs tracking-[0.2em] shadow-lg">
+                        <i class="fab fa-whatsapp mr-2"></i>Falar Agora
+                    </a>
                 </div>
             </div>
             
-            <!-- NOVO BOTÃO INSTAGRAM -->
-            <div class="text-center mt-12 md:hidden">
-                <span class="text-xs text-gray-400 uppercase tracking-widest animate-pulse">Deslize &rarr;</span>
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center transition-opacity duration-500" id="scroll-indicator">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-white/70 mb-3 block font-medium">Explore</span>
+                <div class="scroll-line mx-auto"></div>
             </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 md:py-32 bg-white dark:bg-brand-dark relative overflow-hidden transition-colors duration-500">
+            <!-- Decorative Background -->
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-100 to-transparent dark:from-white/5 dark:to-transparent transform skew-x-12 origin-top-right z-0"></div>
             
-            <div class="text-center mt-12 reveal">
-                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-brand-gold transition-colors duration-300 group">
-                    <span>Ver mais no Instagram</span>
-                    <i class="fab fa-instagram text-lg group-hover:rotate-12 transition-transform"></i>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    
+                    <!-- Image -->
+                    <div class="w-full lg:w-1/2 relative reveal-element">
+                        <div class="absolute top-8 -left-8 w-full h-full border-2 border-brand-gold/30 transition-all duration-700 hover:top-4 hover:-left-4 z-0"></div>
+                        <div class="relative overflow-hidden shadow-2xl z-10 img-reveal aspect-[3/4]" style="animation: float 8s ease-in-out infinite;">
+                            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/sobremimv2.jpg" 
+                                 alt="Thiago, fotógrafo profissional no Rio de Janeiro" 
+                                 class="w-full h-full object-cover object-top transition-all duration-1000 grayscale hover:grayscale-0"
+                                 loading="lazy" width="600" height="800">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-6 right-6 glass-ultra px-6 py-3 rounded-full">
+                                <span class="text-white text-sm font-bold"><i class="fas fa-camera text-brand-gold mr-2"></i>+10 anos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="w-full lg:w-1/2 reveal-element" style="transition-delay: 0.2s;">
+                        <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full">
+                            <i class="fas fa-star mr-2"></i>Bastidores
+                        </span>
+                        
+                        <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif text-brand-dark dark:text-white mb-8 leading-tight">
+                            Thiago <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-300 font-light italic">& Creative</span>
+                        </h2>
+                        
+                        <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6 font-light">
+                            Não acredito em fotos posadas demais. Acredito na <strong class="text-brand-gold">elegância do espontâneo</strong>. 
+                            Meu trabalho é criar um ambiente onde você se sinta tão à vontade que a câmera desapareça.
+                        </p>
+                        
+                        <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-10 font-light">
+                            Cada clique é uma história. Cada luz, um sentimento. O resultado? Memórias que você vai querer emoldurar.
+                        </p>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 gap-8 border-t border-gray-200 dark:border-gray-800 pt-10">
+                            <div class="text-center sm:text-left">
+                                <span class="block text-5xl font-serif text-gold-gradient mb-2">500+</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold">Histórias Contadas</span>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <span class="block text-5xl font-serif text-gold-gradient mb-2">100%</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold">Satisfação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section id="portfolio" class="py-24 md:py-32 bg-gray-100 dark:bg-[#0a0a0a] transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center mb-16 reveal-element">
+                    <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full">
+                        <i class="fas fa-gem mr-2"></i>Portfólio
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-serif text-brand-dark dark:text-white mb-4">Seleção Curada</h2>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Uma amostra do meu trabalho mais recente</p>
+                </div>
+                
+                <!-- Portfolio Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 reveal-element" style="transition-delay: 0.2s;">
+                    
+                    <!-- Card 1 -->
+                    <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm">
+                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/15%20anos%20bokeh.jpg" 
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                             alt="Fotografia de eventos - 15 anos com bokeh" loading="lazy" width="400" height="550">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <span class="text-brand-gold font-serif text-3xl md:text-4xl italic block mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Eventos</span>
+                            <p class="text-white/70 text-sm transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">Festas, formaturas e celebrações</p>
+                            <div class="h-0.5 w-12 bg-brand-gold group-hover:w-24 transition-all duration-500 mt-4"></div>
+                        </div>
+                    </article>
+                    
+                    <!-- Card 2 (Featured) -->
+                    <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm md:-mt-8 md:mb-8">
+                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/retrato%20femininoPB.jpg" 
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                             alt="Retrato feminino em preto e branco" loading="lazy" width="400" height="550">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute top-6 right-6">
+                            <span class="bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Destaque</span>
+                        </div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <span class="text-brand-gold font-serif text-3xl md:text-4xl italic block mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Retratos</span>
+                            <p class="text-white/70 text-sm transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">Autenticidade e personalidade</p>
+                            <div class="h-0.5 w-12 bg-brand-gold group-hover:w-24 transition-all duration-500 mt-4"></div>
+                        </div>
+                    </article>
+                    
+                    <!-- Card 3 -->
+                    <article class="card-3d group relative h-[500px] md:h-[550px] overflow-hidden cursor-pointer shadow-xl rounded-sm">
+                        <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/tambaba1.jpg" 
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                             alt="Ensaio fotográfico externo" loading="lazy" width="400" height="550">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <span class="text-brand-gold font-serif text-3xl md:text-4xl italic block mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Ensaios</span>
+                            <p class="text-white/70 text-sm transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">Locações externas e estúdio</p>
+                            <div class="h-0.5 w-12 bg-brand-gold group-hover:w-24 transition-all duration-500 mt-4"></div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Mobile Swipe Indicator -->
+                <div class="swipe-indicator md:hidden">
+                    <span>Deslize para ver mais</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <!-- Instagram Link -->
+                <div class="text-center mt-8 md:mt-16 reveal-element" style="transition-delay: 0.3s;">
+                    <a href="https://www.instagram.com/creative__fotografia/" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.15em] text-gray-500 hover:text-brand-gold transition-all duration-300 group bg-white dark:bg-white/5 px-8 py-4 rounded-full shadow-md hover:shadow-xl">
+                        <span>Ver mais no Instagram</span>
+                        <i class="fab fa-instagram text-xl group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- METRICS SECTION -->
+        <section id="metrics" class="py-24 md:py-32 bg-brand-dark relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23d4af37\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    
+                    <!-- Content -->
+                    <div class="reveal-element">
+                        <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full">
+                            <i class="fas fa-chart-line mr-2"></i>Transparência
+                        </span>
+                        
+                        <h2 class="text-4xl sm:text-5xl font-serif text-white mb-6 leading-tight">
+                            Por que investir na <span class="text-gold-gradient">Creative?</span>
+                        </h2>
+                        
+                        <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
+                            No mercado atual, preço é o que você paga, <strong class="text-white">valor é o que você leva</strong>. 
+                            Minha política é de total transparência: você paga por equipamentos de ponta, edição premium e uma experiência sem estresse.
+                        </p>
+                        
+                        <blockquote class="glass-ultra p-6 rounded-xl border-l-4 border-brand-gold">
+                            <p class="text-white text-base italic leading-relaxed">
+                                "A maioria dos fotógrafos esconde os custos. Eu prefiro mostrar exatamente onde seu investimento é aplicado para garantir um resultado eterno."
+                            </p>
+                            <cite class="block text-brand-gold text-sm mt-4 font-semibold not-italic">— Thiago, Creative Fotografia</cite>
+                        </blockquote>
+                    </div>
+                    
+                    <!-- Charts -->
+                    <div class="glass-ultra p-8 rounded-2xl reveal-element" style="transition-delay: 0.2s;">
+                        <div class="mb-10">
+                            <h4 class="text-white text-xs uppercase tracking-widest mb-6 font-bold flex items-center gap-2">
+                                <i class="fas fa-chart-bar text-brand-gold"></i> Comparativo de Mercado (RJ)
+                            </h4>
+                            <div class="h-44 w-full relative">
+                                <canvas id="marketChart" aria-label="Gráfico comparativo de preços"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-white/10 pt-8">
+                            <h4 class="text-white text-xs uppercase tracking-widest mb-6 font-bold flex items-center gap-2">
+                                <i class="fas fa-chart-pie text-brand-gold"></i> Destino do Investimento
+                            </h4>
+                            <div class="h-44 w-full flex justify-center relative">
+                                <canvas id="breakdownChart" aria-label="Gráfico de distribuição do investimento"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="py-24 md:py-32 bg-white dark:bg-[#0f0f0f] transition-colors duration-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center mb-16 reveal-element">
+                    <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full">
+                        <i class="fas fa-quote-left mr-2"></i>Depoimentos
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-serif text-brand-dark dark:text-white">Quem já viveu a experiência</h2>
+                </div>
+                
+                <!-- Testimonials Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <article class="testimonial-card glass-ultra p-8 rounded-2xl dark:bg-white/5 reveal-element">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed">
+                            "Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
+                                <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" 
+                                     class="w-full h-full object-cover" alt="Mariana Costa" loading="lazy" width="48" height="48">
+                            </div>
+                            <div>
+                                <span class="block text-brand-dark dark:text-white font-bold text-sm">Mariana Costa</span>
+                                <span class="block text-brand-gold text-xs uppercase tracking-wider">Ensaio Pessoal</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="testimonial-card glass-ultra p-8 rounded-2xl dark:bg-white/5 md:-mt-6 reveal-element" style="transition-delay: 0.1s;">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed">
+                            "Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" 
+                                     class="w-full h-full object-cover" alt="Pedro Alvarez" loading="lazy" width="48" height="48">
+                            </div>
+                            <div>
+                                <span class="block text-brand-dark dark:text-white font-bold text-sm">Pedro Alvarez</span>
+                                <span class="block text-brand-gold text-xs uppercase tracking-wider">E-commerce</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="testimonial-card glass-ultra p-8 rounded-2xl dark:bg-white/5 reveal-element" style="transition-delay: 0.2s;">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                            <i class="fas fa-star text-brand-gold text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed">
+                            "As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" 
+                                     class="w-full h-full object-cover" alt="Ana e Felipe" loading="lazy" width="48" height="48">
+                            </div>
+                            <div>
+                                <span class="block text-brand-dark dark:text-white font-bold text-sm">Ana & Felipe</span>
+                                <span class="block text-brand-gold text-xs uppercase tracking-wider">Casamento</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULATOR SECTION -->
+        <section id="simulator" class="py-24 md:py-32 bg-brand-dark relative">
+            <!-- Background Image -->
+            <div class="absolute inset-0 bg-cover bg-center bg-fixed opacity-20" style="background-image: url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-dark/95 to-brand-dark"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <!-- Section Header -->
+                <div class="text-center mb-16 reveal-element">
+                    <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full">
+                        <i class="fas fa-calculator mr-2"></i>Simulador
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-serif text-white mb-4">Investimento</h2>
+                    <p class="text-gray-400 font-light">Transparência total. Sem surpresas.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <!-- Calculator Options -->
+                    <div class="glass-ultra p-8 rounded-2xl text-white reveal-element">
+                        
+                        <!-- Service Type -->
+                        <div class="mb-10">
+                            <label class="block text-xs uppercase tracking-[0.2em] text-brand-gold mb-4 font-bold">
+                                <i class="fas fa-tag mr-2"></i>Experiência Desejada
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button class="type-btn py-4 border-2 border-brand-gold bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-wider transition-all duration-300 rounded-lg" 
+                                        data-type="wedding" onclick="selectType('wedding', this)">
+                                    <i class="fas fa-champagne-glasses block text-lg mb-1"></i>Eventos
+                                </button>
+                                <button class="type-btn py-4 border-2 border-white/20 text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:border-brand-gold hover:text-white rounded-lg" 
+                                        data-type="essay" onclick="selectType('essay', this)">
+                                    <i class="fas fa-portrait block text-lg mb-1"></i>Ensaios
+                                </button>
+                                <button class="type-btn py-4 border-2 border-white/20 text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:border-brand-gold hover:text-white rounded-lg" 
+                                        data-type="business" onclick="selectType('business', this)">
+                                    <i class="fas fa-briefcase block text-lg mb-1"></i>Marcas
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Photo Slider -->
+                        <div id="photo-section" class="mb-10">
+                            <div class="flex justify-between items-center mb-4">
+                                <label class="text-gray-300 font-light tracking-wide text-sm">Volume de Entrega</label>
+                                <span class="text-brand-gold font-bold text-2xl font-serif" id="photo-count-display">24</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="24" class="w-full" id="photo-slider" aria-label="Quantidade de fotos">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0 fotos</span>
+                                <span>100 fotos</span>
+                            </div>
+                        </div>
+
+                        <!-- Business Video Options -->
+                        <div id="business-options" class="hidden mb-8 bg-white/5 p-6 rounded-xl border border-white/10">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="block text-sm font-bold tracking-wide">Vídeos Reels (Shorts)</span>
+                                    <span class="text-xs text-gray-400">R$ 400 primeiro + R$ 300/adicional</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <button class="w-10 h-10 rounded-full border border-white/20 hover:border-brand-gold hover:text-brand-gold transition text-xl" onclick="changeVideoQty(-1)" aria-label="Diminuir quantidade">−</button>
+                                    <span class="font-bold w-6 text-center text-xl" id="video-qty-display">0</span>
+                                    <button class="w-10 h-10 rounded-full border border-white/20 hover:border-brand-gold hover:text-brand-gold transition text-xl" onclick="changeVideoQty(1)" aria-label="Aumentar quantidade">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Addons -->
+                        <div class="space-y-4">
+                            <button class="addon-btn flex items-center justify-between w-full p-5 border border-white/10 rounded-xl hover:border-brand-gold/50 hover:bg-white/5 transition-all group text-left" onclick="toggleDrone()">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition-colors group-hover:border-brand-gold" id="drone-box">
+                                        <i class="fas fa-check text-brand-gold text-xs hidden" id="drone-check-inner"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-sm uppercase tracking-wide font-bold">Imagens Aéreas</span>
+                                        <span class="text-xs text-gray-400">Filmagens com Drone</span>
+                                    </div>
+                                </div>
+                                <span class="text-brand-gold font-serif italic">+R$ 850</span>
+                            </button>
+                            
+                            <button id="simple-video-option" class="addon-btn flex items-center justify-between w-full p-5 border border-white/10 rounded-xl hover:border-brand-gold/50 hover:bg-white/5 transition-all group text-left" onclick="toggleVideo()">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition-colors group-hover:border-brand-gold" id="video-box">
+                                        <i class="fas fa-check text-brand-gold text-xs hidden" id="video-check-inner"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-sm uppercase tracking-wide font-bold">Vídeo Maker</span>
+                                        <span class="text-xs text-gray-400">Reels para Instagram</span>
+                                    </div>
+                                </div>
+                                <span class="text-brand-gold font-serif italic">+R$ 250</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Price Display -->
+                    <div class="glass-ultra bg-gradient-to-br from-[#1a1a1a] to-black p-10 rounded-2xl flex flex-col justify-between relative overflow-hidden reveal-element" style="transition-delay: 0.2s;">
+                        
+                        <!-- Decorative Glow -->
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-[100px] -mr-16 -mt-16"></div>
+                        
+                        <div class="relative z-10">
+                            <span class="text-xs uppercase tracking-[0.3em] text-gray-500 block mb-2">Investimento Estimado</span>
+                            <div class="flex items-start mb-8">
+                                <span class="text-3xl text-brand-gold mt-4 mr-2 font-light">R$</span>
+                                <span class="text-7xl md:text-8xl font-serif text-white" id="total-price">600</span>
+                            </div>
+                            
+                            <!-- Breakdown -->
+                            <div class="space-y-4 border-t border-white/10 pt-8">
+                                <div class="flex justify-between text-sm text-gray-400 font-light">
+                                    <span><i class="fas fa-camera-retro mr-2 text-brand-gold"></i>Serviço Base</span>
+                                    <span class="text-white font-semibold" id="base-breakdown">R$ 600</span>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-400 font-light">
+                                    <span><i class="fas fa-plus-circle mr-2 text-brand-gold"></i>Adicionais Premium</span>
+                                    <span class="text-brand-gold font-semibold" id="extras-breakdown">R$ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div class="relative z-10 mt-10">
+                            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
+                                    class="btn-magnetic w-full py-5 bg-gradient-to-r from-brand-gold-dark via-brand-gold to-brand-gold-light text-brand-dark font-bold uppercase tracking-[0.2em] text-sm rounded-lg shadow-lg">
+                                <i class="fas fa-calendar-check mr-2"></i>Verificar Disponibilidade
+                            </button>
+                            
+                            <p class="text-center mt-4 text-xs text-gray-500 tracking-wider uppercase">
+                                Precisa de flexibilidade? 
+                                <a href="https://wa.me/5583981181907?text=Oi%20Thiago,%20gostei%20do%20trabalho%20mas%20gostaria%20de%20negociar%20o%20valor." 
+                                   target="_blank" rel="noopener" 
+                                   class="text-brand-gold hover:underline ml-1">Podemos Negociar</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-24 md:py-32 bg-white dark:bg-brand-dark transition-colors duration-500">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                
+                <div class="reveal-element">
+                    <span class="inline-block text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 bg-brand-gold/10 px-4 py-2 rounded-full animate-pulse">
+                        <i class="fas fa-envelope-open-text mr-2"></i>Exclusivo
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif text-brand-dark dark:text-white mb-6">Vamos criar algo único?</h2>
+                    <p class="text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Preencha o formulário abaixo e receba um retorno em até 24 horas.</p>
+                </div>
+                
+                <form id="contactForm" class="space-y-8 reveal-element" style="transition-delay: 0.2s;">
+                    <div class="group relative">
+                        <input type="text" id="nameInput" placeholder="SEU NOME" required
+                               class="w-full bg-transparent border-b-2 border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl"
+                               aria-label="Seu nome">
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-gold transition-all duration-500 group-focus-within:w-full group-focus-within:left-0"></span>
+                    </div>
+                    
+                    <div class="group relative">
+                        <input type="tel" id="contactInput" placeholder="SEU WHATSAPP" required
+                               class="w-full bg-transparent border-b-2 border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl"
+                               aria-label="Seu WhatsApp">
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-gold transition-all duration-500 group-focus-within:w-full group-focus-within:left-0"></span>
+                    </div>
+                    
+                    <div class="group relative">
+                        <textarea id="messageInput" rows="2" placeholder="CONTE SOBRE SUA IDEIA" required
+                                  class="w-full bg-transparent border-b-2 border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl resize-none"
+                                  aria-label="Sua mensagem"></textarea>
+                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-gold transition-all duration-500 group-focus-within:w-full group-focus-within:left-0"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-magnetic mt-12 px-14 py-5 border-2 border-brand-dark dark:border-white text-brand-dark dark:text-white hover:bg-brand-dark hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500 uppercase tracking-[0.2em] text-sm font-bold rounded-full shadow-lg">
+                        <i class="fab fa-whatsapp mr-2"></i>Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white/40 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <!-- LOGO FIXED: w-auto object-contain (removed width=80) -->
+            <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Creative Fotografia" 
+                 class="h-8 w-auto object-contain mx-auto mb-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700"
+                 loading="lazy">
+            
+            <!-- Social Icons -->
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="https://www.instagram.com/creative__fotografia/" target="_blank" rel="noopener noreferrer" 
+                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold hover:scale-110 transition-all duration-300"
+                   aria-label="Instagram">
+                    <i class="fab fa-instagram text-lg"></i>
+                </a>
+                <a href="https://www.facebook.com/Creativethb?locale=pt_BR" target="_blank" rel="noopener noreferrer" 
+                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-blue-500 hover:text-blue-500 hover:scale-110 transition-all duration-300"
+                   aria-label="Facebook">
+                    <i class="fab fa-facebook-f text-lg"></i>
+                </a>
+                <a href="https://wa.me/5583981181907" target="_blank" rel="noopener noreferrer" 
+                   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-green-500 hover:text-green-500 hover:scale-110 transition-all duration-300"
+                   aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp text-lg"></i>
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- METRICS SECTION -->
-    <section id="metrics" class="py-24 bg-brand-dark relative">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center reveal">
-                <div class="mb-8 lg:mb-0">
-                    <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Transparência</span>
-                    <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Por que investir na <span class="text-gold-gradient">Creative?</span></h2>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
-                        No mercado atual, preço é o que você paga, valor é o que você leva. Minha política é de total transparência: você paga por equipamentos de ponta, edição premium e uma experiência sem estresse.
-                    </p>
-                    <div class="glass-panel p-6 rounded-lg border-l-4 border-brand-gold">
-                        <p class="text-white text-sm italic">"A maioria dos fotógrafos esconde os custos. Eu prefiro mostrar exatamente onde seu investimento é aplicado para garantir um resultado eterno."</p>
-                    </div>
-                </div>
-                <div class="glass-panel p-8 rounded-xl bg-black/40 w-full overflow-hidden">
-                    <div class="mb-8 w-full">
-                        <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-bar text-brand-gold"></i> Comparativo de Mercado (RJ)</h4>
-                        <div class="h-40 md:h-48 w-full relative"><canvas id="marketChart"></canvas></div>
-                    </div>
-                    <div class="w-full">
-                        <h4 class="text-white text-xs uppercase tracking-widest mb-4 font-bold flex items-center gap-2"><i class="fas fa-chart-pie text-brand-gold"></i> Destino do Investimento</h4>
-                        <div class="h-40 md:h-48 w-full flex justify-center relative"><canvas id="breakdownChart"></canvas></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-            <div class="text-center mb-16">
-                <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block">Depoimentos</span>
-                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark dark:text-white">Quem já viveu a experiência</h2>
-            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
-                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">Eu odeio tirar fotos, mas o Thiago me deixou tão à vontade que nem percebi a câmera. O resultado ficou natural e sofisticado.</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Mariana Costa</span><span class="block text-brand-gold text-[10px] uppercase">Ensaio Pessoal</span></div></div>
-                </div>
-                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300 md:-mt-4">
-                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">Contratei para minha marca de roupas e o retorno foi imediato. As fotos e os vídeos reels elevaram o nível do meu Instagram.</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Pedro Alvarez</span><span class="block text-brand-gold text-[10px] uppercase">E-commerce</span></div></div>
-                </div>
-                <div class="glass-panel p-8 rounded-lg shadow-lg dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:-translate-y-2 transition duration-300">
-                    <div class="text-brand-gold text-4xl font-serif mb-4">"</div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 text-sm leading-relaxed">As fotos do nosso casamento ficaram parecendo capa de revista. O olhar do Thiago para a luz é diferente de tudo que já vi.</p>
-                    <div class="flex items-center gap-3"><div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border border-brand-gold"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-full h-full object-cover grayscale"></div><div><span class="block text-brand-dark dark:text-white font-bold text-xs uppercase tracking-wider">Ana & Felipe</span><span class="block text-brand-gold text-[10px] uppercase">Casamento</span></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SIMULADOR -->
-    <section id="simulator" class="py-24 bg-brand-dark relative bg-[url('https://raw.githubusercontent.com/creativethb/SITE1/main/fire%20bombeiro.jpg')] bg-fixed bg-cover bg-center">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">Investimento</h2>
-                <p class="text-gray-400 font-light text-sm tracking-wide">Transparência total. Sem surpresas.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-10">
-                <div class="glass-panel p-8 rounded-xl text-white transition-transform hover:scale-[1.01] duration-500">
-                    <div class="mb-10">
-                        <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-4 font-bold">Experiência Desejada</label>
-                        <div class="grid grid-cols-3 gap-4">
-                            <button class="type-btn py-4 border border-brand-gold bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]" data-type="wedding" onclick="selectType('wedding', this)">Eventos</button>
-                            <button class="type-btn py-4 border border-white/10 hover:border-brand-gold text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:text-white" data-type="essay" onclick="selectType('essay', this)">Ensaios</button>
-                            <button class="type-btn py-4 border border-white/10 hover:border-brand-gold text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:text-white" data-type="business" onclick="selectType('business', this)">Marcas</button>
-                        </div>
-                    </div>
-
-                    <div id="photo-section" class="mb-10">
-                        <div class="flex justify-between text-sm mb-4">
-                            <span class="text-gray-300 font-light tracking-wide">Volume de Entrega</span>
-                            <span class="text-brand-gold font-bold text-xl" id="photo-count-display">24</span>
-                        </div>
-                        <input type="range" min="0" max="100" value="24" class="w-full transition-all duration-300" id="photo-slider">
-                    </div>
-
-                    <div id="business-options" class="hidden mb-8 space-y-4 bg-white/5 p-6 rounded-lg border border-white/10">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-bold tracking-wide">Vídeos Reels (Shorts)</span>
-                            <div class="flex items-center gap-4">
-                                <button class="w-10 h-10 rounded-full border border-white/20 hover:border-brand-gold hover:text-brand-gold transition text-xl" onclick="changeVideoQty(-1)">-</button>
-                                <span class="font-bold w-6 text-center text-xl" id="video-qty-display">0</span>
-                                <button class="w-10 h-10 rounded-full border border-white/20 hover:border-brand-gold hover:text-brand-gold transition text-xl" onclick="changeVideoQty(1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-5 border border-white/10 rounded-lg hover:border-brand-gold/50 hover:bg-white/5 transition-all cursor-pointer group" onclick="toggleDrone()">
-                            <div class="flex items-center gap-4">
-                                <div class="w-6 h-6 border border-gray-500 rounded flex items-center justify-center transition-colors group-hover:border-brand-gold" id="drone-box">
-                                    <div class="w-4 h-4 bg-brand-gold rounded-sm hidden shadow-[0_0_10px_#d4af37]" id="drone-check-inner"></div>
-                                </div>
-                                <span class="text-sm uppercase tracking-wide font-bold">Imagens Aéreas (Drone)</span>
-                            </div>
-                            <span class="text-brand-gold text-sm font-serif italic">+R$ 850</span>
-                        </div>
-                        
-                        <div id="simple-video-option" class="flex items-center justify-between p-5 border border-white/10 rounded-lg hover:border-brand-gold/50 hover:bg-white/5 transition-all cursor-pointer group" onclick="toggleVideo()">
-                            <div class="flex items-center gap-4">
-                                <div class="w-6 h-6 border border-gray-500 rounded flex items-center justify-center transition-colors group-hover:border-brand-gold" id="video-box">
-                                    <div class="w-4 h-4 bg-brand-gold rounded-sm hidden shadow-[0_0_10px_#d4af37]" id="video-check-inner"></div>
-                                </div>
-                                <span class="text-sm uppercase tracking-wide font-bold">Vídeo Maker (Reels)</span>
-                            </div>
-                            <span class="text-brand-gold text-sm font-serif italic">+R$ 250</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel bg-gradient-to-br from-[#1a1a1a] to-black p-10 rounded-xl flex flex-col justify-between shadow-2xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-[80px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
-                    
-                    <div class="relative z-10">
-                        <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 block mb-2">Investimento Estimado</span>
-                        <div class="flex items-start">
-                            <span class="text-2xl text-brand-gold mt-4 mr-2">R$</span>
-                            <span class="text-7xl md:text-8xl font-serif text-white tracking-tighter text-shadow-lg" id="total-price">600</span>
-                        </div>
-                        
-                        <div class="mt-10 space-y-4 border-t border-white/10 pt-8">
-                            <div class="flex justify-between text-sm text-gray-400 font-light">
-                                <span>Serviço Base</span>
-                                <span class="text-white font-bold" id="base-breakdown">R$ 600</span>
-                            </div>
-                            <div class="flex justify-between text-sm text-gray-400 font-light">
-                                <span>Adicionais Premium</span>
-                                <span class="text-brand-gold font-bold" id="extras-breakdown">R$ 0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="btn-shine btn-float w-full py-5 mt-10 bg-gold-gradient text-brand-dark font-bold uppercase tracking-[0.25em] text-xs shadow-gold-glow hover:brightness-110 relative z-10">
-                        Verificar Data
-                    </button>
-                    <!-- NEGOTIATION TEXT -->
-                    <div class="text-center mt-4 relative z-10">
-                         <p class="text-[10px] text-gray-400 tracking-widest uppercase opacity-80">
-                            Precisa de flexibilidade? 
-                            <a href="https://wa.me/5583981181907?text=Oi%20Thiago,%20gostei%20do%20trabalho%20mas%20gostaria%20de%20negociar%20o%20valor." target="_blank" class="text-brand-gold border-b border-brand-gold/30 hover:border-brand-gold transition-colors pb-0.5 ml-1">Podemos Negociar</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 bg-white dark:bg-brand-dark transition-colors duration-500">
-        <div class="max-w-3xl mx-auto px-4 text-center reveal">
-            <span class="text-brand-gold font-bold tracking-[0.3em] text-xs uppercase mb-4 block animate-pulse">Exclusive</span>
-            <h2 class="text-4xl md:text-6xl font-serif text-brand-dark dark:text-white mb-12">Vamos criar algo único?</h2>
-            
-            <form id="contactForm" class="space-y-8">
-                <div class="group relative">
-                    <input type="text" id="nameInput" placeholder="SEU NOME" class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl group-hover:border-gray-400" required>
-                    <span class="absolute bottom-0 left-1/2 w-0 h-[1px] bg-brand-gold transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-                </div>
-                
-                <div class="group relative">
-                    <input type="text" id="contactInput" placeholder="SEU WHATSAPP" class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl group-hover:border-gray-400" required>
-                    <span class="absolute bottom-0 left-1/2 w-0 h-[1px] bg-brand-gold transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-                </div>
-                
-                <div class="group relative">
-                    <textarea id="messageInput" rows="1" placeholder="CONTE SOBRE SUA IDEIA" class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-4 text-center focus:outline-none focus:border-brand-gold transition-all duration-500 dark:text-white placeholder-gray-400 font-serif text-xl resize-none group-hover:border-gray-400" required></textarea>
-                    <span class="absolute bottom-0 left-1/2 w-0 h-[1px] bg-brand-gold transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-                </div>
-                
-                <button type="submit" class="mt-12 px-12 py-5 border border-brand-dark dark:border-white text-brand-dark dark:text-white hover:bg-brand-dark hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500 uppercase tracking-[0.25em] text-xs font-bold btn-float shadow-lg">
-                    Enviar Mensagem
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- FOOTER COM REDES SOCIAIS -->
-    <footer class="bg-black text-white/30 py-16 text-center text-[10px] tracking-[0.2em] uppercase border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4">
-             <img src="https://raw.githubusercontent.com/creativethb/SITE1/main/logosuperior.png" alt="Logo" class="h-6 mx-auto mb-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition duration-700">
-             
-             <!-- Social Icons -->
-             <div class="flex justify-center gap-8 mb-8">
-                 <a href="https://www.instagram.com/creative__fotografia/" target="_blank" class="text-white/40 hover:text-brand-gold transition-colors duration-300"><i class="fab fa-instagram text-xl"></i></a>
-                 <a href="https://www.facebook.com/Creativethb?locale=pt_BR" target="_blank" class="text-white/40 hover:text-blue-500 transition-colors duration-300"><i class="fab fa-facebook text-xl"></i></a>
-                 <a href="https://wa.me/5583981181907" target="_blank" class="text-white/40 hover:text-green-500 transition-colors duration-300"><i class="fab fa-whatsapp text-xl"></i></a>
-             </div>
-             
-            <p class="hover:text-white/60 transition-colors">&copy; 2025 Creative Fotografia. Todos os direitos reservados.</p>
+            <p class="text-xs uppercase tracking-[0.2em] hover:text-white/60 transition-colors">
+                &copy; 2025 Creative Fotografia. Todos os direitos reservados.
+            </p>
         </div>
     </footer>
 
-    <!-- Whatsapp Floating (Ajustado tamanho) -->
-    <a href="https://wa.me/5583981181907" target="_blank" class="fixed bottom-8 right-8 z-50 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="absolute inset-0 bg-brand-gold/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
-        <div class="absolute inset-0 bg-green-500/20 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] delay-75"></div>
-        <div class="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-gold-glow text-white text-2xl transition-colors hover:bg-[#128C7E] border-2 border-white/20 backdrop-blur-md">
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5583981181907" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 z-50 group" aria-label="Contato via WhatsApp">
+        <div class="absolute inset-0 bg-green-500/30 rounded-full animate-ping"></div>
+        <div class="relative w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg text-white text-2xl transition-all duration-300 hover:scale-110 hover:shadow-xl">
             <i class="fab fa-whatsapp"></i>
         </div>
     </a>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="window.scrollTo(0,0)" class="fixed bottom-8 left-8 z-50 w-12 h-12 bg-black border border-brand-gold text-brand-gold rounded-full flex items-center justify-center shadow-gold-glow hover:bg-brand-gold hover:text-black transition-all duration-300 group">
-        <i class="fas fa-arrow-up text-lg group-hover:-translate-y-1 transition-transform"></i>
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+            class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-black/80 backdrop-blur border border-brand-gold text-brand-gold rounded-full flex items-center justify-center shadow-lg hover:bg-brand-gold hover:text-black transition-all duration-300"
+            aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- SCRIPTS -->
     <script>
-        // --- PRELOADER ---
+        // === PERFORMANCE: Throttle function ===
+        const throttle = (fn, wait) => {
+            let time = Date.now();
+            return function() {
+                if ((time + wait - Date.now()) < 0) {
+                    fn.apply(this, arguments);
+                    time = Date.now();
+                }
+            }
+        };
+
+        // === PRELOADER ===
         window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
             setTimeout(() => {
-                preloader.classList.add('hidden');
-                document.querySelector('.hero-slide').classList.add('active');
-            }, 1000);
-            
-            handleScroll(); 
+                document.getElementById('preloader').classList.add('hidden');
+            }, 800);
         });
 
-        // --- NAVBAR, SCROLL INDICATOR & BACK TO TOP CONTROL ---
-        const navBg = document.getElementById('navbar-bg');
-        const navText = document.querySelectorAll('.nav-item');
-        const navLogo = document.getElementById('nav-text-logo');
-        const themeToggles = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, #menu-icon');
-        const scrollIndicator = document.getElementById('scroll-indicator'); 
-        const backToTopBtn = document.getElementById('back-to-top');
-
-        function handleScroll() {
-            const scrollY = window.scrollY;
-
-            // Scroll Indicator (Desaparece ao rolar)
-            if (scrollY > 50) {
-                scrollIndicator.style.opacity = '0';
-                scrollIndicator.style.pointerEvents = 'none'; 
-            } else {
-                scrollIndicator.style.opacity = '1';
-                scrollIndicator.style.pointerEvents = 'auto';
-            }
-
-            // Back to Top Button (Aparece ao rolar)
-            if (scrollY > 500) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-
-            // Menu Control
-            if(scrollY > 50) {
-                navBg.classList.add('nav-scrolled-bg');
-                navBg.classList.remove('nav-at-top');
-                navText.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
-                navLogo.classList.remove('text-top'); navLogo.classList.add('text-scrolled');
-                themeToggles.forEach(el => { el.classList.remove('text-top'); el.classList.add('text-scrolled'); });
-            } else {
-                navBg.classList.remove('nav-scrolled-bg');
-                navBg.classList.add('nav-at-top');
-                navText.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
-                navLogo.classList.add('text-top'); navLogo.classList.remove('text-scrolled');
-                themeToggles.forEach(el => { el.classList.add('text-top'); el.classList.remove('text-scrolled'); });
-            }
+        // === CURSOR GLOW ===
+        const cursorGlow = document.getElementById('cursor-glow');
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', throttle((e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            }, 16));
             
-            // Parallax
-            if (window.innerWidth > 768) {
-                document.querySelectorAll('.parallax-element').forEach(el => {
-                    const speed = el.getAttribute('data-speed');
-                    el.style.transform = `translateY(${scrollY * speed}px)`;
+            document.addEventListener('mouseenter', () => cursorGlow.classList.add('active'));
+            document.addEventListener('mouseleave', () => cursorGlow.classList.remove('active'));
+        }
+
+        // === NAVBAR SCROLL ===
+        const navbar = document.getElementById('navbar');
+        const navTexts = document.querySelectorAll('.nav-text');
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        const backToTop = document.getElementById('back-to-top');
+
+        const handleScroll = throttle(() => {
+            const scrollY = window.scrollY;
+            
+            // Navbar state
+            if (scrollY > 80) {
+                navbar.classList.remove('nav-transparent');
+                navbar.classList.add('nav-solid');
+                navTexts.forEach(el => {
+                    el.classList.remove('text-white');
+                    el.classList.add('text-gray-800', 'dark:text-white');
+                });
+            } else {
+                navbar.classList.add('nav-transparent');
+                navbar.classList.remove('nav-solid');
+                navTexts.forEach(el => {
+                    el.classList.add('text-white');
+                    el.classList.remove('text-gray-800', 'dark:text-white');
                 });
             }
-        }
+            
+            // Scroll indicator
+            scrollIndicator.style.opacity = Math.max(0, 1 - scrollY / 200);
+            
+            // Back to top
+            if (scrollY > 600) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }, 16);
 
-        document.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
 
-        // --- CHART JS CONFIG ---
-        Chart.defaults.font.family = "'Montserrat', sans-serif";
-        Chart.defaults.color = '#9ca3af';
-        const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }, x: { grid: { display: false }, ticks: { color: '#9ca3af' } } } };
-        
-        const ctx1 = document.getElementById('marketChart').getContext('2d');
-        new Chart(ctx1, { type: 'bar', data: { labels: ['Média RJ', 'Creative'], datasets: [{ label: 'Investimento (R$)', data: [1500, 600], backgroundColor: ['rgba(255,255,255,0.2)', '#d4af37'], borderRadius: 4, borderWidth: 0 }] }, options: chartOptions });
-        
-        const ctx2 = document.getElementById('breakdownChart').getContext('2d');
-        new Chart(ctx2, { type: 'doughnut', data: { labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'], datasets: [{ data: [30, 25, 25, 20], backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#333'], borderColor: 'rgba(0,0,0,0)', borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 8 } } } } });
-
-        // --- SLIDER ---
+        // === HERO SLIDER ===
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
-        function nextSlide() {
-            slides[currentSlide].classList.remove('opacity-100'); slides[currentSlide].classList.add('opacity-0');
+
+        const nextSlide = () => {
+            slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.remove('opacity-0'); slides[currentSlide].classList.add('opacity-100');
-        }
-        setInterval(nextSlide, 5000);
+            slides[currentSlide].classList.add('active');
+        };
 
-        // --- MOBILE MENU ---
+        setInterval(nextSlide, 6000);
+
+        // === MOBILE MENU ===
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const menuBtn = document.getElementById('menu-btn');
+
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu'); const icon = document.getElementById('menu-icon');
-            if (menu.classList.contains('translate-x-full')) { menu.classList.remove('translate-x-full'); icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); } 
-            else { menu.classList.add('translate-x-full'); icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+            const isOpen = !mobileMenu.classList.contains('translate-x-full');
+            
+            if (isOpen) {
+                mobileMenu.classList.add('translate-x-full', 'opacity-0');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+                menuBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        // --- CALCULATOR ---
+        // === DARK MODE ===
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+
+        const setTheme = (dark) => {
+            if (dark) {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+            updateThemeIcon();
+        };
+
+        const updateThemeIcon = () => {
+            const isDark = html.classList.contains('dark');
+            const icons = document.querySelectorAll('#theme-toggle i, #theme-toggle-mobile i');
+            icons.forEach(icon => {
+                icon.classList.remove('fa-moon', 'fa-sun');
+                icon.classList.add(isDark ? 'fa-sun' : 'fa-moon');
+            });
+        };
+
+        // Initial theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme(true);
+        }
+
+        themeToggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
+        themeToggleMobile.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
+
+        // === REVEAL ON SCROLL ===
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal-element').forEach(el => revealObserver.observe(el));
+
+        // === CHARTS ===
+        Chart.defaults.font.family = "'Montserrat', sans-serif";
+        Chart.defaults.color = '#9ca3af';
+
+        const ctx1 = document.getElementById('marketChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Média RJ', 'Creative'],
+                datasets: [{
+                    label: 'Investimento (R$)',
+                    data: [1500, 600],
+                    backgroundColor: ['rgba(255,255,255,0.15)', '#d4af37'],
+                    borderRadius: 8,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } },
+                    x: { grid: { display: false }, ticks: { color: '#9ca3af' } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('breakdownChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Equipamento', 'Edição', 'Arte', 'Sessão'],
+                datasets: [{
+                    data: [30, 25, 25, 20],
+                    backgroundColor: ['#d4af37', '#aa8c2c', '#f9f1d0', '#444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: { legend: { position: 'right', labels: { usePointStyle: true, boxWidth: 10, padding: 15 } } }
+            }
+        });
+
+        // === CALCULATOR ===
         const state = { type: 'wedding', photos: 24, drone: false, video: false, bizVideos: 0, pricePerPhoto: 25 };
+
         function selectType(type, btn) {
             state.type = type;
-            document.querySelectorAll('.type-btn').forEach(b => b.className = 'type-btn py-4 border border-white/10 hover:border-brand-gold text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:text-white');
-            btn.className = 'type-btn py-4 border border-brand-gold bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)]';
-            const bizOptions = document.getElementById('business-options'); const simpleVideo = document.getElementById('simple-video-option');
-            if(type === 'business') { bizOptions.classList.remove('hidden'); simpleVideo.classList.add('hidden'); } else { bizOptions.classList.add('hidden'); simpleVideo.classList.remove('hidden'); }
+            document.querySelectorAll('.type-btn').forEach(b => {
+                b.className = 'type-btn py-4 border-2 border-white/20 text-gray-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:border-brand-gold hover:text-white rounded-lg';
+            });
+            btn.className = 'type-btn py-4 border-2 border-brand-gold bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-wider transition-all duration-300 rounded-lg';
+            
+            const bizOptions = document.getElementById('business-options');
+            const simpleVideo = document.getElementById('simple-video-option');
+            
+            if (type === 'business') {
+                bizOptions.classList.remove('hidden');
+                simpleVideo.classList.add('hidden');
+            } else {
+                bizOptions.classList.add('hidden');
+                simpleVideo.classList.remove('hidden');
+            }
             calculate();
         }
+
         function toggleDrone() {
             state.drone = !state.drone;
-            const check = document.getElementById('drone-check-inner'); const box = document.getElementById('drone-box');
-            if(state.drone) { check.classList.remove('hidden'); box.classList.add('border-brand-gold'); box.classList.remove('border-gray-500'); } else { check.classList.add('hidden'); box.classList.remove('border-brand-gold'); box.classList.add('border-gray-500'); }
+            const check = document.getElementById('drone-check-inner');
+            const box = document.getElementById('drone-box');
+            check.classList.toggle('hidden', !state.drone);
+            box.classList.toggle('border-brand-gold', state.drone);
+            box.classList.toggle('border-gray-500', !state.drone);
             calculate();
         }
+
         function toggleVideo() {
             state.video = !state.video;
-            const check = document.getElementById('video-check-inner'); const box = document.getElementById('video-box');
-            if(state.video) { check.classList.remove('hidden'); box.classList.add('border-brand-gold'); box.classList.remove('border-gray-500'); } else { check.classList.add('hidden'); box.classList.remove('border-brand-gold'); box.classList.add('border-gray-500'); }
+            const check = document.getElementById('video-check-inner');
+            const box = document.getElementById('video-box');
+            check.classList.toggle('hidden', !state.video);
+            box.classList.toggle('border-brand-gold', state.video);
+            box.classList.toggle('border-gray-500', !state.video);
             calculate();
         }
-        function changeVideoQty(delta) { const newQty = state.bizVideos + delta; if(newQty >= 0) { state.bizVideos = newQty; document.getElementById('video-qty-display').innerText = newQty; calculate(); } }
-        document.getElementById('photo-slider').addEventListener('input', (e) => { state.photos = parseInt(e.target.value); document.getElementById('photo-count-display').innerText = state.photos; calculate(); });
-        
+
+        function changeVideoQty(delta) {
+            const newQty = state.bizVideos + delta;
+            if (newQty >= 0) {
+                state.bizVideos = newQty;
+                document.getElementById('video-qty-display').innerText = newQty;
+                calculate();
+            }
+        }
+
+        document.getElementById('photo-slider').addEventListener('input', (e) => {
+            state.photos = parseInt(e.target.value);
+            document.getElementById('photo-count-display').innerText = state.photos;
+            calculate();
+        });
+
         function calculate() {
             let base = 0, extras = 0;
-            if(state.type === 'business') { if(state.bizVideos > 0) base += 400 + (state.bizVideos - 1) * 300; if(state.photos > 0) base += state.photos * state.pricePerPhoto; } else { base = state.photos * state.pricePerPhoto; }
-            if(state.drone) extras += 850; if(state.video && state.type !== 'business') extras += 250;
+            
+            if (state.type === 'business') {
+                if (state.bizVideos > 0) base += 400 + (state.bizVideos - 1) * 300;
+                if (state.photos > 0) base += state.photos * state.pricePerPhoto;
+            } else {
+                base = state.photos * state.pricePerPhoto;
+            }
+            
+            if (state.drone) extras += 850;
+            if (state.video && state.type !== 'business') extras += 250;
+            
             const total = base + extras;
-            animateValue(document.getElementById('total-price'), parseInt(document.getElementById('total-price').innerText), total, 500);
-            document.getElementById('base-breakdown').innerText = `R$ ${base}`; document.getElementById('extras-breakdown').innerText = `R$ ${extras}`;
-            document.getElementById('messageInput').value = `Olá! Simulação (${state.type}): Total R$ ${total}`;
+            animateValue(document.getElementById('total-price'), parseInt(document.getElementById('total-price').innerText), total, 400);
+            document.getElementById('base-breakdown').innerText = `R$ ${base}`;
+            document.getElementById('extras-breakdown').innerText = `R$ ${extras}`;
+            document.getElementById('messageInput').value = `Simulação (${state.type}): Total R$ ${total}`;
         }
+
         function animateValue(obj, start, end, duration) {
             if (start === end) return;
-            let startTimestamp = null;
-            const step = (timestamp) => { if (!startTimestamp) startTimestamp = timestamp; const progress = Math.min((timestamp - startTimestamp) / duration, 1); obj.innerHTML = Math.floor(progress * (end - start) + start); if (progress < 1) window.requestAnimationFrame(step); };
-            window.requestAnimationFrame(step);
+            const startTime = performance.now();
+            
+            const update = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                obj.innerHTML = Math.floor(eased * (end - start) + start);
+                if (progress < 1) requestAnimationFrame(update);
+            };
+            
+            requestAnimationFrame(update);
         }
-        document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('nameInput').value; const contact = document.getElementById('contactInput').value; const msg = document.getElementById('messageInput').value; window.open(`https://wa.me/5583981181907?text=*Nome:* ${name}%0a*Contato:* ${contact}%0a*Mensagem:* ${msg}`, '_blank'); });
 
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animate-fade-in-up'); entry.target.style.opacity = 1; } }); }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 0; observer.observe(el); });
-
-        // Dark Mode
-        const html = document.documentElement; if(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); }
-        document.getElementById('theme-toggle').addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
-        document.getElementById('theme-toggle-mobile').addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
+        // === CONTACT FORM ===
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            const contact = document.getElementById('contactInput').value;
+            const msg = document.getElementById('messageInput').value;
+            window.open(`https://wa.me/5583981181907?text=*Nome:* ${encodeURIComponent(name)}%0a*Contato:* ${encodeURIComponent(contact)}%0a*Mensagem:* ${encodeURIComponent(msg)}`, '_blank');
+        });
     </script>
 </body>
 </html>
